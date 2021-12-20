@@ -1,19 +1,21 @@
-import vueRouter from 'vue-router';
-import Vue from 'vue';
+import { createRouter, createWebHistory } from 'vue-router'
 
-import Events from './components/Event';
-
-Vue.use(vueRouter);
+import Events from './views/Events';
 
 const routes = [
     {
         path: '/',
-        component: 'Event'
+        component: Events
     },
-    {},
 ];
 
-export default vueRouter({
-    mode: 'history',
+const router = createRouter({
+    history: createWebHistory(),
     routes,
-});
+  })
+
+/* router.beforeEach(async (to, from, next) => {
+    console.log(to, from, next)
+}) */
+  
+export default router
