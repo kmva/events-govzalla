@@ -6,7 +6,6 @@
                 <li 
                     class="main-nav__item" 
                     v-for="link in links"
-                    :key="index" 
                 >
                     <a :href="link.href">{{ link.title }}</a>
                 </li>

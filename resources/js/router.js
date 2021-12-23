@@ -1,17 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Events from './views/Events';
+import Events from './views/Events'
+import AddEvent from './views/Admin/AddEvent'
+import Main from './layout/Main.vue'
+import Admin from './layout/Admin.vue'
 
 const routes = [
     {
         path: '/',
-        component: Events
+        name: 'Main',
+        component: Events,
+        meta: {
+            layout: Main,
+        },
+    },
+    {
+        path: '/addevent',
+        name: 'AddEvent',
+        component: AddEvent,
+        meta: {
+            layout: Admin,
+        }
     },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    linkActiveClass: 'active',
+    linkExactActiveClass: 'active',
   })
 
 /* router.beforeEach(async (to, from, next) => {

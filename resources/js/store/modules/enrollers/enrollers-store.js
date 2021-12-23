@@ -1,9 +1,9 @@
 const state = {
-    events: []
+    enrollers: []
 }
 
 const actions = {
-    fetchEvents({ commit }) {
+    fetchEnrollers({ commit }) {
         // добавить event в БД
         const res = [
             {
@@ -29,23 +29,22 @@ const actions = {
                 participants_number: 0,
             },
         ];
-        commit('setEvents', res)
+        commit('setEnrollers', res)
     },
 
-    addEventToDB({ commit }, event) {
-        // добавить event в БД 
-        // добавить event в state
-        console.log(event);
-        commit('addEvent', event)
+    enrollEvent({ commit }, enroller) {
+        // добавить enroller в БД 
+        // добавить enroller в state
+        commit('enrollEvent', enroller)
     }
 }
 
 const mutations = {
-    setEvents(state, events) {
-        state.events = events;
+    setEnrollers(state, enrollers) {
+        state.enrollers = enrollers;
     },
-    addEvent(state, event) {
-        state.events = [...state.events, event];
+    enrollEvent(state, event) {
+        state.enrollers = [...state.events, event];
     }
 }
 

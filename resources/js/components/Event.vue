@@ -1,6 +1,9 @@
 <template>
     <div class="event" :data="data">
         <h3 class="event__title">{{ data.title }}</h3>
+        <div class="event__format">
+            {{ data.format }}
+        </div>
         <div class="event__date">
             {{ data.date }}
         </div>
