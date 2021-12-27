@@ -10,7 +10,7 @@ const actions = {
                 id: 1,
                 title: 'Мероприятие 1',
                 format: 'семинар',
-                date: '20 января, 2022',
+                date: '20 января',
                 location: 'Лермонтова, 2',
                 speakers: ['', ''],
                 description: '',
@@ -21,7 +21,7 @@ const actions = {
                 id: 2,
                 title: 'Мероприятие 2',
                 format: 'конференция',
-                date: '20 января, 2022',
+                date: '20 января',
                 location: 'Лермонтова, 2',
                 speakers: ['', ''],
                 description: '',
@@ -50,8 +50,8 @@ const mutations = {
 }
 
 const getters = {
-    getter: (state) => {
-        return state.data
+    events: (state) => {
+        return state.events
     },
 }
 

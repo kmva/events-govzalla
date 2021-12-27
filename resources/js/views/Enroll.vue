@@ -3,7 +3,7 @@
     <EnrollForm />
 </template>
 <script>
-import EnrollForm from '../../components/Admin/EnrollForm'
+import EnrollForm from '../components/EnrollForm'
 export default {
     components: { EnrollForm },
     setup() {

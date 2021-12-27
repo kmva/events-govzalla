@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Мероприятия</h1>
+        <h1 class="events-title">Мероприятия</h1>
         <Events />
     </div>
 </template>

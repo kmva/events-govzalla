@@ -37,7 +37,8 @@
 </template>
 <script>
 import { ref } from 'vue'
-import { useStore, useRoute } from 'vuex'
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 
 export default {
     setup() {

@@ -17,7 +17,7 @@ export default {
     setup() {
         const store = useStore();
         const events = computed(() => { 
-            return store.state.Events.events
+            return store.getters['Events/events']
         });
         
 

@@ -8,6 +8,10 @@ import { useRoute } from 'vue-router'
 import Main from './layout/Main.vue'
 import Admin from './layout/Admin.vue'
 
+import '../../public/assets/css/reset.css'
+import '../../public/assets/css/normalize.css'
+import '../../public/assets/css/style.css'
+
 export default ({
   setup() {
     const route = useRoute();

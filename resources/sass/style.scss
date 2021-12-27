@@ -1,0 +1,112 @@
+// Variables
+@import 'variables';
+
+body{
+    background-color: $light;
+    font-family: $font-family-sans-serif;
+    color: $black;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    padding: 3em;
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 5em;
+    box-shadow: 0 1px 5px 0 rgba($color: $blue, $alpha: .8);
+    background-color: #FFF;
+    color: $light;
+
+    &__logo{
+        width: 120px;
+    }
+
+    .main-nav{
+
+       &__item{
+        display: inline-block;
+        padding: .5em;
+        font-size: 1.2rem;
+        display: inline-block;
+        text-align: center;
+        font-weight: regular;
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        a{
+            color: $blue;
+        }
+       }
+    }
+}
+
+.events-title{
+    margin-bottom: 1.3em;
+}
+
+.events{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5em;
+
+    .event{
+        width: 100%;
+        background-color: #FFF;
+        display: flex;
+        transition: .3s;
+
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: .1);
+        }
+
+        &__date{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 15%;
+            min-width: 143px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            background-color: $green;
+            color: #FFF;
+            text-align: center;
+            padding: 1em;
+        }
+
+        &__info{
+            padding: 1em;
+        }
+
+        &__title{
+            font-size: 1.4rem;
+        }
+
+        &__links{
+            margin-left: auto;
+
+            a{
+                display: block;
+                background-color: $red;
+                padding: 1em;
+                color: #FFF;
+                text-align: center;
+
+                &:first-child{
+                    margin-bottom: .5em;
+                }
+            }
+        }
+
+    }
+
+
+}
