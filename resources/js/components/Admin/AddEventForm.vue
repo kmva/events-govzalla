@@ -1,50 +1,41 @@
 <template>
-    <form action="">
-        <label>
-            Название
-            <input type="text" v-model="title" />
-        </label>
-        <label>
-            Формат мероприятия
-            <select v-model="format">
-                <option>Семинар</option>
-                <option>Конференция</option>
-                <option>Лекция</option>
-                <option>Форум</option>
-                <option>Курсы</option>
-                <option>Круглый стол</option>
-                <option>Мастер-класс</option>
-                <option>Тренинг</option>
-                <option>Практикум</option>
-                <option>Конкурс</option>
-                <option>Вебинар</option>
-                <option>Стратегическая сессия</option>
-            </select>
-        </label>
-        <label>
-            Описание мероприятия
-            <textarea cols="30" rows="10" v-model="description"></textarea>
-        </label>
-        <label>
-            Место проведения
-            <input type="text" v-model="location">
-        </label>
-        <label>
-            Дата проведения
-            <input type="date" v-model="date">
-        </label>
-        <label>
-            Спикеры
-            <input type="text" v-model="speakers">
-        </label>
-        <label>
-            Целевая аудитория
-            <input type="text" v-model="target_audience">
-        </label>
-        <label>
-            Рассчитано на количество человек
-            <input type="text" v-model="participants_number">
-        </label>
+    <form action="" class="add-event-form">
+        <label> Название</label>
+        <input type="text" v-model="title" />
+
+        <label>Формат мероприятия</label>
+        <select v-model="format">
+            <option>Семинар</option>
+            <option>Конференция</option>
+            <option>Лекция</option>
+            <option>Форум</option>
+            <option>Курсы</option>
+            <option>Круглый стол</option>
+            <option>Мастер-класс</option>
+            <option>Тренинг</option>
+            <option>Практикум</option>
+            <option>Конкурс</option>
+            <option>Вебинар</option>
+            <option>Стратегическая сессия</option>
+        </select>
+
+        <label>Описание мероприятия</label>
+        <textarea cols="30" rows="10" v-model="description"></textarea>
+
+        <label>Место проведения</label>
+        <input type="text" v-model="location">
+
+        <label> Дата проведения</label>
+        <input type="date" v-model="date">
+
+        <label>Спикеры</label>
+        <input type="text" v-model="speakers">
+
+        <label>Целевая аудитория</label>
+        <input type="text" v-model="target_audience">
+        <label>Рассчитано на количество человек</label>
+        <input type="number" v-model="participants_number">
+
         <button type="submit" @click.prevent="validateForm">Добавить мероприятие</button>
     </form>
 </template>

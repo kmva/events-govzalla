@@ -13,6 +13,10 @@ body {
   padding: 3em;
 }
 
+.container--add-form h1 {
+  text-align: center;
+}
+
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -44,26 +48,54 @@ body {
   color: #1e77c0;
 }
 
-.events-title {
+h1 {
   margin-bottom: 1.3em;
 }
 
 .events {
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   gap: 1.5em;
 }
 
-.events .event {
+.events-filters {
+  margin-bottom: 3em;
+}
+
+.events-filters__search {
   width: 100%;
+  margin-bottom: 2em;
+  padding: 0.8em;
+  border: 1px solid #6cb2eb;
+}
+
+.events-filters label {
+  margin-right: 0.5em;
+}
+
+.events-filters select,
+input:not(.events-filters__search) {
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+  padding: 0.5em;
+  border: 1px solid #6cb2eb;
+}
+
+.events-filters input[type=date] {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+
+.events .event {
+  width: 33%;
+  max-width: 400px;
   background-color: #FFF;
-  display: flex;
   transition: 0.3s;
+  border: 1px solid #6cb2eb;
+  text-align: center;
 }
 
 .events .event:hover {
-  cursor: pointer;
   transform: scale(1.02);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -72,38 +104,103 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
-  min-width: 143px;
-  font-size: 1.7rem;
+  height: 170px;
+  font-size: 2rem;
   font-weight: bold;
-  background-color: #38c172;
+  background-color: #6cb2eb;
   color: #FFF;
   text-align: center;
   padding: 1em;
 }
 
-.events .event__info {
+.events .event__body {
   padding: 1em;
+  padding-top: 1.3em;
+}
+
+.events .event__info {
+  height: 250px;
 }
 
 .events .event__title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.6em;
+}
+
+.events .event__format {
+  color: #6cb2eb;
 }
 
 .events .event__links {
-  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .events .event__links a {
   display: block;
   background-color: #e3342f;
-  padding: 1em;
+  border: 1px solid #e3342f;
+  padding: 1em 0.5em;
   color: #FFF;
   text-align: center;
+  transition: 0.3s;
+  width: 49%;
+}
+
+.events .event__links a:hover,
+.events .event__links a:active {
+  background-color: #FFF;
+  color: #e3342f;
 }
 
 .events .event__links a:first-child {
-  margin-bottom: 0.5em;
+  background-color: #FFF;
+  color: #e3342f;
+}
+
+.events .event__links a:first-child:hover,
+.events .event__links a:first-child:active {
+  background-color: #e3342f;
+  color: #FFF;
+}
+
+/***  Admin   ***/
+
+/** add event **/
+
+.add-event-form {
+  width: 600px;
+  margin: auto;
+}
+
+.add-event-form label {
+  display: block;
+  margin-bottom: 0.6em;
+}
+
+.add-event-form input,
+.add-event-form textarea,
+.add-event-form select {
+  margin-bottom: 1.5em;
+  padding: 0.8em;
+  width: 100%;
+}
+
+.add-event-form button {
+  display: block;
+  background-color: #FFF;
+  color: #1e77c0;
+  border: 1px solid #1e77c0;
+  padding: 0.8em;
+  transition: 0.3s;
+  margin-top: 0.6em;
+}
+
+.add-event-form button:hover,
+.add-event-form button:active {
+  cursor: pointer;
+  background-color: #1e77c0;
+  color: #FFF;
 }
 
 
