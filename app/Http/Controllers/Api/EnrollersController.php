@@ -36,7 +36,26 @@ class EnrollersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'bail|required',
+            'format' => 'required',
+            'organization' => 'required',
+            'date' => 'required',
+            'location' => 'required',
+            'speakers' => 'required',
+        ]);
+
+        $event = Event::create([
+            'event_id' => $request->event_id,
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'patronymic' => $request->patronymic,
+            'email' => $request->email,
+            'patronymic' => $request->patronymic,
+            'position' => $request->position,
+            'organization' => $request->organization,
+            'area' => $request->area,
+        ]);
     }
 
     /**

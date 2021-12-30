@@ -20,7 +20,7 @@ class CreateEnrollersTable extends Migration
             $table->string('firstname');
             $table->string('patronymic')->nullable();
             $table->string('email');
-            $table->string('patronymic');
+            $table->string('phone');
             $table->string('position')->nullable();
             $table->string('organization')->nullable();
             $table->string('area')->nullable();

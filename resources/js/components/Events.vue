@@ -28,9 +28,9 @@
         <br>
         <label>Дата проведения</label>
         с
-        <input type="date" placeholder="С" v-model="dateFrom">
+        <input type="date" placeholder="С" v-model="dateStart">{{dateStart}}
         по
-        <input type="date" placeholder="По" v-model="dateTo">
+        <input type="date" placeholder="По" v-model="dateEnd">{{dateEnd}}
     </div>
     
     <div class="events" v-if="events">
@@ -60,8 +60,8 @@ export default {
 
         const formatFilter = ref('');
         const locationFilter = ref(''); 
-        const dateFrom = ref(null); 
-        const dateTo = ref(null); 
+        const dateStart = ref(null); 
+        const dateEnd = ref(null); 
 
         onBeforeMount(() => {
             store.dispatch('Events/fetchEvents');
@@ -74,8 +74,8 @@ export default {
             searchQuery,
             formatFilter,
             locationFilter,
-            dateFrom,
-            dateTo,
+            dateStart,
+            dateEnd,
         }
     }
 }

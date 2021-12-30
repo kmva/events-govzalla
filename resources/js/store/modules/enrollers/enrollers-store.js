@@ -32,16 +32,20 @@ const actions = {
         commit('setEnrollers', res)
     },
 
-    enrollEvent({ commit }, enroller) {
-        // добавить enroller в БД 
-        // добавить enroller в state
-        commit('enrollEvent', enroller)
+    async enrollEvent({ commit }, enroller) {
+        try {
+            const res = await axios.post('api/enrollers', enroller);
+            commit('setEnrollers', enroller)
+        } catch {
+            //временный консоль
+            console.log('error with req events');
+        }
     }
 }
 
 const mutations = {
     setEnrollers(state, enrollers) {
-        state.enrollers = enrollers;
+        state.enrollers = [...state.enrollers, enroller];
     },
     enrollEvent(state, event) {
         state.enrollers = [...state.events, event];

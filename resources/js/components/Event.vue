@@ -15,18 +15,29 @@
                 </div>
             </div>
             <div class="event__links">
-                <router-link to="" class="">Подробнее</router-link>
-                <router-link to="" class="">Зарегистрироваться</router-link>
+                <router-link :to="{path:`/event/${data.id}`}">Подробнее</router-link>
+                <router-link to="" @click="register(data.id)">Зарегистрироваться</router-link>
             </div>
         </div>
     </div>
 </template>
 <script>
+
 export default {
     props: {
         data: {
             type: Object,
             required: true
+        }
+    },
+
+    setup() {
+        const register = id => {
+            
+        }
+
+        return {
+            register,
         }
     }
 }

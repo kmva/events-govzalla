@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Events from './views/Events'
 import AddEvent from './views/Admin/AddEvent'
 import Enroll from './views/Enroll'
+import Event from './views/Event'
 
 import Main from './layout/Main.vue'
 import Admin from './layout/Admin.vue'
@@ -20,6 +21,14 @@ const routes = [
         path: '/enroll',
         name: 'Enroll',
         component: Enroll,
+        meta: {
+            layout: Main,
+        }
+    },
+    {
+        path: '/event/:id',
+        name: 'Event',
+        component: Event,
         meta: {
             layout: Main,
         }
