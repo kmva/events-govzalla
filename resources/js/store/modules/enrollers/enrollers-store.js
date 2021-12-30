@@ -57,11 +57,11 @@ const getters = {
 const modules = {}
 
 export default {
-namespaced: true,
-state,
-actions,
-mutations,
-getters,
-modules,
+    namespaced: true,
+    state,
+    actions,
+    mutations,
+    getters,
+    modules,
 }
   

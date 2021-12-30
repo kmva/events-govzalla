@@ -1,7 +1,11 @@
 <template>
     <div class="event" :data="data">
         <div class="event__date">
-            {{ data.date }}
+            {{ 
+                new Date(data.date).getDate() 
+                + ' ' +
+                new Date(data.date).toLocaleString('ru', { month: 'long' }) 
+            }}
         </div>
         <div class="event__body">
             <div class="event__info">

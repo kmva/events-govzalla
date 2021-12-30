@@ -58,24 +58,19 @@ h1{
 
 .events{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 1.5em;
+    width: 100%;
 
     &-filters{
         margin-bottom: 3em;
-
-        &__search{
-            width: 100%;
-            margin-bottom: 2em;
-            padding: .8em;
-            border: 1px solid $cyan
-        }
 
         label{
             margin-right: .5em;
         }
 
-        select, input:not(&__search) {
+        select, input{
             margin-right: 1.5em;
             margin-bottom: 1.5em;
             padding: .5em;
@@ -85,6 +80,13 @@ h1{
         input[type='date'] {
             margin-right: .5em;
             margin-left: .5em;
+        }
+
+        & &__search{
+            width: 100%;
+            margin-bottom: 2em;
+            padding: .8em;
+            border: 1px solid $cyan
         }
     }
 
@@ -182,11 +184,13 @@ h1{
         margin-bottom: 1.5em;
         padding: .8em;
         width: 100%;
+        border: 1px solid $cyan
     }
 
     button{
         display: block;
         background-color: #FFF;
+        margin-left: auto;
         color: $blue;
         border: 1px solid $blue;
         padding: .8em;

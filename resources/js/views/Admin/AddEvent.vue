@@ -1,6 +1,6 @@
 <template>
     <AdminHeader />
-    <div class="container container--add-form">
+    <div class='container container--add-form'>
         <h1>Добавление мероприятия</h1>
         <AddEventForm />
     </div>
@@ -15,6 +15,6 @@ export default {
     }
  }
 </script>
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 
 </style>

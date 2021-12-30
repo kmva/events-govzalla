@@ -22,8 +22,8 @@ class CreateEventsTable extends Migration
             $table->date('date');
             $table->string('location');
             $table->string('speakers');
-            $table->string('target_audience');
-            $table->integer('participants_number');
+            $table->string('target_audience')->nullable();
+            $table->integer('participants_number')->nullable();
             $table->string('picture_url')->nullable();
             $table->timestamps();
         });

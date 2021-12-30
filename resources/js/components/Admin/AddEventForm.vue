@@ -25,8 +25,11 @@
         <label>Место проведения</label>
         <input type="text" v-model="location">
 
-        <label> Дата проведения</label>
+        <label>Дата проведения</label>
         <input type="date" v-model="date">
+
+        <label>Организация</label>
+        <input type="text" v-model="organization">
 
         <label>Спикеры</label>
         <input type="text" v-model="speakers">
@@ -52,6 +55,7 @@ export default {
         const description = ref('');
         const location = ref('');
         const date = ref('');
+        const organization = ref('');
         //заменить на массив
         const speakers = ref('');
         const target_audience = ref('');
@@ -72,6 +76,7 @@ export default {
                 description: description.value,
                 location: location.value,
                 date: date.value,
+                organization: organization.value,
                 speakers: speakers.value,
                 target_audience: target_audience.value,
                 participants_number: participants_number.value,
@@ -84,6 +89,7 @@ export default {
             description,
             location,
             date,
+            organization,
             speakers,
             target_audience,
             participants_number,

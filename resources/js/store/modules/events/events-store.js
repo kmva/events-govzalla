@@ -1,42 +1,32 @@
+import axios from 'axios'
+
 const state = {
     events: []
 }
 
 const actions = {
-    fetchEvents({ commit }) {
+    async fetchEvents({ commit }) {
         // добавить event в БД
-        const res = [
-            {
-                id: 1,
-                title: 'Роль и значение феномена ожиданий учителя в образовании',
-                format: 'семинар',
-                date: '20 января',
-                location: 'Лермонтова, 2',
-                speakers: ['', ''],
-                description: '',
-                target_audience: '',
-                participants_number: 0,
-            },
-            {
-                id: 2,
-                title: 'Право учить. Идея свободного и конкурентного обучения',
-                format: 'круглый стол ',
-                date: '20 января',
-                location: 'Лермонтова, 2',
-                speakers: ['', ''],
-                description: '',
-                target_audience: '',
-                participants_number: 0,
-            },
-        ];
-        commit('setEvents', res)
+        try {
+            const res = await axios.get('api/events');
+            commit('setEvents', res.data);
+        } catch {
+            //временный консоль
+            console.log('error with req events');
+        }
     },
 
-    addEventToDB({ commit }, event) {
+    async addEventToDB({ commit }, event) {
         // добавить event в БД 
         // добавить event в state
-        console.log(event);
-        commit('addEvent', event)
+        try {
+            const res = await axios.post('api/events', event);
+            console.log(res.data)
+            commit('addEvent', event)
+        } catch {
+            //временный консоль
+            console.log('error with req events');
+        }
     }
 }
 
@@ -58,11 +48,11 @@ const getters = {
 const modules = {}
 
 export default {
-namespaced: true,
-state,
-actions,
-mutations,
-getters,
-modules,
+    namespaced: true,
+    state,
+    actions,
+    mutations,
+    getters,
+    modules,
 }
   
