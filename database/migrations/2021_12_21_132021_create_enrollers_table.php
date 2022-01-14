@@ -21,9 +21,9 @@ class CreateEnrollersTable extends Migration
             $table->string('patronymic')->nullable();
             $table->string('email');
             $table->string('phone');
-            $table->string('position')->nullable();
-            $table->string('organization')->nullable();
-            $table->string('area')->nullable();
+            $table->string('position');
+            $table->string('organization');
+            $table->string('area');
             $table->date('created_at');
         });
     }

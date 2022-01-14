@@ -43,7 +43,7 @@
 </template>
 <script>
 import Event from '../components/Event'
-import { onBeforeMount, computed, ref } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -63,9 +63,8 @@ export default {
         const dateStart = ref(null); 
         const dateEnd = ref(null); 
 
-        onBeforeMount(() => {
-            store.dispatch('Events/fetchEvents');
-            console.log(events)
+        onMounted(async () => {
+            await store.dispatch('Events/fetchEvents');
         })
 
         return {

@@ -1,44 +1,49 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from './store'
 
 import Events from './views/Events'
-import AddEvent from './views/Admin/AddEvent'
-import Enroll from './views/Enroll'
 import Event from './views/Event'
 
-import Main from './layout/Main.vue'
-import Admin from './layout/Admin.vue'
+import Auth from './views/Admin/Auth'
+import AddEvent from './views/Admin/AddEvent'
+import Enrollers from './views/Admin/Enrollers'
+
+
+import Main from './layout/Main'
+import Admin from './layout/Admin'
+
+let computedLayout = Main;
 
 const routes = [
     {
         path: '/',
         name: 'Main',
         component: Events,
-        meta: {
-            layout: Main,
-        },
-    },
-    {
-        path: '/enroll',
-        name: 'Enroll',
-        component: Enroll,
-        meta: {
-            layout: Main,
-        }
     },
     {
         path: '/event/:id',
         name: 'Event',
         component: Event,
-        meta: {
-            layout: Main,
-        }
+    },
+    {
+        path: '/auth',
+        name: 'Auth',
+        component: Auth,
     },
     {
         path: '/addevent',
         name: 'AddEvent',
         component: AddEvent,
         meta: {
-            layout: Admin,
+            auth: true,
+        }
+    },
+    {
+        path: '/enrollers',
+        name: 'Enrollers',
+        component: Enrollers,
+        meta: {
+            auth: true,
         }
     },
 ];
@@ -50,8 +55,21 @@ const router = createRouter({
     linkExactActiveClass: 'active',
   })
 
-/* router.beforeEach(async (to, from, next) => {
-    console.log(to, from, next)
-}) */
+router.beforeEach((to, from, next) => {
+    if(store.getters['Admin/isAuth']) {
+        computedLayout = Admin
+    } else {
+        computedLayout = Main
+    }
+    to.meta.layout = computedLayout 
+
+    if(to.meta.auth && store.getters['Admin/isAuth']){
+        next()
+    } else if (to.meta.auth && !store.getters['Admin/isAuth']){
+        next('/auth')
+    } else {
+        next()
+    }
+})
   
 export default router

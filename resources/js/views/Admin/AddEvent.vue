@@ -1,6 +1,5 @@
 <template>
-    <AdminHeader />
-    <div class='container container--add-form'>
+    <div class='container container--with-form'>
         <h1>Добавление мероприятия</h1>
         <AddEventForm />
     </div>

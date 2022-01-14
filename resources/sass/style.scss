@@ -3,6 +3,10 @@
 
 body{
     background-color: $light;
+ /*   background-image: url('/img/2.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   backdrop-filter: blur(10px); */
     font-family: $font-family-sans-serif;
     color: $black;
 }
@@ -12,7 +16,7 @@ body{
     margin: auto;
     padding: 3em;
 
-    &--add-form{
+    &--with-form{
         h1 {
             text-align: center;
         }
@@ -58,9 +62,10 @@ h1{
 
 .events{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 1.5em;
+    column-gap: 1em;
+    row-gap: 1.5em;
     width: 100%;
 
     &-filters{
@@ -91,8 +96,9 @@ h1{
     }
 
     .event{
-        width: 33%;
+        width: 31%;
         max-width: 400px;
+        min-width: 390px;
         background-color: #FFF;
         transition: .3s;
         border: 1px solid $cyan;
@@ -171,9 +177,28 @@ h1{
 
 /** add event **/
 
-.add-event-form{
+.form{
     width: 600px;
     margin: auto;
+
+
+    &-control{
+        margin-bottom: 1.5em;
+        width: 100%;
+
+        &.invalid{
+            small{
+                display: block;
+                color: $red;
+                margin-top: 10px;
+            }
+
+            input, textarea, select{
+                border: 1px solid $red;
+            }
+        }
+    }
+
 
     label {
         display: block;
@@ -181,16 +206,19 @@ h1{
     }
 
     input, textarea, select{
-        margin-bottom: 1.5em;
         padding: .8em;
+        border: 1px solid $cyan;
         width: 100%;
-        border: 1px solid $cyan
+    }
+
+    .another-format{
+        margin-top: .8em;
     }
 
     button{
         display: block;
         background-color: #FFF;
-        margin-left: auto;
+        /* margin-left: auto; */
         color: $blue;
         border: 1px solid $blue;
         padding: .8em;
@@ -202,5 +230,92 @@ h1{
             background-color: $blue;
             color: #FFF;
         }
+
+        &:disabled,
+        &[disabled]{
+            color: #fff;
+            background: #d5d5d5;
+            border:none
+        }
     }
+}
+
+.enroll-form{
+    width: 100%;
+}
+
+.enroll-modal{ 
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 35%;
+    min-width: 400px;
+    max-height: 85vh;
+    margin: 5% auto;
+    padding: 3em;
+    overflow: scroll;
+    box-shadow: 1px 1px 10px 0 rgba($color: #000, $alpha: .1);
+    background-color: #FFF;
+    z-index: 1000;
+
+    h2{
+        margin-bottom: 2em;
+    }
+}
+
+.modal{
+    position: relative;
+
+    &-close {
+        position: absolute;
+        top: 1em;
+        right: 0.8em;
+        cursor: pointer;
+        margin-left: .5em;
+    }
+
+    &-overlay{
+        position: fixed;
+        overflow: auto;
+        z-index: 999;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba($color: #000000, $alpha: .5);
+    }
+}
+
+.about-event{
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+
+    p{
+        margin-bottom: .8em;
+    }
+
+    h2{
+        margin-top: 2em;
+    }
+
+    &__info{
+        width: 40%;
+    }
+
+    &__subtitle{
+        font-size: 1.1rem;
+        margin-right: 5px;
+        font-weight: bold;
+    }
+
+    img{
+        width: 55%;
+    }
+}
+
+.auth-heading {
+    text-align: center;
 }

@@ -1,51 +1,34 @@
+import axios from "axios";
+
 const state = {
     enrollers: []
 }
 
 const actions = {
-    fetchEnrollers({ commit }) {
-        // добавить event в БД
-        const res = [
-            {
-                id: 1,
-                title: 'Мероприятие 1',
-                format: 'семинар',
-                date: '20 января, 2022',
-                location: 'Лермонтова, 2',
-                speakers: ['', ''],
-                description: '',
-                target_audience: '',
-                participants_number: 0,
-            },
-            {
-                id: 2,
-                title: 'Мероприятие 2',
-                format: 'конференция',
-                date: '20 января, 2022',
-                location: 'Лермонтова, 2',
-                speakers: ['', ''],
-                description: '',
-                target_audience: '',
-                participants_number: 0,
-            },
-        ];
-        commit('setEnrollers', res)
+    async fetchEnrollers({ commit }) {
+        try {
+            const res = await axios.get('/api/enrollers')
+            commit('setEnrollers', res.data)
+        } catch (e) {
+            console.log(e)
+        }
     },
 
     async enrollEvent({ commit }, enroller) {
+        console.log('enroller', enroller)
         try {
-            const res = await axios.post('api/enrollers', enroller);
+            const res = await axios.post('/api/enrollers', enroller);
+            console.log('enroll res', res)
             commit('setEnrollers', enroller)
-        } catch {
-            //временный консоль
-            console.log('error with req events');
+        } catch (e) {
+            console.log(e)
         }
     }
 }
 
 const mutations = {
     setEnrollers(state, enrollers) {
-        state.enrollers = [...state.enrollers, enroller];
+        state.enrollers = enrollers;
     },
     enrollEvent(state, event) {
         state.enrollers = [...state.events, event];
@@ -53,8 +36,8 @@ const mutations = {
 }
 
 const getters = {
-    getter: (state) => {
-        return state.data
+    enrollers: (state) => {
+        return state.enrollers
     },
 }
 

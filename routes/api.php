@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Api\EventsController;
 use Api\EnrollersController;
+use Api\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('events', EventsController::class);
 Route::resource('enrollers', EnrollersController::class);
+
+Route::group([ 'middleware' => 'api', 'prefix' => 'auth'], function ($router) {
+    Route::post('login', 'AdminController@login');
+    Route::post('logout', 'AdminController@logout');
+    Route::post('refresh', 'AdminController@refresh');
+    Route::post('me', 'AdminController@me');
+
+});

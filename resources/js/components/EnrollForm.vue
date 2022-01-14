@@ -1,69 +1,137 @@
 <template>
-    <form action="">
-        <label>
-            Фамилия
-            <input type="text" v-model="lastname" />
-        </label>
-        <label>
-            Имя
-            <input type="text" v-model="firstname" />
-        </label>
-        <label>
-            Отчество
-            <input type="text" v-model="patronymic" />
-        </label>
-        <label>
-            Email
-            <input type="text" v-model="email">
-        </label>
-        <label>
-            Номер телефона
-            <input type="text" v-model="phone">
-        </label>
-        <label>
-            Организация
-            <input type="text" v-model="organization">
-        </label>
-        <label>
-            Должность
-            <input type="text" v-model="position">
-        </label>
-        <label>
-            Район
-            <input type="text" v-model="area">
-        </label>
-        <button type="submit" @click.prevent="validateForm">Зарегистрироваться на мероприятие</button>
+    <form class="form enroll-form" @submit.prevent="onSubmit">  
+        <div :class="['form-control', {invalid: lastnameError}]">
+            <label>Фамилия</label>
+            <input type="text" v-model="lastname" @blur="lastnameBlur" />
+            <small v-if="lastnameError">{{ lastnameError }}</small>
+        </div>   
+
+        <div :class="['form-control', {invalid: firstnameError}]">
+            <label>Имя</label>
+            <input type="text" v-model="firstname" @blur="firstnameBlur" />
+            <small v-if="firstnameError">{{ firstnameError }}</small>
+        </div>   
+
+        <div :class="['form-control', {invalid: patronymicError}]">
+            <label>Отчество (необязательное поле)</label>
+            <input type="text" v-model="patronymic" @blur="patronymicBlur" />
+            <small v-if="patronymicError">{{ patronymicError }}</small>
+        </div>   
+
+        <div :class="['form-control', {invalid: emailError}]">
+            <label>Email</label>
+            <input type="text" v-model="email" @blur="emailBlur" />
+            <small v-if="emailError">{{ emailError }}</small>
+        </div>   
+
+        <div :class="['form-control', {invalid: phoneError}]">
+            <label>Номер телефона</label>
+            <input type="text" v-model="phone" @blur="phoneBlur" />
+            <small v-if="phoneError">{{ phoneError }}</small>
+        </div>  
+
+        <div :class="['form-control', {invalid: organizationError}]">
+            <label>Организация</label>
+            <input type="text" v-model="organization" @blur="organizationBlur" />
+            <small v-if="organizationError">{{ organizationError }}</small>
+        </div>   
+
+        <div :class="['form-control', {invalid: positionError}]">
+            <label> Должность</label>
+            <input type="text" v-model="position" @blur="positionBlur" />
+            <small v-if="positionError">{{ positionError }}</small>
+        </div>   
+
+        <div :class="['form-control', {invalid: areaError}]">
+            <label>Район</label>
+            <input type="text" v-model="area" @blur="areaBlur" />
+            <small v-if="areaError">{{ areaError }}</small>
+        </div>   
+
+        <button type="submit" class="enroll-submit">Зарегистрироваться</button>
     </form>
 </template>
 <script>
-import { ref } from 'vue'
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
+import * as yup from 'yup'
+import { useField, useForm } from 'vee-validate'
 
 export default {
-    setup() {
+    props: {
+        data: {
+            type: Object,
+            required: true
+        }
+    },
+    setup(props) {
         const store = useStore();
-        const route = useRoute();
 
-        const firstname = ref('');
-        const lastname = ref('');
-        const patronymic = ref('');
-        const email = ref('');
-        const phone = ref('');
-        const organization = ref('');
-        const position = ref('');
-        const area = ref('');
+        const { handleSubmit, isSibmitting } = useForm();
+        const {value: lastname, errorMessage: lastnameError, handleBlur: lastnameBlur} = useField(
+            'lastname',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+        );
+        const {value: firstname, errorMessage: firstnameError, handleBlur: firstnameBlur}  = useField(
+            'firstname',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+        );
+        const {value: patronymic, errorMessage: patronymicError, handleBlur: patronymicBlur}  = useField(
+            'patronymic',
+            yup
+                .string()
+                .trim()
+        );
+        const {value: email, errorMessage: emailError, handleBlur: emailBlur}  = useField(
+            'email',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+                .email('Необходимо ввести корректный email')
+        );
+        const {value: phone, errorMessage: phoneError, handleBlur: phoneBlur} = useField(
+            'phone',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+        );
+        const {value: organization, errorMessage: organizationError, handleBlur: organizationBlur} = useField(
+            'organization',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+        );
+        const {value: position, errorMessage: positionError, handleBlur: positionBlur} = useField(
+            'position',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+        );
+        const {value: area, errorMessage: areaError, handleBlur: areaBlur} = useField(
+            'area',
+            yup
+                .string()
+                .trim()
+                .required('Обязательное поле')
+        );
 
         const isValid = true;
 
-        const validateForm = (values) => {
-            if(isValid) {
-                addEvent()
-            }
-        }
+        const onSubmit = handleSubmit(values => {
+            addEnroller();
+        })
 
-        const addEvent = () => {
-            store.dispatch('Events/enrollEvent', {
+        const addEnroller = () => {
+            store.dispatch('Enrollers/enrollEvent', {
                 lastname: lastname.value, 
                 firstname: firstname.value, 
                 patronymic: patronymic.value, 
@@ -72,9 +140,18 @@ export default {
                 organization: organization.value, 
                 position: position.value, 
                 area: area.value,
-                data: new Date(),
-                eventId: route.eventId
+                created_at: new Date(),
+                event_id: props.data.id,
             });
+
+            lastname.value = ''; 
+            firstname.value = ''; 
+            patronymic.value = ''; 
+            email.value = ''; 
+            phone.value = ''; 
+            organization.value = ''; 
+            position.value = ''; 
+            area.value = '';
         }
 
         return { 
@@ -87,8 +164,26 @@ export default {
             position, 
             area,
 
-            validateForm,
-            addEvent,
+            firstnameError, 
+            lastnameError, 
+            patronymicError, 
+            emailError, 
+            phoneError, 
+            organizationError, 
+            positionError, 
+            areaError,
+
+            firstnameBlur, 
+            lastnameBlur, 
+            patronymicBlur, 
+            emailBlur, 
+            phoneBlur, 
+            organizationBlur, 
+            positionBlur, 
+            areaBlur,
+
+            onSubmit,
+            isValid,
         }
     }
 }

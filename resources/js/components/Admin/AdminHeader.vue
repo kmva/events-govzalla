@@ -1,38 +1,36 @@
 <template>
     <header class="main-header">
-        <img src="/img/logo.png" alt="Логотип ИРО ЧР" class="main-header__logo">
-        <nav class="main-nav">
+       <router-link to="/">
+            <img src="/img/logo.png" alt="Логотип ИРО ЧР" class="main-header__logo">
+        </router-link>
+         <nav class="main-nav">
             <ul class="main-nav__items">
-                <li 
-                    class="main-nav__item" 
-                    v-for="link in links"
-                    :key="link"
-                >
-                    <a :href="link.href">{{ link.title }}</a>
-                </li>
+                <li class="main-nav__item"><a href="/">Мероприятия</a></li>
+                <li class="main-nav__item"><a href="/addevent">Добавить мероприятие</a></li>
+                <li class="main-nav__item"><a href="/">Помощь</a></li>
+                <li class="main-nav__item"><a href="#" @click.prevent="logout">Выйти</a></li>
             </ul>
         </nav>
     </header>
 </template>
 <script>
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+
 export default {
     data() {
-        const links = [
-            {
-                title: 'Мероприятия',
-                href: '/'
-            },
-            {
-                title: 'Добавить мероприятие',
-                href: '/'
-            },
-            {
-                title: 'Выйти',
-                href: '/'
-            },
-        ]
+        const store = useStore()
+        const router = useRouter()
+
+        const logout = () => {
+            store.commit('Admin/logout');
+            router.push('/')
+
+        console.log('logout')
+        }
+
         return {
-            links
+            logout
         }
     }
 }

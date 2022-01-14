@@ -16,28 +16,41 @@
             </div>
             <div class="event__links">
                 <router-link :to="{path:`/event/${data.id}`}">Подробнее</router-link>
-                <router-link to="" @click="register(data.id)">Зарегистрироваться</router-link>
+                <router-link to="" @click="openEnrollModal(data.id)">Зарегистрироваться</router-link>
             </div>
         </div>
     </div>
+    <EnrollEventModal v-if="isModalOpen" :data="data" @closeModal="closeEnrollModal"/>
 </template>
 <script>
+import { ref } from 'vue'
+import EnrollEventModal from './EnrollModal.vue'
 
 export default {
+    components: { EnrollEventModal },
     props: {
         data: {
             type: Object,
             required: true
         }
     },
-
     setup() {
-        const register = id => {
-            
+        const isModalOpen = ref(false);
+        const eventId = ref();
+
+        const openEnrollModal = () => {
+            isModalOpen.value = true;
+        }
+
+        const closeEnrollModal = () => { 
+            isModalOpen.value = false;
         }
 
         return {
-            register,
+            openEnrollModal,
+            closeEnrollModal,
+            eventId,
+            isModalOpen
         }
     }
 }

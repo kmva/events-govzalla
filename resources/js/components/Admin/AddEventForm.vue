@@ -1,101 +1,85 @@
 <template>
-    <form action="" class="add-event-form">
-        <label> Название</label>
-        <input type="text" v-model="title" />
+    <form class="form add-event-form" @submit.prevent="onSubmit">
+        <div :class="['form-control', {invalid: titleError}]">
+            <label> Название</label>
+            <input type="text" v-model="title" />
+            <small v-if="titleError">{{ titleError }}</small>
+        </div>
 
-        <label>Формат мероприятия</label>
-        <select v-model="format">
-            <option>Семинар</option>
-            <option>Конференция</option>
-            <option>Лекция</option>
-            <option>Форум</option>
-            <option>Курсы</option>
-            <option>Круглый стол</option>
-            <option>Мастер-класс</option>
-            <option>Тренинг</option>
-            <option>Практикум</option>
-            <option>Конкурс</option>
-            <option>Вебинар</option>
-            <option>Стратегическая сессия</option>
-        </select>
+        <div :class="['form-control', {invalid: formatError}]">
+            <label>Формат мероприятия</label>
+            <select v-model="format">
+                <option disabled>Выберите один из вариантов</option>
+                <option>Семинар</option>
+                <option>Конференция</option>
+                <option>Лекция</option>
+                <option>Форум</option>
+                <option>Курсы</option>
+                <option>Круглый стол</option>
+                <option>Мастер-класс</option>
+                <option>Тренинг</option>
+                <option>Практикум</option>
+                <option>Конкурс</option>
+                <option>Вебинар</option>
+                <option>Стратегическая сессия</option>
+                <option value="another">Иное</option>
+            </select>
+            <input type="text" v-if="isAnotherFormat" v-model="anotherFormat" class="another-format">
+            <small v-if="formatError">{{ formatError }}</small>
+        </div>
 
-        <label>Описание мероприятия</label>
-        <textarea cols="30" rows="10" v-model="description"></textarea>
+        <div :class="['form-control', {invalid: descriptionError}]">
+            <label>Описание мероприятия</label>
+            <textarea cols="30" rows="10" v-model="description"></textarea>
+            <small v-if="descriptionError">{{ descriptionError }}</small>
+        </div>
+         
+        <div :class="['form-control', {invalid: locationError}]">
+            <label>Место проведения</label>
+            <input type="text" v-model="location">
+            <small v-if="locationError">{{ locationError }}</small>
+        </div>
 
-        <label>Место проведения</label>
-        <input type="text" v-model="location">
+        <div :class="['form-control', {invalid: dateError}]">
+            <label>Дата проведения</label>
+            <input type="date" v-model="date">
+            <small v-if="dateError">{{ dateError }}</small>
+        </div>
 
-        <label>Дата проведения</label>
-        <input type="date" v-model="date">
+        <div :class="['form-control', {invalid: organizationError}]">
+            <label>Организатор</label>
+            <input type="text" v-model="organization">
+            <small v-if="organizationError">{{ organizationError }}</small>
+        </div>
 
-        <label>Организация</label>
-        <input type="text" v-model="organization">
+        <div :class="['form-control', {invalid: speakersError}]">
+            <label>Спикеры</label>
+            <input type="text" v-model="speakers">
+            <small v-if="speakersError">{{ speakersError }}</small>
+        </div>
 
-        <label>Спикеры</label>
-        <input type="text" v-model="speakers">
+        <div :class="['form-control', {invalid: targetAudienceError}]">
+            <label>Целевая аудитория</label>
+            <input type="text" v-model="target_audience">
+            <small v-if="targetAudienceError">{{ targetAudienceError }}</small>
+        </div>
 
-        <label>Целевая аудитория</label>
-        <input type="text" v-model="target_audience">
-        <label>Рассчитано на количество человек</label>
-        <input type="number" v-model="participants_number">
+        <div :class="['form-control', {invalid: participantsNumberError}]">
+            <label>Рассчитано на количество человек</label>
+            <input type="number" v-model="participants_number">
+            <small v-if="participantsNumberError">{{ participantsNumberError }}</small>
+        </div>
 
-        <button type="submit" @click.prevent="validateForm">Добавить мероприятие</button>
+        <button type="submit" :disabled="isSubmitting">Добавить мероприятие</button>
     </form>
 </template>
 <script>
-import { ref } from 'vue'
-import { useStore } from 'vuex'
+import useAddEventForm from '../../use/add-event-form'
 
 export default {
     setup() {
-        const store = useStore();
-
-        const title = ref('');
-        const format = ref(null);
-        const description = ref('');
-        const location = ref('');
-        const date = ref('');
-        const organization = ref('');
-        //заменить на массив
-        const speakers = ref('');
-        const target_audience = ref('');
-        const participants_number = ref('');
-
-        const isValid = true;
-
-        const validateForm = (values) => {
-            if(isValid) {
-                addEvent()
-            }
-        }
-
-        const addEvent = () => {
-            store.dispatch('Events/addEventToDB', {
-                title: title.value,
-                format: format.value,
-                description: description.value,
-                location: location.value,
-                date: date.value,
-                organization: organization.value,
-                speakers: speakers.value,
-                target_audience: target_audience.value,
-                participants_number: participants_number.value,
-            });
-        }
-
         return {
-            title,
-            format,
-            description,
-            location,
-            date,
-            organization,
-            speakers,
-            target_audience,
-            participants_number,
-
-            validateForm,
-            addEvent,
+            ...useAddEventForm()
         }
     }
 }
