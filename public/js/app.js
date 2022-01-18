@@ -19725,6 +19725,7 @@ __webpack_require__.r(__webpack_exports__);
     var logout = function logout() {
       store.commit('Admin/logout');
       router.push('/');
+      console.log('router.push');
       console.log('logout');
     };
 
@@ -21775,32 +21776,27 @@ var actions = {
             case 0:
               commit = _ref.commit;
               _context.prev = 1;
-              console.log('payload', payload);
-              _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/login', payload);
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/auth/login', payload);
 
-            case 5:
+            case 4:
               _yield$axios$post = _context.sent;
               data = _yield$axios$post.data;
-              console.log('res.data', data);
-              commit('setToken', data.token);
-              _context.next = 14;
+              commit('setToken', data.access_token);
+              _context.next = 12;
               break;
 
-            case 11:
-              _context.prev = 11;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 14:
-              commit('setToken', 'token');
-
-            case 15:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 11]]);
+      }, _callee, null, [[1, 9]]);
     }))();
   }
 };
@@ -22321,24 +22317,29 @@ function useAuthForm() {
               return store.dispatch('Admin/login', values);
 
             case 3:
-              _context.next = 5;
+              if (!store.getters['Admin/isAuth']) {
+                _context.next = 6;
+                break;
+              }
+
+              _context.next = 6;
               return router.push('/');
 
-            case 5:
-              _context.next = 10;
+            case 6:
+              _context.next = 11;
               break;
 
-            case 7:
-              _context.prev = 7;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](0);
               console.log(_context.t0);
 
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 8]]);
     }));
 
     return function (_x) {
@@ -26791,7 +26792,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;\n\n400;500&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /*   background-image: url('/img/2.jpg');\n    background-repeat: no-repeat;\n    background-size: cover;\n    backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  font-size: 1.2rem;\n  display: inline-block;\n  text-align: center;\n  font-weight: regular;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 1.5em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__date {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 170px;\n  font-size: 2rem;\n  font-weight: bold;\n  background-color: #6cb2eb;\n  color: #FFF;\n  text-align: center;\n  padding: 1em;\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 250px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\n.events .event__links a {\n  display: block;\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  padding: 1em 0.5em;\n  color: #FFF;\n  text-align: center;\n  transition: 0.3s;\n  width: 49%;\n}\n\n.events .event__links a:hover,\n.events .event__links a:active {\n  background-color: #FFF;\n  color: #e3342f;\n}\n\n.events .event__links a:first-child {\n  background-color: #FFF;\n  color: #e3342f;\n}\n\n.events .event__links a:first-child:hover,\n.events .event__links a:first-child:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.form button {\n  display: block;\n  background-color: #FFF;\n  /* margin-left: auto; */\n  color: #1e77c0;\n  border: 1px solid #1e77c0;\n  padding: 0.8em;\n  transition: 0.3s;\n  margin-top: 0.6em;\n}\n\n.form button:hover,\n.form button:active {\n  cursor: pointer;\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.form button:disabled,\n.form button[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n}\n\n.about-event p {\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-top: 2em;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n}\n\n.about-event img {\n  width: 55%;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /*   background-image: url('/img/2.jpg');\n    background-repeat: no-repeat;\n    background-size: cover;\n    backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  font-size: 1.2rem;\n  display: inline-block;\n  text-align: center;\n  font-weight: regular;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\n.events {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 1.5em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__date {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 170px;\n  font-size: 2rem;\n  font-weight: bold;\n  background-color: #6cb2eb;\n  color: #FFF;\n  text-align: center;\n  padding: 1em;\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 250px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\n.events .event__links a {\n  display: block;\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  padding: 1em 0.5em;\n  color: #FFF;\n  text-align: center;\n  transition: 0.3s;\n  width: 49%;\n}\n\n.events .event__links a:hover,\n.events .event__links a:active {\n  background-color: #FFF;\n  color: #e3342f;\n}\n\n.events .event__links a:first-child {\n  background-color: #FFF;\n  color: #e3342f;\n}\n\n.events .event__links a:first-child:hover,\n.events .event__links a:first-child:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.form button {\n  display: block;\n  background-color: #FFF;\n  /* margin-left: auto; */\n  color: #1e77c0;\n  border: 1px solid #1e77c0;\n  padding: 0.8em;\n  transition: 0.3s;\n  margin-top: 0.6em;\n}\n\n.form button:hover,\n.form button:active {\n  cursor: pointer;\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.form button:disabled,\n.form button[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n}\n\n.about-event p {\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-top: 2em;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n}\n\n.about-event img {\n  width: 55%;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

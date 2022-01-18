@@ -9,14 +9,11 @@ const state = {
 const actions = {
     async login({ commit }, payload) {
         try {
-            console.log('payload', payload)
-            const {data} = await axios.post('/api/login', payload)
-            console.log('res.data', data);
-            commit('setToken', data.token);
+            const {data} = await axios.post('/api/auth/login', payload)
+            commit('setToken', data.access_token);
         } catch (e) {
             console.log(e)
         }
-        commit('setToken', 'token');
     },
 }
 

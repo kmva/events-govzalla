@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Api\EventsController;
 use Api\EnrollersController;
-use Api\AdminController;
+use App\Http\Controllers\Api\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +16,16 @@ use Api\AdminController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+}); */
 
 Route::resource('events', EventsController::class);
 Route::resource('enrollers', EnrollersController::class);
 
-Route::group([ 'middleware' => 'api', 'prefix' => 'auth'], function ($router) {
-    Route::post('login', 'AdminController@login');
-    Route::post('logout', 'AdminController@logout');
-    Route::post('refresh', 'AdminController@refresh');
-    Route::post('me', 'AdminController@me');
-
+Route::group([ 'middleware' => 'api', 'prefix' => 'auth'], function () {
+    Route::post('login', [AdminController::class, 'login']);
+    Route::post('logout', [AdminController::class, 'logout']);
+    Route::post('refresh', [AdminController::class, 'refresh']);
+    Route::post('me', [AdminController::class, 'me']);
 });

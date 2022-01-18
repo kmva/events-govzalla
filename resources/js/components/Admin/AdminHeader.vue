@@ -25,6 +25,7 @@ export default {
         const logout = () => {
             store.commit('Admin/logout');
             router.push('/')
+            console.log('router.push')
 
         console.log('logout')
         }

@@ -28,7 +28,9 @@ export default function useAuthForm() {
     const onSubmit = handleSubmit(async (values) => {
         try{
             await store.dispatch('Admin/login', values)
-            await  router.push('/')
+            if (store.getters['Admin/isAuth']) {
+                await router.push('/')
+            }
         }catch (e) {
             console.log(e)
         }
