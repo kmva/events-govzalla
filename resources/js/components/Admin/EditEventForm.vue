@@ -1,7 +1,7 @@
 <template>
     <form class="form add-event-form" @submit.prevent="onSubmit">
         <div :class="['form-control', {invalid: titleError}]">
-            <label> Название</label>
+            <label>Название</label>
             <input type="text" v-model="title" />
             <small v-if="titleError">{{ titleError }}</small>
         </div>
@@ -74,12 +74,12 @@
     </form>
 </template>
 <script>
-import useAddEventForm from '../../use/add-event-form'
+import useEditEventForm from '../../use/edit-event-form'
 
 export default {
     setup() {
         return {
-            ...useAddEventForm()
+            ...useEditEventForm()
         }
     }
 }

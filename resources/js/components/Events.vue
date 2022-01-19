@@ -40,6 +40,7 @@
             :data="event"
         ></event>
     </div>
+    <div v-else>Нет добавленных мероприятия</div>
 </template>
 <script>
 import Event from '../components/Event'

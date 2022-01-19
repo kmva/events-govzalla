@@ -6,6 +6,7 @@ import Event from './views/Event'
 
 import Auth from './views/Admin/Auth'
 import AddEvent from './views/Admin/AddEvent'
+import EditEvent from './views/Admin/EditEvent'
 import Enrollers from './views/Admin/Enrollers'
 
 
@@ -34,6 +35,14 @@ const routes = [
         path: '/addevent',
         name: 'AddEvent',
         component: AddEvent,
+        meta: {
+            auth: true,
+        }
+    },
+    {
+        path: '/editevent/:id',
+        name: 'EditEvent',
+        component: EditEvent,
         meta: {
             auth: true,
         }

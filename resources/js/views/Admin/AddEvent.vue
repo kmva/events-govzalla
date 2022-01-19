@@ -6,10 +6,9 @@
 </template>
 <script>
 import AddEventForm from '../../components/Admin/AddEventForm'
-import AdminHeader from '../../components/Admin/AdminHeader'
 
 export default {
-    components: { AddEventForm, AdminHeader },
+    components: { AddEventForm },
     setup() {
     }
  }

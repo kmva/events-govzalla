@@ -1,11 +1,32 @@
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
-export default function useAddEventForm() {
+export default function useEditEventForm() {
     const store = useStore();
-    const { handleSubmit, isSubmitting } = useForm();
+    const route = useRoute();
+
+    const event = ref('');
+    onMounted(() => {   
+        event.value = await store.dispatch['Events/fetchEventById'](route.params.id)
+        console.log(event)
+    })
+
+    const { handleSubmit, isSubmitting } = useForm({
+        initialValues: {
+            title:  event.value.title,
+            format: event.value.format,
+            description: event.value.description,
+            locatio:  event.value.location,
+            date: event.value.date,
+            organization: event.value.organization,
+            speakers: event.value.speakers,
+            target_audience: event.value.target_audience,
+            participants_number: event.value.participants_numbe,
+        }
+      });
 
     const {value: title, errorMessage: titleError, handleBlur: titleBlur} = useField(
         'title',
@@ -81,7 +102,6 @@ export default function useAddEventForm() {
 
     const isAnotherFormat = ref(false);
     const anotherFormat = ref('');
-
     watch(format, (newValue, oldValue) => {
         console.log('format', format)
         if(newValue == 'another') {
@@ -92,11 +112,12 @@ export default function useAddEventForm() {
     })
 
     const onSubmit = handleSubmit(values => {
-        addEvent();
+        console.log(values)
+        editEvent();
     })
 
-    const addEvent = () => {
-        store.dispatch('Events/addEventToDB', {
+    const editEvent = () => {
+        store.dispatch('Events/editEvent', {
             title: title.value,
             format: format.value == 'another' ? anotherFormat.value : format.value,
             description: description.value,
@@ -120,6 +141,7 @@ export default function useAddEventForm() {
     }
 
     return {
+        event,
         title,
         format,
         description,

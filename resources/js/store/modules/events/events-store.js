@@ -32,7 +32,7 @@ const actions = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
 }
 
 const mutations = {
