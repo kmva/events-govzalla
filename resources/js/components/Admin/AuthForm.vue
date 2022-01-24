@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="onSubmit">
+  <form class="form auth-form" @submit.prevent="onSubmit">
       <div class="form-control">
         <label>Email</label>
         <input type="email" v-model="email">
@@ -10,7 +10,7 @@
         <input type="password" v-model="password">
         <small v-if="passwordError">{{ passwordError }}</small>
       </div>
-      <button type="submit" :disabled="isSubmitting">Войти</button>
+      <button class="btn btn-blue auth-form__btn" type="submit" :disabled="isSubmitting">Войти</button>
   </form>
 </template>
 

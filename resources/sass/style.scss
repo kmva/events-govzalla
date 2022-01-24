@@ -60,12 +60,28 @@ h1{
     margin-bottom: 1.3em;
 }
 
+.organization{
+
+    margin-bottom: 3.5em;
+    border-left: 10px solid $blue;
+
+
+    &__title{
+        margin-bottom: 1em;
+        font-size: 2rem;
+     /*    background-color: $blue; */
+     /* border-bottom: 1px solid $blue; */
+        padding: 0 1em;
+    }
+}
+
 .events{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     column-gap: 1em;
     row-gap: 1.5em;
+    padding: 2em;
     width: 100%;
 
     &-filters{
@@ -120,6 +136,7 @@ h1{
             color: $red;
             border-radius: 0 0 0 32px;
             transition: .3s;
+            z-index: 1;
 
             &:hover, 
             &:active{
@@ -136,6 +153,10 @@ h1{
             font-size: 2rem;
             font-weight: bold;
             background-color: $cyan;
+            background-image: url('/img/2.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            backdrop-filter: blur(10px);
             color: #FFF;
             text-align: center;
             padding: 1em;
@@ -165,8 +186,6 @@ h1{
         }
     }
 }
-
-
 
 button{
     display: block;
@@ -391,4 +410,8 @@ button{
 
 .auth-heading {
     text-align: center;
+}
+
+.auth-form__btn{
+    width: 130px;
 }

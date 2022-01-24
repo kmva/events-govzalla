@@ -57,13 +57,27 @@ h1 {
   margin-bottom: 1.3em;
 }
 
+.organization {
+  margin-bottom: 3.5em;
+  border-left: 10px solid #1e77c0;
+}
+
+.organization__title {
+  margin-bottom: 1em;
+  font-size: 2rem;
+  /*    background-color: $blue; */
+  /* border-bottom: 1px solid $blue; */
+  padding: 0 1em;
+}
+
 .events {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   -moz-column-gap: 1em;
        column-gap: 1em;
   row-gap: 1.5em;
+  padding: 2em;
   width: 100%;
 }
 
@@ -121,6 +135,7 @@ h1 {
   color: #e3342f;
   border-radius: 0 0 0 32px;
   transition: 0.3s;
+  z-index: 1;
 }
 
 .events .event__edit:hover,
@@ -137,6 +152,11 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   background-color: #6cb2eb;
+  background-image: url("/img/2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   color: #FFF;
   text-align: center;
   padding: 1em;
@@ -387,6 +407,10 @@ button[disabled] {
 
 .auth-heading {
   text-align: center;
+}
+
+.auth-form__btn {
+  width: 130px;
 }
 
 
