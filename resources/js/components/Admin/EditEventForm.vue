@@ -1,5 +1,5 @@
 <template>
-    <form class="form add-event-form" @submit.prevent="onSubmit">
+    <form class="form edit-event-form" @submit.prevent="onSubmit">
         <div :class="['form-control', {invalid: titleError}]">
             <label>Название</label>
             <input type="text" v-model="title" />
@@ -70,16 +70,56 @@
             <small v-if="participantsNumberError">{{ participantsNumberError }}</small>
         </div>
 
-        <button type="submit" :disabled="isSubmitting">Добавить мероприятие</button>
+       <div class="edit-event-form__buttons">  
+            <button type="submit" :disabled="isSubmitting" class="btn btn-blue">Сохранить изменения</button>
+            <button class="edit-event-form__delete-btn" @click.prevent="openConfirmModal">Удалить мероприятие</button>
+       </div>
     </form>
+    <ConfirmDeleteModal v-if="isModalOpen" @closeModal="closeConfirmModal" @deleteEvent="deleteEvent" />
 </template>
 <script>
 import useEditEventForm from '../../use/edit-event-form'
 
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+import { onMounted, ref, reactive, toRaw } from 'vue'
+import ConfirmDeleteModal from './ConfirmDeleteModal.vue'
+
+
 export default {
+    components: { ConfirmDeleteModal },
     setup() {
+        const store = useStore();
+        const route = useRoute();
+
+        const isModalOpen = ref(false);
+
+        const event = reactive({});
+        const ev = toRaw(event)
+
+        onMounted(async() => {   
+            event.value = await store.dispatch('Events/fetchEventById', route.params.id)
+            console.log(ev.value)
+        })
+
+        const deleteEvent = async () => {
+            await store.dispatch('Events/deleteEvent', route.params.id);
+            closeConfirmModal();
+        }
+
+        const openConfirmModal = () => {
+            isModalOpen.value = true;
+        }
+
+        const closeConfirmModal = () => { 
+            isModalOpen.value = false;
+        }
         return {
-            ...useEditEventForm()
+            ...useEditEventForm(ev.value),
+            deleteEvent, 
+            openConfirmModal,
+            closeConfirmModal,
+            isModalOpen,
         }
     }
 }

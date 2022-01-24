@@ -100,6 +100,6 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Event::where('id', $id)->delete();
     }
 }

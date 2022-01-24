@@ -55,6 +55,21 @@ export default function useAddEventForm() {
             .required('Обязательное поле')
     );
 
+    const {value: subdivision, errorMessage: subdivisionError, handleBlur: subdivisionBlur} = useField(
+        'subdivision',
+        yup
+            .string()
+            .trim()
+            .required('Обязательное поле')
+    );
+
+    const {value: direction, errorMessage: directionError, handleBlur: directionBlur} = useField(
+        'direction',
+        yup
+            .string()
+            .trim()
+    );
+
     const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
         'speakers',
         yup
@@ -103,6 +118,8 @@ export default function useAddEventForm() {
             location: location.value,
             date: date.value,
             organization: organization.value,
+            subdivision: subdivision.value,
+            direction: direction.value,
             speakers: speakers.value,
             target_audience: target_audience.value,
             participants_number: participants_number.value,
@@ -114,6 +131,8 @@ export default function useAddEventForm() {
         location.value = '';
         date.value = '';
         organization.value = '';
+        subdivision.value = '';
+        direction.value = '';
         speakers.value = '';
         target_audience.value = '';
         participants_number.value = '';
@@ -126,6 +145,8 @@ export default function useAddEventForm() {
         location,
         date,
         organization,
+        subdivision,
+        direction,
         speakers,
         target_audience,
         participants_number,
@@ -136,6 +157,8 @@ export default function useAddEventForm() {
         locationError,
         dateError,
         organizationError,
+        subdivisionError,
+        directionError,
         speakersError,
         targetAudienceError,
         participantsNumberError,
@@ -146,6 +169,8 @@ export default function useAddEventForm() {
         locationBlur,
         dateBlur,
         organizationBlur,
+        subdivisionBlur,
+        directionBlur,
         speakersBlur,
         targetAudienceBlur,
         participantsNumberBlur,

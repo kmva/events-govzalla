@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-import EditEventForm from '../../components/Admin/AddEventForm'
+import EditEventForm from '../../components/Admin/EditEventForm'
 export default {
     components: { EditEventForm },
     setup() {

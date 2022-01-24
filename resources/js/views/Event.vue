@@ -1,20 +1,28 @@
 <template>
     <div>
-        <h1 class="events-title">{{ event.title }}</h1>
+        <h1 class="event-title">{{ event.format }} "{{ event.title }}"</h1>
         <div class="about-event">
             <div class="about-event__info">
-                <p><span class="about-event__subtitle">Формат</span>{{ event.format }}</p>   
-                <p><span class="about-event__subtitle">Дата</span> {{ event.date }}</p>   
-                <p><span class="about-event__subtitle">Локация</span> {{ event.location }}</p>  
-                <p><span class="about-event__subtitle">Целевая аудитория</span> {{ event.target_audience }}</p>  
-                <p><span class="about-event__subtitle">Организатор</span> {{ event.organization }}</p>      
-                <p class="about-event__speakers"><span class="about-event__subtitle">Спикеры</span>
-                    <ul>
-                        <li>{{ event.speakers }}</li>
-                    </ul>
-                </p>
-                <h2>Описание мероприятия</h2>
-                <p>{{ event.description }}</p> 
+                <div class="about-event__card">
+                     <h2>Информация о мероприятии</h2>
+                    <!-- <p><span class="about-event__subtitle">Формат</span>{{ event.format }}</p>    -->
+                    <p><span class="about-event__subtitle">Дата</span>{{ event.date }}</p>   
+                    <p><span class="about-event__subtitle">Локация</span>{{ event.location }}</p>  
+                    <p><span class="about-event__subtitle">Целевая аудитория</span>{{ event.target_audience }}</p>  
+                    <p><span class="about-event__subtitle">Организатор</span>{{ event.organization }}</p>  
+                </div>
+                <div class="about-event__card">
+                    <p class="about-event__speakers">
+                        <h2>Спикеры</h2>
+                        <ul>
+                            <li>{{ event.speakers }}</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="about-event__card">
+                    <h2>Описание мероприятия</h2>
+                    <p>{{ event.description }}</p> 
+                </div>
             </div>
             <img src="/img/2.jpg" alt="">
         </div>

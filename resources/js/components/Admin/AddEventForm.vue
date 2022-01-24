@@ -52,6 +52,12 @@
             <small v-if="organizationError">{{ organizationError }}</small>
         </div>
 
+        <div :class="['form-control', {invalid: subdivisionError}]">
+            <label>Подразделение</label>
+            <input type="text" v-model="subdivision">
+            <small v-if="subdivisionError">{{ subdivisionError }}</small>
+        </div>
+
         <div :class="['form-control', {invalid: speakersError}]">
             <label>Спикеры</label>
             <input type="text" v-model="speakers">
@@ -70,7 +76,7 @@
             <small v-if="participantsNumberError">{{ participantsNumberError }}</small>
         </div>
 
-        <button type="submit" :disabled="isSubmitting">Добавить мероприятие</button>
+        <button type="submit" class="btn btn-blue" :disabled="isSubmitting">Добавить мероприятие</button>
     </form>
 </template>
 <script>

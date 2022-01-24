@@ -2,7 +2,7 @@
     <div class="events-filters">
         <input type="text" v-model="searchQuery" class="events-filters__search" placeholder="Поиск">
 
-        <label>Формат мероприятия</label>
+        <!-- <label>Формат мероприятия</label>
         <select v-model="formatFilter">
             <option>Семинар</option>
             <option>Конференция</option>
@@ -30,7 +30,7 @@
         с
         <input type="date" placeholder="С" v-model="dateStart">{{dateStart}}
         по
-        <input type="date" placeholder="По" v-model="dateEnd">{{dateEnd}}
+        <input type="date" placeholder="По" v-model="dateEnd">{{dateEnd}} -->
     </div>
     
     <div class="events" v-if="events">

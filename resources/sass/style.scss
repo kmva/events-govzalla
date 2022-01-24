@@ -2,8 +2,8 @@
 @import 'variables';
 
 body{
-    background-color: $light;
- /*   background-image: url('/img/2.jpg');
+    background-color: $light;/* 
+   background-image: url('/img/2.jpg');
    background-repeat: no-repeat;
    background-size: cover;
    backdrop-filter: blur(10px); */
@@ -103,10 +103,29 @@ h1{
         transition: .3s;
         border: 1px solid $cyan;
         text-align: center;
+        position: relative;
 
         &:hover{
             transform: scale(1.02);
             box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: .1);
+        }
+
+        &__edit{
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            padding: 0.5em 1.2em;
+            background: #FFF;
+            border: 1px solid $red;
+            color: $red;
+            border-radius: 0 0 0 32px;
+            transition: .3s;
+
+            &:hover, 
+            &:active{
+                background: $red;
+                color: #FFF;
+            }
         }
 
         &__date{
@@ -143,34 +162,81 @@ h1{
         &__links{
             display: flex;
             justify-content: space-between;
-
-            a{
-                display: block;
-                background-color: $red;
-                border: 1px solid $red;
-                padding: 1em .5em;
-                color: #FFF;
-                text-align: center;
-                transition: .3s;
-                width: 49%;
-
-                &:hover, &:active {
-                    background-color: #FFF;
-                    color: $red;
-                }
-
-                &:first-child{
-                    background-color: #FFF;
-                    color: $red;
-
-                    &:hover, &:active {
-                        background-color: $red;
-                        color: #FFF;
-                    }
-                }
-            }
         }
     }
+}
+
+
+
+button{
+    display: block;
+
+    &:hover, &:active{
+        cursor: pointer;
+        
+    }
+
+    &:disabled,
+    &[disabled]{
+        color: #fff;
+        background: #d5d5d5;
+        border:none
+    }
+}
+
+.btn{
+    display: block;
+    padding: 1em .5em;
+    margin-top: .6em;
+    text-align: center;
+    transition: .3s;
+}
+
+.btn-red{
+    background-color: #FFF;
+    border: 1px solid $red;
+    color: $red;
+    width: 49%;
+
+    &:hover, &:active {
+        background-color: $red;
+        color: #FFF;
+    }
+}
+
+.btn-filled{
+    background-color: $red;
+    border: 1px solid $red;
+    color: #FFF;
+    width: 49%;
+
+    &:hover, &:active {
+        background-color: #aa201b;
+    }
+}
+
+.btn-blue{
+    background-color: #FFF;
+    border: 1px solid $blue;
+    color: $blue;
+
+    &:hover, &:active {
+        background-color: $blue;
+        color: #FFF;
+    }
+}
+
+.modal-buttons-flex{
+    display: flex;
+    justify-content: space-between;
+    
+    button{
+        width: 45%;
+    }
+}
+
+.event-title{
+    margin-bottom: 2em;
 }
 
 /***  Admin   ***/
@@ -213,30 +279,6 @@ h1{
 
     .another-format{
         margin-top: .8em;
-    }
-
-    button{
-        display: block;
-        background-color: #FFF;
-        /* margin-left: auto; */
-        color: $blue;
-        border: 1px solid $blue;
-        padding: .8em;
-        transition: .3s;
-        margin-top: .6em;
-
-        &:hover, &:active{
-            cursor: pointer;
-            background-color: $blue;
-            color: #FFF;
-        }
-
-        &:disabled,
-        &[disabled]{
-            color: #fff;
-            background: #d5d5d5;
-            border:none
-        }
     }
 }
 
@@ -298,8 +340,21 @@ h1{
     }
 
     h2{
-        margin-top: 2em;
+        margin-bottom: 2em;
     }
+
+    &__card{
+        background: #FFF;
+        padding: 2em;
+        margin-bottom: 2em;
+        border-top: 5px solid $blue;
+        box-shadow: 0px 0px 3px 0 $blue;
+    }
+
+  /*   p{
+        display: flex;
+        justify-content: space-between;
+    } */
 
     &__info{
         width: 40%;
@@ -309,10 +364,28 @@ h1{
         font-size: 1.1rem;
         margin-right: 5px;
         font-weight: bold;
+        width: 300px;
+        display: inline-block;
     }
 
     img{
         width: 55%;
+    }
+}
+
+.edit-event-form{
+
+    &__buttons{
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 200px;
+        }
+    }
+
+    &__delete-btn{
+        color: $red;
     }
 }
 

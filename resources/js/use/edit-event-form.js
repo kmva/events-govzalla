@@ -2,29 +2,22 @@ import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, toRaw, onMounted } from 'vue'
 
-export default function useEditEventForm() {
-    const store = useStore();
+export default function useEditEventForm(event) {
+    console.log('EVENTa', event)
     const route = useRoute();
-
-    const event = ref('');
-    onMounted(() => {   
-        event.value = await store.dispatch['Events/fetchEventById'](route.params.id)
-        console.log(event)
-    })
-
     const { handleSubmit, isSubmitting } = useForm({
         initialValues: {
-            title:  event.value.title,
+        /*     title: event.value.title,
             format: event.value.format,
             description: event.value.description,
-            locatio:  event.value.location,
+            location: event.value.location,
             date: event.value.date,
             organization: event.value.organization,
             speakers: event.value.speakers,
             target_audience: event.value.target_audience,
-            participants_number: event.value.participants_numbe,
+            participants_number: event.value.participants_number, */
         }
       });
 
@@ -97,23 +90,21 @@ export default function useEditEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле')
+            .required('Обязательное поле, введите числовое значение')
     );
 
     const isAnotherFormat = ref(false);
     const anotherFormat = ref('');
     watch(format, (newValue, oldValue) => {
-        console.log('format', format)
         if(newValue == 'another') {
             isAnotherFormat.value = true;
         } else {
             isAnotherFormat.value = false
         }
     })
-
     const onSubmit = handleSubmit(values => {
-        console.log(values)
-        editEvent();
+        console.log()
+      /*   editEvent(); */
     })
 
     const editEvent = () => {

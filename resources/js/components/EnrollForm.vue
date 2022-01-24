@@ -48,7 +48,7 @@
             <small v-if="areaError">{{ areaError }}</small>
         </div>   
 
-        <button type="submit" class="enroll-submit">Зарегистрироваться</button>
+        <button type="submit" class="enroll-submit btn btn-blue">Зарегистрироваться</button>
     </form>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="event" :data="data">
-          <router-link :to="{path:`/editevent/${data.id}`}" v-if="isAuth">Редактировать</router-link>
+          <router-link :to="{path:`/editevent/${data.id}`}" v-if="isAuth" class="event__edit">Редактировать</router-link>
         <div class="event__date">
             {{ 
                 new Date(data.date).getDate() 
@@ -16,17 +16,17 @@
                 </div>
             </div>
             <div class="event__links">
-                <router-link :to="{path:`/event/${data.id}`}">Подробнее</router-link>
-                <router-link to="" @click.prevent="openEnrollModal(data.id)">Зарегистрироваться</router-link>
+                <router-link :to="{path:`/event/${data.id}`}" class=" btn btn-red">Подробнее</router-link>
+                <router-link to="" @click.prevent="openEnrollModal(data.id)" class=" btn btn-filled">Зарегистрироваться</router-link>
             </div>
         </div>
     </div>
-    <EnrollEventModal v-if="isModalOpen" :data="data" @closeModal="closeEnrollModal"/>
+    <EnrollEventModal v-if="isModalOpen" :data="data" @closeModal="closeEnrollModal" />
 </template>
 <script>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import EnrollEventModal from './EnrollModal.vue'
+import EnrollEventModal from './EnrollEventModal.vue'
 
 export default {
     components: { EnrollEventModal },

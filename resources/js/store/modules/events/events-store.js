@@ -27,8 +27,17 @@ const actions = {
     async addEventToDB({ commit }, event) {
         try {
             const res = await axios.post('api/events', event);
-            console.log(res.data)
             commit('addEvent', event)
+        } catch (e) {
+            console.log(e)
+        }
+    },
+
+    async deleteEvent({ commit }, id) {
+        try {
+            console.log('delete', id)
+            const res = await axios.delete(`/api/events/${id}`);
+            /* commit('deleteEvent', id) */
         } catch (e) {
             console.log(e)
         }
