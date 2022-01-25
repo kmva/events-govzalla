@@ -8,7 +8,7 @@ use App\Event;
 
 class EventsController extends Controller
 {
-    /**
+    /***
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,6 +40,7 @@ class EventsController extends Controller
             'title' => 'bail|required',
             'format' => 'required',
             'organization' => 'required',
+            'subdivision' => 'required',
             'date' => 'required',
             'location' => 'required',
             'speakers' => 'required',
@@ -50,6 +51,8 @@ class EventsController extends Controller
             'format' => $request->format,
             'description' => $request->description,
             'organization' => $request->organization,
+            'subdivision' => $request->subdivision,
+            'direction' => $request->direction,
             'date' => $request->date,
             'location' => $request->location,
             'speakers' => $request->speakers,

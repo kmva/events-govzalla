@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
+    /***
      * Create a new AuthController instance.
      *
      * @return void
