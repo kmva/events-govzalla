@@ -12,6 +12,8 @@ class Event extends Model
         'format', 
         'description', 
         'organization', 
+        'subdivision', 
+        'direction', 
         'date', 
         'location', 
         'speakers', 

@@ -38,6 +38,10 @@ const getters = {
     enrollers: (state) => {
         return state.enrollers
     },
+
+    enrollersByEventId: (_, getters) => eventId => {
+        return getters.enrollers.filter(enroller => enroller.event_id == eventId);
+    }
 }
 
 const modules = {}

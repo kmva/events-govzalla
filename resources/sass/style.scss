@@ -37,14 +37,13 @@ body{
     }
 
     .main-nav{
+        font-size: 1.2rem;
+        text-align: center;
 
        &__item{
         display: inline-block;
         padding: .5em;
-        font-size: 1.2rem;
         display: inline-block;
-        text-align: center;
-        font-weight: regular;
         &:not(:last-child) {
             margin-right: 20px;
         }
@@ -146,9 +145,6 @@ h1{
         }
 
         &__date{
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 170px;
             font-size: 2rem;
             font-weight: bold;
@@ -159,7 +155,16 @@ h1{
             backdrop-filter: blur(10px);
             color: #FFF;
             text-align: center;
-            padding: 1em;
+
+            &-backdrop{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1em;
+                height: 100%;
+                width: 100%;
+                background-color: rgba($color: #000, $alpha: .5);
+            }
         }
         
         &__body{
@@ -178,6 +183,15 @@ h1{
 
         &__format{
             color: $cyan;
+        }
+
+        &__enrollers-count {    
+            margin-bottom: 10px;
+        
+            span{
+                font-size: 1.2rem;
+                color: $cyan;
+            }
         }
 
         &__links{
@@ -383,7 +397,7 @@ button{
         font-size: 1.1rem;
         margin-right: 5px;
         font-weight: bold;
-        width: 300px;
+        width: 211px;
         display: inline-block;
     }
 
@@ -414,4 +428,107 @@ button{
 
 .auth-form__btn{
     width: 130px;
+}
+
+
+@media screen and (max-width: 1450px){
+    .container{
+        width: 90%;
+    }
+
+    .about-event{
+        
+        &__subtitle{
+            font-size: 1.1rem;
+            margin-right: 0;
+            margin-bottom: 6px;
+            font-weight: bold;
+            width: 100%;
+            color: $blue;
+        }
+    }
+}
+
+@media screen and (max-width: 946px) {
+    h1{
+        font-size: 1.7rem;
+    }
+
+    .about-event{
+        flex-direction: column-reverse;
+
+        &__info{
+            width: 100%;
+        }
+    
+        &__card{
+            width: 100%;
+        }
+
+        img{
+            width: 100%;
+        }
+    }
+
+    .about-event h2{
+        margin-bottom: 1em;
+    }
+
+}
+
+@media screen and (max-width: 690px) {
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .events{
+        .event{
+            min-width: 100%;
+
+            &__links{
+                flex-direction: column;
+                a{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .event-title{
+        margin-bottom: .8em;
+    }
+
+    .organization__title{
+        margin-bottom: 0;
+    }
+
+    .about-event h2{
+        font-size: 1.3rem;
+        margin-bottom: .7em;
+    }
+
+    .container{
+        width: 100%;
+        padding: 1.5em;
+    }
+
+    .main-header{
+        padding: 1em;
+
+        &__logo{
+            width: 90px;
+        }
+
+        .main-nav{
+            font-size: 1rem;
+        }
+    }
+
+    .enroll-modal{
+        min-width: 100%;
+    }
 }

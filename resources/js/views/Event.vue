@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="about">
         <h1 class="event-title">{{ event.format }} "{{ event.title }}"</h1>
         <div class="about-event">
             <div class="about-event__info">
