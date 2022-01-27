@@ -9,7 +9,7 @@ import AddEventForm from '../../components/Admin/AddEventForm'
 
 export default {
     components: { AddEventForm },
-    setup() {
+        setup() {
     }
  }
 </script>

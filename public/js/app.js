@@ -22201,26 +22201,40 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_11 = {
-  "class": "about-event__card"
-};
-var _hoisted_12 = {
-  "class": "about-event__speakers"
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Спикеры", -1
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "about-event__subtitle"
+}, "Подразделение", -1
 /* HOISTED */
 );
 
+var _hoisted_12 = {
+  key: 0,
+  "class": "about-event__subtitle"
+};
+var _hoisted_13 = {
+  key: 0,
+  "class": "about-event__subtitle"
+};
 var _hoisted_14 = {
   "class": "about-event__card"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Описание мероприятия", -1
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Спикеры", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_16 = {
+  "class": "about-event__speakers"
+};
+var _hoisted_17 = {
+  "class": "about-event__card"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Описание мероприятия", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/img/2.jpg",
   alt: ""
 }, null, -1
@@ -22238,11 +22252,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.speakers), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.subdivision), 1
   /* TEXT */
-  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$setup.event.direction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, "Направление")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.direction), 1
   /* TEXT */
-  )])]), _hoisted_16])]);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$setup.event.participants_number ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, "Рассчитано на количество человек: ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.participants_number), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.speakers), 1
+  /* TEXT */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
+  /* TEXT */
+  )])]), _hoisted_19])]);
 }
 
 /***/ }),
@@ -22959,71 +22979,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ useAddEventForm)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
 
 
 
 
 function useAddEventForm() {
   var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
+  var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
 
-  var _useForm = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useForm)(),
+  var _useForm = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useForm)(),
       handleSubmit = _useForm.handleSubmit,
       isSubmitting = _useForm.isSubmitting;
 
-  var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('title', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('title', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       title = _useField.value,
       titleError = _useField.errorMessage,
       titleBlur = _useField.handleBlur;
 
-  var _useField2 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('format', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField2 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('format', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       format = _useField2.value,
       formatError = _useField2.errorMessage,
       formatBlur = _useField2.handleBlur;
 
-  var _useField3 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('description', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField3 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('description', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       description = _useField3.value,
       descriptionError = _useField3.errorMessage,
       descriptionBlur = _useField3.handleBlur;
 
-  var _useField4 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('location', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField4 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('location', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       location = _useField4.value,
       locationError = _useField4.errorMessage,
       locationBlur = _useField4.handleBlur;
 
-  var _useField5 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('date', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField5 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('date', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       date = _useField5.value,
       dateError = _useField5.errorMessage,
       dateBlur = _useField5.handleBlur;
 
-  var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       organization = _useField6.value,
       organizationError = _useField6.errorMessage,
       organizationBlur = _useField6.handleBlur;
 
-  var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       subdivision = _useField7.value,
       subdivisionError = _useField7.errorMessage,
       subdivisionBlur = _useField7.handleBlur;
 
-  var _useField8 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('direction', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
+  var _useField8 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('direction', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       direction = _useField8.value,
       directionError = _useField8.errorMessage,
       directionBlur = _useField8.handleBlur;
 
-  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('speakers', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('speakers', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       speakers = _useField9.value,
       speakersError = _useField9.errorMessage,
       speakersBlur = _useField9.handleBlur;
 
-  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
+  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
       target_audience = _useField10.value,
       targetAudienceError = _useField10.errorMessage,
       targetAudienceBlur = _useField10.handleBlur;
 
-  var _useField11 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
+  var _useField11 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       participants_number = _useField11.value,
       participantsNumberError = _useField11.errorMessage,
       participantsNumberBlur = _useField11.handleBlur;
@@ -23031,8 +23054,6 @@ function useAddEventForm() {
   var isAnotherFormat = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
   var anotherFormat = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
   (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(format, function (newValue, oldValue) {
-    console.log('format', format);
-
     if (newValue == 'another') {
       isAnotherFormat.value = true;
     } else {
@@ -23041,6 +23062,7 @@ function useAddEventForm() {
   });
   var onSubmit = handleSubmit(function (values) {
     addEvent();
+    router.push('/');
   });
 
   var addEvent = function addEvent() {

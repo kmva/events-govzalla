@@ -10,10 +10,13 @@
                     <p><span class="about-event__subtitle">Локация</span>{{ event.location }}</p>  
                     <p><span class="about-event__subtitle">Целевая аудитория</span>{{ event.target_audience }}</p>  
                     <p><span class="about-event__subtitle">Организатор</span>{{ event.organization }}</p>  
+                    <p><span class="about-event__subtitle">Подразделение</span>{{ event.subdivision }}</p>  
+                    <p><span v-if="event.direction" class="about-event__subtitle">Направление</span>{{ event.direction }}</p>  
+                    <p><span v-if="event.participants_number" class="about-event__subtitle">Рассчитано на количество человек: </span>{{ event.participants_number }}</p> 
                 </div>
                 <div class="about-event__card">
+                    <h2>Спикеры</h2>
                     <p class="about-event__speakers">
-                        <h2>Спикеры</h2>
                         <ul>
                             <li>{{ event.speakers }}</li>
                         </ul>

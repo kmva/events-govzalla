@@ -1,10 +1,12 @@
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
 import { ref, watch } from 'vue'
 
 export default function useAddEventForm() {
     const store = useStore();
+    const router = useRouter();
     const { handleSubmit, isSubmitting } = useForm();
 
     const {value: title, errorMessage: titleError, handleBlur: titleBlur} = useField(
@@ -91,13 +93,13 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
+            .nullable()
     );
 
     const isAnotherFormat = ref(false);
     const anotherFormat = ref('');
 
     watch(format, (newValue, oldValue) => {
-        console.log('format', format)
         if(newValue == 'another') {
             isAnotherFormat.value = true;
         } else {
@@ -107,6 +109,7 @@ export default function useAddEventForm() {
 
     const onSubmit = handleSubmit(values => {
         addEvent();
+        router.push('/');
     })
 
     const addEvent = () => {
