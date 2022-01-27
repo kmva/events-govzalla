@@ -68,6 +68,7 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
+            .nullable()
     );
 
     const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
@@ -83,7 +84,6 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле')
     );
 
     const {value: participants_number, errorMessage: participantsNumberError, handleBlur: participantsNumberBlur} = useField(
@@ -91,7 +91,6 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле')
     );
 
     const isAnotherFormat = ref(false);

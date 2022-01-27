@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('description')->nullable();
             $table->string('organization');
             $table->string('subdivision');
-            $table->string('direction')>nullable();
+            $table->string('direction')->nullable();
             $table->date('date');
             $table->string('location');
             $table->string('speakers');

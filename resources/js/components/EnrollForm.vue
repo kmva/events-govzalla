@@ -152,6 +152,8 @@ export default {
             organization.value = ''; 
             position.value = ''; 
             area.value = '';
+            
+            $emit('closeEnrollModal');
         }
 
         return { 

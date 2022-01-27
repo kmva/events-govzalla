@@ -20,8 +20,11 @@ use App\Http\Controllers\Api\AdminController;
     return $request->user();
 }); */
 
+Route::get('events/{event}/enrollers', [\App\Http\Controllers\Api\EventsController::class, 'enrollers']);
+
 Route::resource('events', EventsController::class);
 Route::resource('enrollers', EnrollersController::class);
+
 
 Route::group([ 'middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('login', [AdminController::class, 'login']);

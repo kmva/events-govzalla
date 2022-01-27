@@ -2,11 +2,13 @@
     <div class="event" :data="data">
           <router-link :to="{path:`/editevent/${data.id}`}" v-if="isAuth" class="event__edit">Редактировать</router-link>
         <div class="event__date">
-            {{ 
-                new Date(data.date).getDate() 
-                + ' ' +
-                new Date(data.date).toLocaleString('ru', { month: 'long' }) 
-            }}
+            <div class="event__date-backdrop">
+                {{ 
+                    new Date(data.date).getDate() 
+                    + ' ' +
+                    new Date(data.date).toLocaleString('ru', { month: 'long' }) 
+                }}
+            </div>
         </div>
         <div class="event__body">
             <div class="event__info">
@@ -15,6 +17,7 @@
                     {{ data.format }}
                 </div>
             </div>
+            <div class="event__enrollers-count">Загеристрировалось: <span>{{ enrollers.length }}</span></div>
             <div class="event__links">
                 <router-link :to="{path:`/event/${data.id}`}" class=" btn btn-red">Подробнее</router-link>
                 <router-link to="" @click.prevent="openEnrollModal(data.id)" class=" btn btn-filled">Зарегистрироваться</router-link>
@@ -24,7 +27,7 @@
     <EnrollEventModal v-if="isModalOpen" :data="data" @closeModal="closeEnrollModal" />
 </template>
 <script>
-import { ref, computed } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import EnrollEventModal from './EnrollEventModal.vue'
 
@@ -36,11 +39,13 @@ export default {
             required: true
         }
     },
-    setup() {
+    setup(props) {
         const store = useStore();
 
         const isModalOpen = ref(false);
         const isAuth = computed(() => store.getters['Admin/isAuth'])
+
+        const enrollers = ref('')
 
         const openEnrollModal = () => {
             isModalOpen.value = true;
@@ -50,11 +55,17 @@ export default {
             isModalOpen.value = false;
         }
 
+        onMounted(async() => {
+            await store.dispatch('Enrollers/fetchEnrollers');
+            enrollers.value = store.getters['Enrollers/enrollersByEventId'](props.data.id)
+        })
+
         return {
             openEnrollModal,
             closeEnrollModal,
             isModalOpen,
             isAuth,
+            enrollers
         }
     }
 }

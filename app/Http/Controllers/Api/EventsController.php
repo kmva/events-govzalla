@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
@@ -92,7 +93,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Event::where('id', $id)->update($request->all());
     }
 
     /**

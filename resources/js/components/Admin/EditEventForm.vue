@@ -48,8 +48,28 @@
 
         <div :class="['form-control', {invalid: organizationError}]">
             <label>Организатор</label>
-            <input type="text" v-model="organization">
+            <select v-model="organization">
+                <option disabled>Выберите один из вариантов</option>
+                <option>Министерство образования и науки Чеченской Республики</option>
+                <option>Институт развития образования Чеченской Республики</option>
+                <option>Центр непрерывного повышения профессионального мастерства
+                        педагогических работников Чеченской Республики</option>
+                <option>Муниципальная методическая служба Чеченской Республики</option>
+                <option>Методические объединения, профессиональные объединения педагогических работников</option>
+            </select>
             <small v-if="organizationError">{{ organizationError }}</small>
+        </div>
+
+        <div :class="['form-control', {invalid: subdivisionError}]">
+            <label>Подразделение</label>
+            <input type="text" v-model="subdivision">
+            <small v-if="subdivisionError">{{ subdivisionError }}</small>
+        </div>
+
+        <div :class="['form-control', {invalid: directionError}]">
+            <label>Направление</label>
+            <input type="text" v-model="direction">
+            <small v-if="directionError">{{ directionError }}</small>
         </div>
 
         <div :class="['form-control', {invalid: speakersError}]">
@@ -82,7 +102,7 @@ import useEditEventForm from '../../use/edit-event-form'
 
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
-import { onMounted, ref, reactive, toRaw } from 'vue'
+import { onBeforeMount, ref, toRaw, computed} from 'vue'
 import ConfirmDeleteModal from './ConfirmDeleteModal.vue'
 
 
@@ -94,12 +114,12 @@ export default {
 
         const isModalOpen = ref(false);
 
-        const event = reactive({});
-        const ev = toRaw(event)
+        const event = computed(() => {
+            return store.getters['Events/currentEvent']
+        })
 
-        onMounted(async() => {   
-            event.value = await store.dispatch('Events/fetchEventById', route.params.id)
-            console.log(ev.value)
+        onBeforeMount(async() => {   
+            await store.dispatch('Events/fetchEventById', route.params.id)
         })
 
         const deleteEvent = async () => {
@@ -115,7 +135,7 @@ export default {
             isModalOpen.value = false;
         }
         return {
-            ...useEditEventForm(ev.value),
+            ...useEditEventForm(),
             deleteEvent, 
             openConfirmModal,
             closeConfirmModal,

@@ -2,22 +2,26 @@ import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
-import { ref, watch, toRaw, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 
-export default function useEditEventForm(event) {
-    console.log('EVENTa', event)
+export default function useEditEventForm() {
+    const store = useStore();
     const route = useRoute();
+    const events = JSON.parse(localStorage.getItem('events'))
+    const event = events.find(event => event.id == route.params.id);
     const { handleSubmit, isSubmitting } = useForm({
         initialValues: {
-        /*     title: event.value.title,
-            format: event.value.format,
-            description: event.value.description,
-            location: event.value.location,
-            date: event.value.date,
-            organization: event.value.organization,
-            speakers: event.value.speakers,
-            target_audience: event.value.target_audience,
-            participants_number: event.value.participants_number, */
+            title: event.title,
+            format: event.format,
+            description: event.description,
+            location: event.location,
+            date: event.date,
+            organization: event.organization,
+            subdivision: event.subdivision,
+            direction: event.direction,
+            speakers: event.speakers,
+            target_audience: event.target_audience,
+            participants_number: event.participants_number,
         }
       });
 
@@ -69,6 +73,22 @@ export default function useEditEventForm(event) {
             .required('Обязательное поле')
     );
 
+    const {value: subdivision, errorMessage: subdivisionError, handleBlur: subdivisionBlur} = useField(
+        'subdivision',
+        yup
+            .string()
+            .trim()
+            .required('Обязательное поле')
+    );
+
+    const {value: direction, errorMessage: directionError, handleBlur: directionBlur} = useField(
+        'direction',
+        yup
+            .string()
+            .trim()
+            .nullable()
+    );
+
     const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
         'speakers',
         yup
@@ -103,24 +123,26 @@ export default function useEditEventForm(event) {
         }
     })
     const onSubmit = handleSubmit(values => {
-        console.log()
-      /*   editEvent(); */
+        editEvent();
     })
 
     const editEvent = () => {
         store.dispatch('Events/editEvent', {
+            id: route.params.id,
             title: title.value,
             format: format.value == 'another' ? anotherFormat.value : format.value,
             description: description.value,
             location: location.value,
             date: date.value,
             organization: organization.value,
+            subdivision: subdivision.value,
+            direction: direction.value,
             speakers: speakers.value,
             target_audience: target_audience.value,
             participants_number: participants_number.value,
         });
 
-        title.value = '';
+        /* title.value = '';
         format.value = null;
         description.value = '';
         location.value = '';
@@ -128,17 +150,18 @@ export default function useEditEventForm(event) {
         organization.value = '';
         speakers.value = '';
         target_audience.value = '';
-        participants_number.value = '';
+        participants_number.value = ''; */
     }
 
     return {
-        event,
         title,
         format,
         description,
         location,
         date,
         organization,
+        subdivision,
+        direction,
         speakers,
         target_audience,
         participants_number,
@@ -149,6 +172,8 @@ export default function useEditEventForm(event) {
         locationError,
         dateError,
         organizationError,
+        subdivisionError,
+        directionError,
         speakersError,
         targetAudienceError,
         participantsNumberError,
@@ -159,6 +184,8 @@ export default function useEditEventForm(event) {
         locationBlur,
         dateBlur,
         organizationBlur,
+        subdivisionBlur,
+        directionBlur,
         speakersBlur,
         targetAudienceBlur,
         participantsNumberBlur,

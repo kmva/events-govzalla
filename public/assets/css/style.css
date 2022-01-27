@@ -36,13 +36,15 @@ body {
   width: 120px;
 }
 
+.main-header .main-nav {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 .main-header .main-nav__item {
   display: inline-block;
   padding: 0.5em;
-  font-size: 1.2rem;
   display: inline-block;
-  text-align: center;
-  font-weight: regular;
 }
 
 .main-header .main-nav__item:not(:last-child) {
@@ -145,9 +147,6 @@ h1 {
 }
 
 .events .event__date {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 170px;
   font-size: 2rem;
   font-weight: bold;
@@ -159,7 +158,16 @@ h1 {
           backdrop-filter: blur(10px);
   color: #FFF;
   text-align: center;
+}
+
+.events .event__date-backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1em;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .events .event__body {
@@ -177,6 +185,15 @@ h1 {
 }
 
 .events .event__format {
+  color: #6cb2eb;
+}
+
+.events .event__enrollers-count {
+  margin-bottom: 10px;
+}
+
+.events .event__enrollers-count span {
+  font-size: 1.2rem;
   color: #6cb2eb;
 }
 
@@ -384,7 +401,7 @@ button[disabled] {
   font-size: 1.1rem;
   margin-right: 5px;
   font-weight: bold;
-  width: 300px;
+  width: 211px;
   display: inline-block;
 }
 
@@ -411,6 +428,103 @@ button[disabled] {
 
 .auth-form__btn {
   width: 130px;
+}
+
+@media screen and (max-width: 1450px) {
+  .container {
+    width: 90%;
+  }
+
+  .about-event__subtitle {
+    font-size: 1.1rem;
+    margin-right: 0;
+    margin-bottom: 6px;
+    font-weight: bold;
+    width: 100%;
+    color: #1e77c0;
+  }
+}
+
+@media screen and (max-width: 946px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  .about-event {
+    flex-direction: column-reverse;
+  }
+
+  .about-event__info {
+    width: 100%;
+  }
+
+  .about-event__card {
+    width: 100%;
+  }
+
+  .about-event img {
+    width: 100%;
+  }
+
+  .about-event h2 {
+    margin-bottom: 1em;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  .events .event {
+    min-width: 100%;
+  }
+
+  .events .event__links {
+    flex-direction: column;
+  }
+
+  .events .event__links a {
+    width: 100%;
+  }
+
+  .event-title {
+    margin-bottom: 0.8em;
+  }
+
+  .organization__title {
+    margin-bottom: 0;
+  }
+
+  .about-event h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.7em;
+  }
+
+  .container {
+    width: 100%;
+    padding: 1.5em;
+  }
+
+  .main-header {
+    padding: 1em;
+  }
+
+  .main-header__logo {
+    width: 90px;
+  }
+
+  .main-header .main-nav {
+    font-size: 1rem;
+  }
+
+  .enroll-modal {
+    min-width: 100%;
+  }
 }
 
 
