@@ -2,6 +2,7 @@ import { createStore, createLogger } from 'vuex'
 import Admin from './modules/admin/admin-store'
 import Events from './modules/events/events-store'
 import Enrollers from './modules/enrollers/enrollers-store'
+import Modals from './modules/modals/modals-store'
 
 
 /* const plugins = []
@@ -20,6 +21,6 @@ export default createStore({
         Admin,
         Events,
         Enrollers,
+        Modals,
     },
   })
-  

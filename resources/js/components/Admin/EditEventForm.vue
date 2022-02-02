@@ -95,14 +95,14 @@
             <button class="edit-event-form__delete-btn" @click.prevent="openConfirmModal">Удалить мероприятие</button>
        </div>
     </form>
-    <ConfirmDeleteModal v-if="isModalOpen" @closeModal="closeConfirmModal" @deleteEvent="deleteEvent" />
+    <ConfirmDeleteModal v-if="isModalOpen" />
 </template>
 <script>
 import useEditEventForm from '../../use/edit-event-form'
 
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
-import { onBeforeMount, ref, toRaw, computed} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { onBeforeMount, computed} from 'vue'
 import ConfirmDeleteModal from './ConfirmDeleteModal.vue'
 
 
@@ -112,33 +112,19 @@ export default {
         const store = useStore();
         const route = useRoute();
 
-        const isModalOpen = ref(false);
-
-        const event = computed(() => {
-            return store.getters['Events/currentEvent']
-        })
+        const isModalOpen = computed(() => store.getters['Modals/deleteEventModal']);
 
         onBeforeMount(async() => {   
             await store.dispatch('Events/fetchEventById', route.params.id)
         })
 
-        const deleteEvent = async () => {
-            await store.dispatch('Events/deleteEvent', route.params.id);
-            closeConfirmModal();
-        }
-
         const openConfirmModal = () => {
-            isModalOpen.value = true;
+            store.commit('Modals/openModal', 'deleteEventModal');
         }
 
-        const closeConfirmModal = () => { 
-            isModalOpen.value = false;
-        }
         return {
             ...useEditEventForm(),
-            deleteEvent, 
             openConfirmModal,
-            closeConfirmModal,
             isModalOpen,
         }
     }

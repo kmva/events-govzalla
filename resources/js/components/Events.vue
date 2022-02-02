@@ -32,7 +32,18 @@
         по
         <input type="date" placeholder="По" v-model="dateEnd">{{dateEnd}} -->
     </div>
-    <div class="organizations" v-if="organizations">
+    
+    <app-loader v-if="isLoading"></app-loader>
+    <div v-if="searchResultEvents">
+         <div class="events">
+            <event 
+                v-for="event in searchResultEvents"
+                :key="event.id"
+                :data="event"
+            ></event>
+        </div>
+    </div>
+    <div class="organizations" v-else-if="organizations">
         <div class="organization" v-for="organization in Object.keys(organizations)" :key="organization">
             <h2 class="organization__title">{{ organization }}</h2>
             <div class="events">
@@ -48,20 +59,23 @@
 </template>
 <script>
 import Event from '../components/Event'
-import { onMounted, computed, ref, reactive } from 'vue'
+import AppLoader from '../components/AppLoader.vue'
+
+import { onMounted, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
-    components: { Event },
+    components: { Event, AppLoader },
     setup() {
+            
         const store = useStore();
+
+        const isLoading = ref(false);
         const eventsFromStore = computed(() => { return store.getters['Events/events'] });
         const searchQuery = ref('');
-        const events = computed(() => {
-            return searchQuery.value 
-                ? eventsFromStore.value.filter(event => { return event.title.includes(searchQuery.value)})
-                : eventsFromStore.value
-            });
+        const searchResultEvents = computed(() => {
+            if(searchQuery.value) { return  eventsFromStore.value.filter(event => { return event.title.includes(searchQuery.value)}) }
+        });
 
         const organizations = ref({})
 
@@ -71,13 +85,17 @@ export default {
         const dateEnd = ref(null); 
 
         onMounted(async () => {
+            isLoading.value = true;
             await store.dispatch('Events/fetchEvents');
-            organizations.value = _.groupBy(events.value, "organization")
+            await store.dispatch('Enrollers/fetchEnrollers');
+            organizations.value = _.groupBy(eventsFromStore.value, "organization");
+            isLoading.value = false;
         })
 
         return {
+            isLoading,
             Event,
-            events,
+            searchResultEvents,
             organizations,
             searchQuery,
             formatFilter,

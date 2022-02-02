@@ -44,7 +44,28 @@
 
         <div :class="['form-control', {invalid: areaError}]">
             <label>Район</label>
-            <input type="text" v-model="area" @blur="areaBlur" />
+             <select v-model="area">
+                <option disabled>Выберите район</option>
+                <option>город Аргун</option>
+                <option>город Грозный</option>
+                <option>Ачхой-Мартановский район</option>
+                <option>Веденский район</option>
+                <option>Грозненский район</option>
+                <option>Гудермесский район</option>
+                <option>Итум-Калинский район</option>
+                <option>Курчалоевский район</option>
+                <option>Надтеречный район</option>
+                <option>Наурский район</option>
+                <option>Ножай-Юртовский район</option>
+                <option>Сунженский район</option>
+                <option>Урус-Мартановский район</option>
+                <option>Шалинский район</option>
+                <option>Шаройский район</option>
+                <option>Шатойский район</option>
+                <option>Шелковской район</option>
+            </select>
+          <!--   <input type="text" v-model="area" @blur="areaBlur" /> -->
+
             <small v-if="areaError">{{ areaError }}</small>
         </div>   
 
@@ -128,6 +149,7 @@ export default {
 
         const onSubmit = handleSubmit(values => {
             addEnroller();
+            store.commit('Modals/closeModal', 'enrollEventModal');
         })
 
         const addEnroller = () => {
@@ -152,8 +174,6 @@ export default {
             organization.value = ''; 
             position.value = ''; 
             area.value = '';
-            
-            $emit('closeEnrollModal');
         }
 
         return { 

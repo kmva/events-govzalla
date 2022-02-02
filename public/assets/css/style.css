@@ -146,27 +146,31 @@ h1 {
   color: #FFF;
 }
 
-.events .event__date {
-  height: 170px;
+.events .event__header {
+  height: 180px;
   font-size: 2rem;
   font-weight: bold;
-  background-color: #6cb2eb;
-  background-image: url("/img/2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
   color: #FFF;
   text-align: center;
 }
 
-.events .event__date-backdrop {
+.events .event__header-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+}
+
+.events .event__header-backdrop {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
-  height: 100%;
+  position: absolute;
+  top: 0;
   width: 100%;
+  height: 180px;
+  padding: 1em;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -176,7 +180,7 @@ h1 {
 }
 
 .events .event__info {
-  height: 250px;
+  height: 240px;
 }
 
 .events .event__title {

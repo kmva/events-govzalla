@@ -1,14 +1,14 @@
 <template>
-    <Modal :title="title">
-        <EnrollForm :data="data" />
+    <Modal :title="title" modalName="enrollEventModal">
+        <EnrollEventForm :data="data" />
     </Modal>
 </template>
 <script>
-import EnrollForm from './EnrollForm.vue'
+import EnrollEventForm from './EnrollEventForm.vue'
 import Modal from './Modal.vue'
 
 export default {
-    components: { EnrollForm, Modal },
+    components: { EnrollEventForm, Modal },
     props: {
         data: {
             type: Object,
@@ -18,6 +18,7 @@ export default {
     setup(props) {
 
         const title = `Регистрация на мероприятие "${props.data.title}"`;
+    
         return {
             title,
         }

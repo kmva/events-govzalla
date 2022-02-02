@@ -41,11 +41,19 @@ class EventsController extends Controller
             'title' => 'bail|required',
             'format' => 'required',
             'organization' => 'required',
-            'subdivision' => 'required',
             'date' => 'required',
             'location' => 'required',
             'speakers' => 'required',
         ]);
+
+        if($request->img){
+            $folder = $request->date;
+            $name = $request->img->getClientOriginalName();
+
+            $path = $request->img->storeAs("images/{$folder}", $name);
+        } else {
+            $path = "/img/event_bg.jpg";
+        }
 
         $event = Event::create([
             'title' => $request->title,
@@ -59,6 +67,7 @@ class EventsController extends Controller
             'speakers' => $request->speakers,
             'target_audience' => $request->target_audience,
             'participants_number' => $request->participants_number,
+            'picture_url' => $path,
         ]);
     }
 

@@ -15,7 +15,6 @@ const actions = {
     },
 
     async enrollEvent({ commit }, enroller) {
-        console.log('enroller', enroller)
         try {
             const res = await axios.post('/api/enrollers', enroller);
             commit('setEnrollers', enroller)

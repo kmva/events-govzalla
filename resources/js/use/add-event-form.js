@@ -7,7 +7,17 @@ import { ref, watch } from 'vue'
 export default function useAddEventForm() {
     const store = useStore();
     const router = useRouter();
+    const eventImg = ref(null)
     const { handleSubmit, isSubmitting } = useForm();
+
+
+    const uploadImg = ref(null);
+    const formData = new FormData()
+
+    const uploadImgHandler = e => {
+        const files = e.target.files;
+        uploadImg.value = files[0];
+    }
 
     const {value: title, errorMessage: titleError, handleBlur: titleBlur} = useField(
         'title',
@@ -62,7 +72,6 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле')
     );
 
     const {value: direction, errorMessage: directionError, handleBlur: directionBlur} = useField(
@@ -109,23 +118,25 @@ export default function useAddEventForm() {
 
     const onSubmit = handleSubmit(values => {
         addEvent();
-        router.push('/');
+       /*  router.push('/'); */
     })
 
     const addEvent = () => {
-        store.dispatch('Events/addEventToDB', {
-            title: title.value,
-            format: format.value == 'another' ? anotherFormat.value : format.value,
-            description: description.value,
-            location: location.value,
-            date: date.value,
-            organization: organization.value,
-            subdivision: subdivision.value,
-            direction: direction.value,
-            speakers: speakers.value,
-            target_audience: target_audience.value,
-            participants_number: participants_number.value,
-        });
+        
+        formData.append('title', title.value);
+        formData.append('format', format.value == 'another' ? anotherFormat.value : format.value);
+        formData.append('description', description.value);
+        formData.append('location', location.value);
+        formData.append('date', date.value);
+        formData.append('organization', organization.value);
+        formData.append('subdivision', null ?? subdivision.value);
+        formData.append('direction', null ?? direction.value);
+        formData.append('speakers', speakers.value);
+        formData.append('target_audience', null ?? target_audience.value);
+        formData.append('participants_number', 0 ?? participants_number.value);
+        formData.append('img', null ?? uploadImg.value);
+
+        store.dispatch('Events/addEventToDB', formData);
 
         title.value = '';
         format.value = null;
@@ -138,6 +149,7 @@ export default function useAddEventForm() {
         speakers.value = '';
         target_audience.value = '';
         participants_number.value = '';
+        uploadImg.value = '';
     }
 
     return {
@@ -152,6 +164,7 @@ export default function useAddEventForm() {
         speakers,
         target_audience,
         participants_number,
+        uploadImg,
 
         titleError,
         formatError,
@@ -177,6 +190,7 @@ export default function useAddEventForm() {
         targetAudienceBlur,
         participantsNumberBlur,
 
+        uploadImgHandler,
         onSubmit,
         isSubmitting,
         isAnotherFormat,

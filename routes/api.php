@@ -16,12 +16,6 @@ use App\Http\Controllers\Api\AdminController;
 |
 */
 
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-}); */
-
-Route::get('events/{event}/enrollers', [\App\Http\Controllers\Api\EventsController::class, 'enrollers']);
-
 Route::resource('events', EventsController::class);
 Route::resource('enrollers', EnrollersController::class);
 

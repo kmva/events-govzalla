@@ -54,8 +54,23 @@
                 <option>Институт развития образования Чеченской Республики</option>
                 <option>Центр непрерывного повышения профессионального мастерства
                         педагогических работников Чеченской Республики</option>
-                <option>Муниципальная методическая служба Чеченской Республики</option>
-                <option>Методические объединения, профессиональные объединения педагогических работников</option>
+                <option>Департамент образования Мэрии г. Грозного</option>
+                <option>МУ «Управление образования Грозненского муниципального района»</option>
+                <option>МУ «Шаройский районный отдел образования»</option>
+                <option>МУ «Отдел образования Шелковского муниципального района»</option>
+                <option>МУ «Управление образования Гудермесского муниципального района»</option>
+                <option>МУ «Отдел образования Шалинского муниципального района»</option>
+                <option>МУ «Отдел образования Шатойского муниципального района»</option>
+                <option>МУ «Отдел образования Урус-Мартановского муниципального района»</option>
+                <option>МУ «Управление образования Ножай-Юртовского муниципального района»</option>
+                <option>МУ «Наурский районный отдел образования»</option>
+                <option>МУ «Веденский районный отдел образования»</option>
+                <option>МУ «Итум-Калинский районный отдел образования»</option>
+                <option>МУ «Отдел образования администрации Надтеречного муниципального района»</option>
+                <option>МУ «Отдел образования Серноводского муниципального района»</option>
+                <option>МУ «Департамент образования г.Аргун»</option>
+                <option>МУ «Управление образования Курчалоевского муниципального района»</option>
+                <option>МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>
             </select>
             <small v-if="organizationError">{{ organizationError }}</small>
         </div>
@@ -90,6 +105,10 @@
             <small v-if="participantsNumberError">{{ participantsNumberError }}</small>
         </div>
 
+        <div :class="['form-control', {invalid: participantsNumberError}]">
+            <label>Прикрепить фотографию</label>
+            <input type="file" accept="image/jpeg, image/png, image/jpg" ref="eventImg"  @change="uploadImgHandler">
+        </div>
         <button type="submit" class="btn btn-blue" :disabled="isSubmitting">Добавить мероприятие</button>
     </form>
 </template>
@@ -98,6 +117,7 @@ import useAddEventForm from '../../use/add-event-form'
 
 export default {
     setup() {
+
         return {
             ...useAddEventForm()
         }

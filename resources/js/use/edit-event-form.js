@@ -78,7 +78,6 @@ export default function useEditEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле')
     );
 
     const {value: direction, errorMessage: directionError, handleBlur: directionBlur} = useField(
