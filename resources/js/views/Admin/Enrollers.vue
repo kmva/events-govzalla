@@ -1,11 +1,14 @@
 <template>
-    <div class='container container--with-form'>
-        <h1>Зарегистрировавшиеся</h1>
-        <app-loader v-if="isLoading"></app-loader>
-        <div class="enrollers" v-else>
+    <h1>Зарегистрировавшиеся</h1>
+    <input type="text" v-model="searchQuery" class="events-filters__search" placeholder="Поиск мероприятия">
+    <app-loader v-if="isLoading"></app-loader>
+    <div class="enrollers" v-else>
+        <div class="table-wrapper" 
+                v-for="event in events" 
+                :key="event.id">
             <EnrollersTable 
-                v-for="enroller in enrollers" 
-                :key="enroller.id"
+                :data="enrollers.filter(enroller => enroller.event_id == event.id)"
+                :eventTitle="event.title"
             />
         </div>
     </div>
@@ -14,25 +17,40 @@
 import { onMounted, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 
+import EnrollersTable from '../../components/Admin/EnrollersTable.vue'
 import AppLoader from '../../components/AppLoader.vue'
 
 export default {
-    components: { Event, AppLoader },
+    components: { Event, AppLoader, EnrollersTable },
     setup() {
         const store = useStore();
 
         const isLoading = ref(false);
 
         const enrollers = computed(() => { return store.getters['Enrollers/enrollers'] });
+        const eventsFromStore = computed(() => { return store.getters['Events/events'] });
+        const searchQuery = ref('');
+        const searchResultEvents = computed(() => {
+            if(searchQuery.value) { return  eventsFromStore.value.filter(event => { return event.title.includes(searchQuery.value)}) }
+        });
+
+        const events = computed(() => {
+            return searchQuery.value  
+                    ? searchResultEvents.value
+                    : eventsFromStore.value
+        })
 
         onMounted(async () => {
             isLoading.value = true;
+            await store.dispatch('Events/fetchEvents')
             await store.dispatch('Enrollers/fetchEnrollers');
             isLoading.value = false;
         })
 
         return {
-            enrollers
+            searchQuery,
+            events,
+            enrollers,
         }
     }
 }

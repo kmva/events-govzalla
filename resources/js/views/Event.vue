@@ -29,7 +29,7 @@
                 </div>
                 <router-link to="" @click.prevent="openEnrollModal" class=" btn btn-filled">Зарегистрироваться</router-link>
             </div>
-            <img src="/img/2.jpg" alt="">
+            <img :src="event.picture_url" alt="">
         </div>
     </div>
     <EnrollEventModal v-if="isModalOpen" :data="event" />

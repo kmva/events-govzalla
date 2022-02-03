@@ -1,13 +1,13 @@
 <template>
     <form class="form add-event-form" @submit.prevent="onSubmit">
         <div :class="['form-control', {invalid: titleError}]">
-            <label> Название</label>
+            <label>Название <span class="required-star">*</span></label>
             <input type="text" v-model="title" />
             <small v-if="titleError">{{ titleError }}</small>
         </div>
 
         <div :class="['form-control', {invalid: formatError}]">
-            <label>Формат мероприятия</label>
+            <label>Формат мероприятия <span class="required-star">*</span></label>
             <select v-model="format">
                 <option disabled>Выберите один из вариантов</option>
                 <option>Семинар</option>
@@ -35,19 +35,19 @@
         </div>
          
         <div :class="['form-control', {invalid: locationError}]">
-            <label>Место проведения</label>
+            <label>Место проведения <span class="required-star">*</span></label>
             <input type="text" v-model="location">
             <small v-if="locationError">{{ locationError }}</small>
         </div>
 
         <div :class="['form-control', {invalid: dateError}]">
-            <label>Дата проведения</label>
+            <label>Дата проведения <span class="required-star">*</span></label>
             <input type="date" v-model="date">
             <small v-if="dateError">{{ dateError }}</small>
         </div>
 
         <div :class="['form-control', {invalid: organizationError}]">
-            <label>Организатор</label>
+            <label>Организатор <span class="required-star">*</span></label>
             <select v-model="organization">
                 <option disabled>Выберите один из вариантов</option>
                 <option>Министерство образования и науки Чеченской Республики</option>
@@ -88,7 +88,7 @@
         </div>
 
         <div :class="['form-control', {invalid: speakersError}]">
-            <label>Спикеры</label>
+            <label>Спикеры <span class="required-star">*</span></label>
             <input type="text" v-model="speakers">
             <small v-if="speakersError">{{ speakersError }}</small>
         </div>

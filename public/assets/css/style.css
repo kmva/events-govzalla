@@ -104,7 +104,8 @@ h1 {
   margin-left: 0.5em;
 }
 
-.events-filters .events-filters__search {
+.events-filters .events-filters__search,
+.events-filters__search {
   width: 100%;
   margin-bottom: 2em;
   padding: 0.8em;
@@ -280,6 +281,11 @@ button[disabled] {
   margin-bottom: 2em;
 }
 
+.required-star {
+  color: #e3342f;
+  font-size: 1.2rem;
+}
+
 /***  Admin   ***/
 
 /** add event **/
@@ -432,6 +438,44 @@ button[disabled] {
 
 .auth-form__btn {
   width: 130px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+  margin: auto;
+  margin-bottom: 2.5em;
+  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);
+}
+
+.enrollers-link {
+  margin-bottom: 1.5em;
+  display: block;
+  font-size: 1.15rem;
+  text-decoration: underline;
+  color: #1e77c0;
+}
+
+.enrollers-table {
+  width: 100%;
+  background-color: #FFF;
+}
+
+.enrollers-table thead tr:first-child {
+  font-size: 1.2rem;
+}
+
+.enrollers-table tbody tr:nth-child(2n) {
+  background-color: #f1f1f1;
+}
+
+.enrollers-table tr {
+  border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+.enrollers-table td,
+.enrollers-table th {
+  padding: 0.9em 1.1em;
 }
 
 @media screen and (max-width: 1450px) {

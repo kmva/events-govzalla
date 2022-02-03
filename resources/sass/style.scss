@@ -102,7 +102,8 @@ h1{
             margin-left: .5em;
         }
 
-        & &__search{
+        & &__search,
+        &__search{
             width: 100%;
             margin-bottom: 2em;
             padding: .8em;
@@ -276,6 +277,11 @@ button{
     margin-bottom: 2em;
 }
 
+.required-star{
+ color: $red;
+ font-size: 1.2rem;
+}
+
 /***  Admin   ***/
 
 /** add event **/
@@ -432,6 +438,46 @@ button{
 
 .auth-form__btn{
     width: 130px;
+}
+
+.table-wrapper{
+    width: 100%;
+    overflow-x: scroll;
+    margin: auto;
+    margin-bottom: 2.5em;
+    box-shadow: 0 0 5px 0 rgba($color: $cyan, $alpha: .5);
+}
+
+.enrollers{
+
+    &-link{
+        margin-bottom: 1.5em;
+        display: block;
+        font-size: 1.15rem;
+        text-decoration: underline;
+        color: $blue
+    }
+
+    &-table{
+        width: 100%;
+        background-color: #FFF;
+
+        thead tr:first-child{
+            font-size: 1.2rem;
+        }
+
+        tbody tr:nth-child(2n){
+            background-color: #f1f1f1;
+        }
+
+        tr{
+            border-bottom: 1px solid rgba($color: #DDD, $alpha: .5);
+        }
+
+        td, th{
+            padding: .9em 1.1em;
+        }
+    }
 }
 
 

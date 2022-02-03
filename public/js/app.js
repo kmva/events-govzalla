@@ -19907,6 +19907,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTable.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTable.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EnrollersTableRow_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EnrollersTableRow.vue */ "./resources/js/components/Admin/EnrollersTableRow.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    EnrollersTableRow: _EnrollersTableRow_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    data: {
+      type: Object,
+      required: true
+    },
+    eventTitle: {
+      type: String,
+      required: true
+    }
+  },
+  setup: function setup() {
+    return {};
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    enroller: {
+      type: Object,
+      required: true
+    }
+  },
+  setup: function setup() {
+    return {};
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AppLoader.vue?vue&type=script&lang=js":
 /*!***************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AppLoader.vue?vue&type=script&lang=js ***!
@@ -20433,8 +20492,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _components_AppLoader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/AppLoader.vue */ "./resources/js/components/AppLoader.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _components_Admin_EnrollersTable_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Admin/EnrollersTable.vue */ "./resources/js/components/Admin/EnrollersTable.vue");
+/* harmony import */ var _components_AppLoader_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/AppLoader.vue */ "./resources/js/components/AppLoader.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -20444,16 +20504,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Event: Event,
-    AppLoader: _components_AppLoader_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    AppLoader: _components_AppLoader_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    EnrollersTable: _components_Admin_EnrollersTable_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   setup: function setup() {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     var isLoading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var enrollers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.getters['Enrollers/enrollers'];
+    });
+    var eventsFromStore = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return store.getters['Events/events'];
+    });
+    var searchQuery = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+    var searchResultEvents = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      if (searchQuery.value) {
+        return eventsFromStore.value.filter(function (event) {
+          return event.title.includes(searchQuery.value);
+        });
+      }
+    });
+    var events = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return searchQuery.value ? searchResultEvents.value : eventsFromStore.value;
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -20462,12 +20538,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               isLoading.value = true;
               _context.next = 3;
-              return store.dispatch('Enrollers/fetchEnrollers');
+              return store.dispatch('Events/fetchEvents');
 
             case 3:
+              _context.next = 5;
+              return store.dispatch('Enrollers/fetchEnrollers');
+
+            case 5:
               isLoading.value = false;
 
-            case 4:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -20475,6 +20555,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     })));
     return {
+      searchQuery: searchQuery,
+      events: events,
       enrollers: enrollers
     };
   }
@@ -20568,13 +20650,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_Events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Events */ "./resources/js/components/Events.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Events: _components_Events__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   setup: function setup() {
-    return {};
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
+    var isAuth = store.getters['Admin/isAuth'];
+    return {
+      isAuth: isAuth
+    };
   }
 });
 
@@ -20615,7 +20703,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, " Название", -1
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Название "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -20623,7 +20713,9 @@ var _hoisted_2 = {
   key: 0
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Формат мероприятия", -1
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Формат мероприятия "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -20642,7 +20734,9 @@ var _hoisted_21 = {
   key: 0
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Место проведения", -1
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Место проведения "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -20650,7 +20744,9 @@ var _hoisted_23 = {
   key: 0
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Дата проведения", -1
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Дата проведения "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -20658,7 +20754,9 @@ var _hoisted_25 = {
   key: 0
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Организатор", -1
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Организатор "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -20685,7 +20783,9 @@ var _hoisted_53 = {
   key: 0
 };
 
-var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Спикеры", -1
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Спикеры "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -21433,6 +21533,98 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTable.vue?vue&type=template&id=9191cd0e":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTable.vue?vue&type=template&id=9191cd0e ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "enrollers-table"
+};
+var _hoisted_2 = {
+  colspan: "7"
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "ФИО"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "email"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Номер телефона"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Организация"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Должность"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Район"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Дата регистрации")], -1
+/* HOISTED */
+);
+
+var _hoisted_4 = {
+  key: 0
+};
+var _hoisted_5 = {
+  key: 1
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  colspan: "7"
+}, " На это мероприятие пока никто не зарегистрировался ")], -1
+/* HOISTED */
+);
+
+var _hoisted_7 = [_hoisted_6];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_EnrollersTableRow = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EnrollersTableRow");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.eventTitle), 1
+  /* TEXT */
+  )]), _hoisted_3]), $props.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.data, function (enroller) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollersTableRow, {
+      key: enroller.id,
+      enroller: enroller
+    }, null, 8
+    /* PROPS */
+    , ["enroller"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_5, _hoisted_7))]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=template&id=5970a8d1":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=template&id=5970a8d1 ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ref;
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.lastname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_ref = '') !== null && _ref !== void 0 ? _ref : $props.enroller.patronymic), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.email), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.phone), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.organization), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.position), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.area), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.created_at), 1
+  /* TEXT */
+  )]);
 }
 
 /***/ }),
@@ -22223,15 +22415,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  "class": "container container--with-form"
-};
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Зарегистрировавшиеся", -1
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Зарегистрировавшиеся", -1
 /* HOISTED */
 );
 
-var _hoisted_3 = {
+var _hoisted_2 = {
   key: 1,
   "class": "enrollers"
 };
@@ -22240,15 +22429,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_EnrollersTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EnrollersTable");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _ctx.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_loader, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.searchQuery = $event;
+    }),
+    "class": "events-filters__search",
+    placeholder: "Поиск мероприятия"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.searchQuery]]), _ctx.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_loader, {
     key: 0
-  })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.enrollers, function (enroller) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollersTable, {
-      key: enroller.id
-    });
+  })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.events, function (event) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "table-wrapper",
+      key: event.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EnrollersTable, {
+      data: $setup.enrollers.filter(function (enroller) {
+        return enroller.event_id == event.id;
+      }),
+      eventTitle: event.title
+    }, null, 8
+    /* PROPS */
+    , ["data", "eventTitle"])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]))]);
+  ))]))], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -22350,13 +22558,7 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/2.jpg",
-  alt: ""
-}, null, -1
-/* HOISTED */
-);
-
+var _hoisted_21 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _;
 
@@ -22399,7 +22601,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["onClick"])]), _hoisted_21])]), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
+  , ["onClick"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $setup.event.picture_url,
+    alt: ""
+  }, null, 8
+  /* PROPS */
+  , _hoisted_21)])]), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
     key: 0,
     data: $setup.event
   }, null, 8
@@ -22431,10 +22638,25 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cписок зарегистрировавшихся");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   var _component_Events = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Events", true);
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Events)]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 0,
+    to: "/enrollers",
+    "class": "enrollers-link"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_2];
+    }),
+    _: 1
+    /* STABLE */
+
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Events)]);
 }
 
 /***/ }),
@@ -28083,7 +28305,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;\n\n400;500&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 1.5em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n  /*   p{\n        display: flex;\n        justify-content: space-between;\n    } */\n}\n\n.about-event p {\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event img {\n  width: 55%;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 1.5em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n  /*   p{\n        display: flex;\n        justify-content: space-between;\n    } */\n}\n\n.about-event p {\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event img {\n  width: 55%;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers-table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers-table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers-table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers-table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers-table td,\n.enrollers-table th {\n  padding: 0.9em 1.1em;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -69118,6 +69340,62 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/EnrollersTable.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Admin/EnrollersTable.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EnrollersTable_vue_vue_type_template_id_9191cd0e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EnrollersTable.vue?vue&type=template&id=9191cd0e */ "./resources/js/components/Admin/EnrollersTable.vue?vue&type=template&id=9191cd0e");
+/* harmony import */ var _EnrollersTable_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EnrollersTable.vue?vue&type=script&lang=js */ "./resources/js/components/Admin/EnrollersTable.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_kmva_Desktop_govzalla_events_govzalla_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_kmva_Desktop_govzalla_events_govzalla_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_EnrollersTable_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_EnrollersTable_vue_vue_type_template_id_9191cd0e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Admin/EnrollersTable.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/EnrollersTableRow.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Admin/EnrollersTableRow.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EnrollersTableRow_vue_vue_type_template_id_5970a8d1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EnrollersTableRow.vue?vue&type=template&id=5970a8d1 */ "./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=template&id=5970a8d1");
+/* harmony import */ var _EnrollersTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EnrollersTableRow.vue?vue&type=script&lang=js */ "./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_kmva_Desktop_govzalla_events_govzalla_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_kmva_Desktop_govzalla_events_govzalla_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_EnrollersTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_EnrollersTableRow_vue_vue_type_template_id_5970a8d1__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Admin/EnrollersTableRow.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/AppLoader.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/AppLoader.vue ***!
@@ -69637,6 +69915,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/EnrollersTable.vue?vue&type=script&lang=js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Admin/EnrollersTable.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTable_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTable_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EnrollersTable.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTable.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=script&lang=js":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTableRow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EnrollersTableRow.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/AppLoader.vue?vue&type=script&lang=js":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/AppLoader.vue?vue&type=script&lang=js ***!
@@ -69969,6 +70279,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EditEventForm_vue_vue_type_template_id_8772cece__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EditEventForm_vue_vue_type_template_id_8772cece__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EditEventForm.vue?vue&type=template&id=8772cece */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EditEventForm.vue?vue&type=template&id=8772cece");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/EnrollersTable.vue?vue&type=template&id=9191cd0e":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Admin/EnrollersTable.vue?vue&type=template&id=9191cd0e ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTable_vue_vue_type_template_id_9191cd0e__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTable_vue_vue_type_template_id_9191cd0e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EnrollersTable.vue?vue&type=template&id=9191cd0e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTable.vue?vue&type=template&id=9191cd0e");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=template&id=5970a8d1":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=template&id=5970a8d1 ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTableRow_vue_vue_type_template_id_5970a8d1__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EnrollersTableRow_vue_vue_type_template_id_5970a8d1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EnrollersTableRow.vue?vue&type=template&id=5970a8d1 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Admin/EnrollersTableRow.vue?vue&type=template&id=5970a8d1");
 
 
 /***/ }),
