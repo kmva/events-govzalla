@@ -20609,8 +20609,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var isAuth = store.getters['Admin/isAuth'];
     var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       if (event.value.speakers) {
-        console.log(JSON.parse(event.value.speakers));
-        return JSON.parse(event.value.speakers.trim());
+        return Object.prototype.toString.call(event.value.speakers) === '[object Array]' ? JSON.parse(event.value.speakers.trim()) : event.value.speakers.split(',');
       }
     });
     var isModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
@@ -20740,7 +20739,9 @@ var _hoisted_19 = {
   key: 1
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Описание мероприятия", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Описание мероприятия "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -23644,7 +23645,7 @@ function useAddEventForm() {
     formData.append('organization', organization.value);
     formData.append('subdivision', subdivision.value);
     formData.append('direction', direction.value);
-    formData.append('speakers', speakers.value);
+    formData.append('speakers', JSON.stringify(speakers.value));
     formData.append('target_audience', target_audience.value);
     formData.append('participants_number', (_participants_number$ = participants_number.value) !== null && _participants_number$ !== void 0 ? _participants_number$ : 0);
     formData.append('img', uploadImg.value);

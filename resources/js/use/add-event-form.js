@@ -141,7 +141,7 @@ export default function useAddEventForm() {
         formData.append('organization', organization.value);
         formData.append('subdivision', subdivision.value);
         formData.append('direction', direction.value);
-        formData.append('speakers', speakers.value);
+        formData.append('speakers', JSON.stringify(speakers.value));
         formData.append('target_audience', target_audience.value);
         formData.append('participants_number', participants_number.value ?? 0);
         formData.append('img', uploadImg.value);

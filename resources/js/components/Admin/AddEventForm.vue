@@ -29,7 +29,7 @@
         </div>
 
         <div :class="['form-control', {invalid: descriptionError}]">
-            <label>Описание мероприятия</label>
+            <label>Описание мероприятия <span class="required-star">*</span></label>
             <textarea cols="30" rows="10" v-model="description"></textarea>
             <small v-if="descriptionError">{{ descriptionError }}</small>
         </div>

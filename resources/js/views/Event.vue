@@ -51,8 +51,9 @@ export default {
 
         const speakers = computed(() => { 
             if(event.value.speakers) { 
-                console.log(JSON.parse(event.value.speakers))
-                return JSON.parse(event.value.speakers.trim())
+                return Object.prototype.toString.call(event.value.speakers) === '[object Array]'
+                ? JSON.parse(event.value.speakers.trim())
+                : event.value.speakers.split(',')
             } 
          });
 
