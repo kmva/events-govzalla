@@ -2,7 +2,7 @@
     <table class="enrollers-table">
         <thead>
             <tr>
-                <th colspan="7">{{ eventTitle }}</th>
+                <th colspan="7"><router-link :to="{ path: `/event/${event.id}`}">{{ event.title }}</router-link></th>
             </tr>
             <tr>
                 <th>ФИО</th>
@@ -14,12 +14,16 @@
                 <th>Дата регистрации</th>
             </tr>
         </thead>
-        <tbody v-if="data.length">
+        <tbody v-if="enrollers.length">
             <EnrollersTableRow 
-                v-for="enroller in data"
+                v-for="enroller in enrollers"
                 :key="enroller.id"
                 :enroller="enroller"
             />
+            <tr>
+                <td colspan="6">Количество: </td>
+                <td>{{ enrollers.length }}</td>
+            </tr>
         </tbody>
         <tbody v-else>
             <tr>
@@ -36,12 +40,12 @@ import EnrollersTableRow from './EnrollersTableRow.vue'
 export default {
     components: { EnrollersTableRow },
     props: {
-        data: {
+        enrollers: {
             type: Object,
             required: true,
         },
-        eventTitle: {
-            type: String,
+        event: {
+            type: Object,
             required: true,
         }
     },

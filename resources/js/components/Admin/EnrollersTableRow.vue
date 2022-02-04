@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td>{{ enroller.lastname }} {{ enroller.firstname }} {{ '' ?? enroller.patronymic }}</td>
+        <td>{{ enroller.lastname }} {{ enroller.firstname }} {{ enroller.patronymic ?? '' }}</td>
         <td>{{ enroller.email }}</td>
         <td>{{ enroller.phone }}</td>
         <td>{{ enroller.organization }}</td>

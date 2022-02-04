@@ -7,8 +7,8 @@
                 v-for="event in events" 
                 :key="event.id">
             <EnrollersTable 
-                :data="enrollers.filter(enroller => enroller.event_id == event.id)"
-                :eventTitle="event.title"
+                :enrollers="enrollers.filter(enroller => enroller.event_id == event.id)"
+                :event="event"
             />
         </div>
     </div>
@@ -51,6 +51,7 @@ export default {
             searchQuery,
             events,
             enrollers,
+            isLoading,
         }
     }
 }

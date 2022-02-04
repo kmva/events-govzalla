@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="events-title">Мероприятия</h1>
-        <router-link v-if="isAuth" to="/enrollers" class="enrollers-link">Cписок зарегистрировавшихся</router-link>
+        <router-link to="/enrollers" v-if="isAuth" class="enrollers-link">Cписок зарегистрировавшихся</router-link>
         <Events />
     </div>
 </template>

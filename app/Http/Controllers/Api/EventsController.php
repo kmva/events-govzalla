@@ -40,15 +40,16 @@ class EventsController extends Controller
         $request->validate([
             'title' => 'bail|required',
             'format' => 'required',
+            'description' => 'required', 
             'organization' => 'required',
             'date' => 'required',
             'location' => 'required',
             'speakers' => 'required',
         ]);
 
-        if($request->img){
+        if($request->file('img')){
             $folder = $request->date;
-            $name = $request->img->getClientOriginalName();
+            $name = $request->file('img')->getClientOriginalName();
 
             $path = $request->img->storeAs("images/{$folder}", $name);
         } else {
@@ -102,7 +103,29 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Event::where('id', $id)->update($request->all());
+        if($request->file('img')){
+            $folder = $request->date;
+            $name = $request->file('img')->getClientOriginalName();
+
+            $path = $request->img->storeAs("images/{$folder}", $name);
+        } else {
+            $path = "/img/event_bg.jpg";
+        }
+        
+        Event::where('id', $id)->update([
+            'title' => $request->title,
+            'format' => $request->format,
+            'description' => $request->description,
+            'organization' => $request->organization,
+            'subdivision' => $request->subdivision,
+            'direction' => $request->direction,
+            'date' => $request->date,
+            'location' => $request->location,
+            'speakers' => $request->speakers,
+            'target_audience' => $request->target_audience,
+            'participants_number' => $request->participants_number,
+            'picture_url' => $path,
+        ]);
     }
 
     /**

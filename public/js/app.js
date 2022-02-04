@@ -19777,11 +19777,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Modal.vue */ "./resources/js/components/Modal.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -19791,6 +19793,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   setup: function setup() {
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
+    var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute)();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
     var title = "Вы уверены, что хотите удалить мероприятие?";
 
     var closeConfirmModal = function closeConfirmModal() {
@@ -19925,12 +19929,12 @@ __webpack_require__.r(__webpack_exports__);
     EnrollersTableRow: _EnrollersTableRow_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    data: {
+    enrollers: {
       type: Object,
       required: true
     },
-    eventTitle: {
-      type: String,
+    event: {
+      type: Object,
       required: true
     }
   },
@@ -20557,7 +20561,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       searchQuery: searchQuery,
       events: events,
-      enrollers: enrollers
+      enrollers: enrollers,
+      isLoading: isLoading
     };
   }
 });
@@ -20601,6 +20606,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var event = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
     var eventId = route.params.id;
     var enrollersCount = route.query.enrollersCount;
+    var isAuth = store.getters['Admin/isAuth'];
+    var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      if (event.value.speakers) {
+        console.log(JSON.parse(event.value.speakers));
+        return JSON.parse(event.value.speakers.trim());
+      }
+    });
     var isModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.getters['Modals/enrollEventModal'];
     });
@@ -20629,9 +20641,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     })));
     return {
       event: event,
+      speakers: speakers,
       enrollersCount: enrollersCount,
       isModalOpen: isModalOpen,
-      openEnrollModal: openEnrollModal
+      openEnrollModal: openEnrollModal,
+      isAuth: isAuth
     };
   }
 });
@@ -20782,42 +20796,49 @@ var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_53 = {
   key: 0
 };
+var _hoisted_54 = {
+  "class": /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control'])
+};
 
-var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Спикеры "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Спикеры "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "required-star"
 }, "*")], -1
 /* HOISTED */
 );
 
-var _hoisted_55 = {
-  key: 0
+var _hoisted_56 = {
+  "class": "flex"
 };
-
-var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Целевая аудитория", -1
-/* HOISTED */
-);
-
 var _hoisted_57 = {
-  key: 0
+  "class": "speakers"
 };
+var _hoisted_58 = ["onClick"];
 
-var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Рассчитано на количество человек", -1
+var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Целевая аудитория", -1
 /* HOISTED */
 );
 
-var _hoisted_59 = {
+var _hoisted_60 = {
   key: 0
 };
 
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Прикрепить фотографию", -1
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Рассчитано на количество человек", -1
 /* HOISTED */
 );
 
-var _hoisted_61 = ["disabled"];
+var _hoisted_62 = {
+  key: 0
+};
+
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Прикрепить фотографию", -1
+/* HOISTED */
+);
+
+var _hoisted_64 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     "class": "form add-event-form",
-    onSubmit: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[14] || (_cache[14] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return _ctx.onSubmit && _ctx.onSubmit.apply(_ctx, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -20948,33 +20969,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
-      invalid: _ctx.speakersError
-    }])
-  }, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" , {invalid: speakersError} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return _ctx.speakers = $event;
+      return _ctx.speaker = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.speakers]]), _ctx.speakersError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.speakersError), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
-  /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.speaker]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <small v-if=\"speakersError\">{{ speakersError }}</small> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "add-speaker",
+    onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return _ctx.addSpeaker && _ctx.addSpeaker.apply(_ctx, arguments);
+    }, ["prevent"]))
+  }, "Добавить")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_57, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.speakers, function (speaker, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: index,
+      "class": "speaker"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(speaker) + " ", 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      "class": "delete-speaker",
+      onClick: function onClick($event) {
+        return _ctx.deleteSpeaker(index);
+      }
+    }, "x", 8
+    /* PROPS */
+    , _hoisted_58)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.targetAudienceError
     }])
-  }, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
+    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
       return _ctx.target_audience = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.target_audience]]), _ctx.targetAudienceError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.targetAudienceError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.target_audience]]), _ctx.targetAudienceError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.targetAudienceError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -20982,14 +21016,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.participantsNumberError
     }])
-  }, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+    "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
       return _ctx.participants_number = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.participants_number]]), _ctx.participantsNumberError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.participantsNumberError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.participants_number]]), _ctx.participantsNumberError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.participantsNumberError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -20997,11 +21031,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.participantsNumberError
     }])
-  }, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     accept: "image/jpeg, image/png, image/jpg",
     ref: "eventImg",
-    onChange: _cache[12] || (_cache[12] = function () {
+    onChange: _cache[13] || (_cache[13] = function () {
       return _ctx.uploadImgHandler && _ctx.uploadImgHandler.apply(_ctx, arguments);
     })
   }, null, 544
@@ -21014,7 +21048,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     disabled: _ctx.isSubmitting
   }, "Добавить мероприятие", 8
   /* PROPS */
-  , _hoisted_61)], 32
+  , _hoisted_64)], 32
   /* HYDRATE_EVENTS */
   );
 }
@@ -21306,40 +21340,50 @@ var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_38 = {
   key: 0
 };
+var _hoisted_39 = {
+  "class": /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control'])
+};
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Спикеры", -1
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Спикеры "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
-var _hoisted_40 = {
-  key: 0
+var _hoisted_41 = {
+  "class": "flex"
 };
+var _hoisted_42 = ["disabled"];
+var _hoisted_43 = {
+  "class": "speakers"
+};
+var _hoisted_44 = ["onClick"];
 
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Целевая аудитория", -1
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Целевая аудитория", -1
 /* HOISTED */
 );
 
-var _hoisted_42 = {
+var _hoisted_46 = {
   key: 0
 };
 
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Рассчитано на количество человек", -1
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Рассчитано на количество человек", -1
 /* HOISTED */
 );
 
-var _hoisted_44 = {
+var _hoisted_48 = {
   key: 0
 };
-var _hoisted_45 = {
+var _hoisted_49 = {
   "class": "edit-event-form__buttons"
 };
-var _hoisted_46 = ["disabled"];
+var _hoisted_50 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ConfirmDeleteModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmDeleteModal");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     "class": "form edit-event-form",
-    onSubmit: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[14] || (_cache[14] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return _ctx.onSubmit && _ctx.onSubmit.apply(_ctx, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -21470,33 +21514,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
-      invalid: _ctx.speakersError
-    }])
-  }, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return _ctx.speakers = $event;
+      return _ctx.speaker = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.speakers]]), _ctx.speakersError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.speakersError), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
-  /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.speaker]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <small v-if=\"speakersError\">{{ speakersError }}</small> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "add-speaker",
+    disabled: !_ctx.speaker.length,
+    onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return _ctx.addSpeaker && _ctx.addSpeaker.apply(_ctx, arguments);
+    }, ["prevent"]))
+  }, "Добавить", 8
+  /* PROPS */
+  , _hoisted_42)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_43, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.speakers, function (speaker, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: index,
+      "class": "speaker"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(speaker) + " ", 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      "class": "delete-speaker",
+      onClick: function onClick($event) {
+        return _ctx.deleteSpeaker(index);
+      }
+    }, "x", 8
+    /* PROPS */
+    , _hoisted_44)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.targetAudienceError
     }])
-  }, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
+    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
       return _ctx.target_audience = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.target_audience]]), _ctx.targetAudienceError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.targetAudienceError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.target_audience]]), _ctx.targetAudienceError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.targetAudienceError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -21504,26 +21564,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.participantsNumberError
     }])
-  }, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+    "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
       return _ctx.participants_number = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.participants_number]]), _ctx.participantsNumberError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.participantsNumberError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.participants_number]]), _ctx.participantsNumberError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.participantsNumberError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     disabled: _ctx.isSubmitting,
     "class": "btn btn-blue"
   }, "Сохранить изменения", 8
   /* PROPS */
-  , _hoisted_46), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  , _hoisted_50), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "edit-event-form__delete-btn",
-    onClick: _cache[12] || (_cache[12] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onClick: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.openConfirmModal && $setup.openConfirmModal.apply($setup, arguments);
     }, ["prevent"]))
   }, "Удалить мероприятие")])], 32
@@ -21564,23 +21624,45 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = {
   key: 0
 };
-var _hoisted_5 = {
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  colspan: "6"
+}, "Количество: ", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
   key: 1
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   colspan: "7"
 }, " На это мероприятие пока никто не зарегистрировался ")], -1
 /* HOISTED */
 );
 
-var _hoisted_7 = [_hoisted_6];
+var _hoisted_8 = [_hoisted_7];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   var _component_EnrollersTableRow = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EnrollersTableRow");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.eventTitle), 1
-  /* TEXT */
-  )]), _hoisted_3]), $props.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.data, function (enroller) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      path: "/event/".concat($props.event.id)
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.event.title), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])])]), _hoisted_3]), $props.enrollers.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.enrollers, function (enroller) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollersTableRow, {
       key: enroller.id,
       enroller: enroller
@@ -21589,7 +21671,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["enroller"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_5, _hoisted_7))]);
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enrollers.length), 1
+  /* TEXT */
+  )])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_6, _hoisted_8))]);
 }
 
 /***/ }),
@@ -21608,9 +21692,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _ref;
+  var _$props$enroller$patr;
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.lastname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_ref = '') !== null && _ref !== void 0 ? _ref : $props.enroller.patronymic), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.lastname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$enroller$patr = $props.enroller.patronymic) !== null && _$props$enroller$patr !== void 0 ? _$props$enroller$patr : ''), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.enroller.email), 1
   /* TEXT */
@@ -22438,20 +22522,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Поиск мероприятия"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.searchQuery]]), _ctx.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_loader, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.searchQuery]]), $setup.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_loader, {
     key: 0
   })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.events, function (event) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "table-wrapper",
       key: event.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EnrollersTable, {
-      data: $setup.enrollers.filter(function (enroller) {
+      enrollers: $setup.enrollers.filter(function (enroller) {
         return enroller.event_id == event.id;
       }),
-      eventTitle: event.title
+      event: event
     }, null, 8
     /* PROPS */
-    , ["data", "eventTitle"])]);
+    , ["enrollers", "event"])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]))], 64
@@ -22480,87 +22564,115 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "event-title"
 };
-var _hoisted_3 = {
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cписок зарегистрировавшихся");
+
+var _hoisted_4 = {
   "class": "about-event"
 };
-var _hoisted_4 = {
+var _hoisted_5 = {
   "class": "about-event__info"
 };
-var _hoisted_5 = {
+var _hoisted_6 = {
   "class": "about-event__card"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Информация о мероприятии", -1
-/* HOISTED */
-);
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "about-event__subtitle"
-}, "Дата", -1
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Информация о мероприятии", -1
 /* HOISTED */
 );
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
-}, "Локация", -1
+}, "Дата", -1
 /* HOISTED */
 );
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
+}, "Локация", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  key: 0
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "about-event__subtitle"
 }, "Целевая аудитория", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_12 = {
+  key: 1
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Организатор", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = {
-  key: 0,
-  "class": "about-event__subtitle"
-};
-var _hoisted_12 = {
-  key: 0,
-  "class": "about-event__subtitle"
-};
-var _hoisted_13 = {
-  key: 0,
-  "class": "about-event__subtitle"
+var _hoisted_14 = {
+  key: 2
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "about-event__subtitle"
+}, "Подразделение", -1
+/* HOISTED */
+);
+
+var _hoisted_16 = {
+  key: 3
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "about-event__subtitle"
+}, "Направление", -1
+/* HOISTED */
+);
+
+var _hoisted_18 = {
+  key: 4
+};
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "about-event__subtitle"
+}, "Рассчитано на количество человек: ", -1
+/* HOISTED */
+);
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Зарегистрировалось: ", -1
 /* HOISTED */
 );
 
-var _hoisted_15 = {
+var _hoisted_21 = {
   "class": "about-event__card"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Спикеры", -1
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Спикеры", -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_23 = {
   "class": "about-event__speakers"
 };
-var _hoisted_18 = {
+var _hoisted_24 = {
   "class": "about-event__card"
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Описание мероприятия", -1
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Описание мероприятия", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
 
-var _hoisted_21 = ["src"];
+var _hoisted_27 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _;
+  var _$setup$enrollersCoun;
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -22568,25 +22680,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.format) + " \"" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.title) + "\"", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p><span class=\"about-event__subtitle\">Формат</span>{{ event.format }}</p>    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.date), 1
+  ), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 0,
+    to: "/enrollers",
+    "class": "enrollers-link"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_3];
+    }),
+    _: 1
+    /* STABLE */
+
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.date), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.location), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.location), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.target_audience), 1
+  )]), $setup.event.target_audience ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.target_audience), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.organization ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$setup.event.subdivision ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, "Подразделение")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.subdivision), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.subdivision ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.subdivision), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$setup.event.direction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, "Направление")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.direction), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.direction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.direction), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$setup.event.participants_number ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, "Рассчитано на количество человек: ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.participants_number), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.participants_number > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.participants_number), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_ = 0) !== null && _ !== void 0 ? _ : $setup.enrollersCount), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$enrollersCoun = $setup.enrollersCount) !== null && _$setup$enrollersCoun !== void 0 ? _$setup$enrollersCoun : 0), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.speakers), 1
-  /* TEXT */
-  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.speakers, function (speaker) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: speaker
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(speaker), 1
+    /* TEXT */
+    );
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "",
@@ -22594,7 +22723,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-filled"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_20];
+      return [_hoisted_26];
     }),
     _: 1
     /* STABLE */
@@ -22606,7 +22735,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: ""
   }, null, 8
   /* PROPS */
-  , _hoisted_21)])]), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
+  , _hoisted_27)])]), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
     key: 0,
     data: $setup.event
   }, null, 8
@@ -23120,7 +23249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-var _ref;
+var _JSON$parse;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -23143,17 +23272,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var state = {
-  events: (_ref = []) !== null && _ref !== void 0 ? _ref : JSON.parse(localStorage.getItem('events'))
+  events: (_JSON$parse = JSON.parse(localStorage.getItem('events'))) !== null && _JSON$parse !== void 0 ? _JSON$parse : []
 };
 var actions = {
-  fetchEvents: function fetchEvents(_ref2) {
+  fetchEvents: function fetchEvents(_ref) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref2.commit;
+              commit = _ref.commit;
               _context.prev = 1;
               _context.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/events');
@@ -23178,14 +23307,14 @@ var actions = {
       }, _callee, null, [[1, 9]]);
     }))();
   },
-  fetchEventById: function fetchEventById(_ref3, id) {
+  fetchEventById: function fetchEventById(_ref2, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref3.commit;
+              commit = _ref2.commit;
               _context2.prev = 1;
               _context2.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/events/".concat(id));
@@ -23209,14 +23338,14 @@ var actions = {
       }, _callee2, null, [[1, 10]]);
     }))();
   },
-  addEventToDB: function addEventToDB(_ref4, event) {
+  addEventToDB: function addEventToDB(_ref3, event) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref4.commit;
+              commit = _ref3.commit;
               _context3.prev = 1;
               console.log(event);
               _context3.next = 5;
@@ -23241,14 +23370,14 @@ var actions = {
       }, _callee3, null, [[1, 9]]);
     }))();
   },
-  editEvent: function editEvent(_ref5, payload) {
+  editEvent: function editEvent(_ref4, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var state, commit, events, index;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              state = _ref5.state, commit = _ref5.commit;
+              state = _ref4.state, commit = _ref4.commit;
               _context4.prev = 1;
               _context4.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/events/".concat(payload.id), payload);
@@ -23276,14 +23405,14 @@ var actions = {
       }, _callee4, null, [[1, 10]]);
     }))();
   },
-  deleteEvent: function deleteEvent(_ref6, id) {
+  deleteEvent: function deleteEvent(_ref5, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref6.commit;
+              commit = _ref5.commit;
               _context5.prev = 1;
               _context5.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/events/".concat(id));
@@ -23408,18 +23537,28 @@ __webpack_require__.r(__webpack_exports__);
 function useAddEventForm() {
   var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
-  var eventImg = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
 
   var _useForm = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useForm)(),
       handleSubmit = _useForm.handleSubmit,
       isSubmitting = _useForm.isSubmitting;
 
+  var speaker = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+  var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
   var uploadImg = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
   var formData = new FormData();
 
   var uploadImgHandler = function uploadImgHandler(e) {
     var files = e.target.files;
     uploadImg.value = files[0];
+  };
+
+  var addSpeaker = function addSpeaker() {
+    speakers.value.push(speaker.value);
+    speaker.value = '';
+  };
+
+  var deleteSpeaker = function deleteSpeaker(index) {
+    speakers.value.splice(index, 1);
   };
 
   var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('title', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
@@ -23461,21 +23600,24 @@ function useAddEventForm() {
       direction = _useField8.value,
       directionError = _useField8.errorMessage,
       directionBlur = _useField8.handleBlur;
+  /* const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
+      'speakers',
+      yup
+          .string()
+          .trim()
+          .required('Обязательное поле')
+  ); */
 
-  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('speakers', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
-      speakers = _useField9.value,
-      speakersError = _useField9.errorMessage,
-      speakersBlur = _useField9.handleBlur;
 
-  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
-      target_audience = _useField10.value,
-      targetAudienceError = _useField10.errorMessage,
-      targetAudienceBlur = _useField10.handleBlur;
+  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
+      target_audience = _useField9.value,
+      targetAudienceError = _useField9.errorMessage,
+      targetAudienceBlur = _useField9.handleBlur;
 
-  var _useField11 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
-      participants_number = _useField11.value,
-      participantsNumberError = _useField11.errorMessage,
-      participantsNumberBlur = _useField11.handleBlur;
+  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
+      participants_number = _useField10.value,
+      participantsNumberError = _useField10.errorMessage,
+      participantsNumberBlur = _useField10.handleBlur;
 
   var isAnotherFormat = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
   var anotherFormat = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
@@ -23488,11 +23630,11 @@ function useAddEventForm() {
   });
   var onSubmit = handleSubmit(function (values) {
     addEvent();
-    /*  router.push('/'); */
+    router.push('/');
   });
 
   var addEvent = function addEvent() {
-    var _ref, _ref2, _ref3, _, _ref4;
+    var _participants_number$;
 
     formData.append('title', title.value);
     formData.append('format', format.value == 'another' ? anotherFormat.value : format.value);
@@ -23500,12 +23642,12 @@ function useAddEventForm() {
     formData.append('location', location.value);
     formData.append('date', date.value);
     formData.append('organization', organization.value);
-    formData.append('subdivision', (_ref = null) !== null && _ref !== void 0 ? _ref : subdivision.value);
-    formData.append('direction', (_ref2 = null) !== null && _ref2 !== void 0 ? _ref2 : direction.value);
+    formData.append('subdivision', subdivision.value);
+    formData.append('direction', direction.value);
     formData.append('speakers', speakers.value);
-    formData.append('target_audience', (_ref3 = null) !== null && _ref3 !== void 0 ? _ref3 : target_audience.value);
-    formData.append('participants_number', (_ = 0) !== null && _ !== void 0 ? _ : participants_number.value);
-    formData.append('img', (_ref4 = null) !== null && _ref4 !== void 0 ? _ref4 : uploadImg.value);
+    formData.append('target_audience', target_audience.value);
+    formData.append('participants_number', (_participants_number$ = participants_number.value) !== null && _participants_number$ !== void 0 ? _participants_number$ : 0);
+    formData.append('img', uploadImg.value);
     store.dispatch('Events/addEventToDB', formData);
     title.value = '';
     format.value = null;
@@ -23518,7 +23660,7 @@ function useAddEventForm() {
     speakers.value = '';
     target_audience.value = '';
     participants_number.value = '';
-    uploadImg.value = '';
+    uploadImg.value = null;
   };
 
   return {
@@ -23530,6 +23672,7 @@ function useAddEventForm() {
     organization: organization,
     subdivision: subdivision,
     direction: direction,
+    speaker: speaker,
     speakers: speakers,
     target_audience: target_audience,
     participants_number: participants_number,
@@ -23542,7 +23685,8 @@ function useAddEventForm() {
     organizationError: organizationError,
     subdivisionError: subdivisionError,
     directionError: directionError,
-    speakersError: speakersError,
+
+    /* speakersError, */
     targetAudienceError: targetAudienceError,
     participantsNumberError: participantsNumberError,
     titleBlur: titleBlur,
@@ -23553,9 +23697,12 @@ function useAddEventForm() {
     organizationBlur: organizationBlur,
     subdivisionBlur: subdivisionBlur,
     directionBlur: directionBlur,
-    speakersBlur: speakersBlur,
+
+    /* speakersBlur, */
     targetAudienceBlur: targetAudienceBlur,
     participantsNumberBlur: participantsNumberBlur,
+    addSpeaker: addSpeaker,
+    deleteSpeaker: deleteSpeaker,
     uploadImgHandler: uploadImgHandler,
     onSubmit: onSubmit,
     isSubmitting: isSubmitting,
@@ -23689,6 +23836,7 @@ __webpack_require__.r(__webpack_exports__);
 function useEditEventForm() {
   var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
   var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute)();
+  var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
   var events = JSON.parse(localStorage.getItem('events'));
   var event = events.find(function (event) {
     return event.id == route.params.id;
@@ -23711,6 +23859,18 @@ function useEditEventForm() {
   }),
       handleSubmit = _useForm.handleSubmit,
       isSubmitting = _useForm.isSubmitting;
+
+  var speaker = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+  var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(event.speakers.trim().split('","'));
+
+  var addSpeaker = function addSpeaker() {
+    speakers.value.push(speaker.value);
+    speaker.value = '';
+  };
+
+  var deleteSpeaker = function deleteSpeaker(index) {
+    speakers.value.splice(index, 1);
+  };
 
   var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('title', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
       title = _useField.value,
@@ -23751,21 +23911,24 @@ function useEditEventForm() {
       direction = _useField8.value,
       directionError = _useField8.errorMessage,
       directionBlur = _useField8.handleBlur;
+  /*  const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
+       'speakers',
+       yup
+           .string()
+           .trim()
+           .required('Обязательное поле')
+   ); */
 
-  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('speakers', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
-      speakers = _useField9.value,
-      speakersError = _useField9.errorMessage,
-      speakersBlur = _useField9.handleBlur;
 
-  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
-      target_audience = _useField10.value,
-      targetAudienceError = _useField10.errorMessage,
-      targetAudienceBlur = _useField10.handleBlur;
+  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+      target_audience = _useField9.value,
+      targetAudienceError = _useField9.errorMessage,
+      targetAudienceBlur = _useField9.handleBlur;
 
-  var _useField11 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле, введите числовое значение')),
-      participants_number = _useField11.value,
-      participantsNumberError = _useField11.errorMessage,
-      participantsNumberBlur = _useField11.handleBlur;
+  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле, введите числовое значение')),
+      participants_number = _useField10.value,
+      participantsNumberError = _useField10.errorMessage,
+      participantsNumberBlur = _useField10.handleBlur;
 
   var isAnotherFormat = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
   var anotherFormat = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
@@ -23778,6 +23941,7 @@ function useEditEventForm() {
   });
   var onSubmit = handleSubmit(function (values) {
     editEvent();
+    router.push("/event/".concat(event.id));
   });
 
   var editEvent = function editEvent() {
@@ -23791,19 +23955,10 @@ function useEditEventForm() {
       organization: organization.value,
       subdivision: subdivision.value,
       direction: direction.value,
-      speakers: speakers.value,
+      speakers: JSON.stringify(speakers.value),
       target_audience: target_audience.value,
       participants_number: participants_number.value
     });
-    /* title.value = '';
-    format.value = null;
-    description.value = '';
-    location.value = '';
-    date.value = '';
-    organization.value = '';
-    speakers.value = '';
-    target_audience.value = '';
-    participants_number.value = ''; */
   };
 
   return {
@@ -23816,6 +23971,7 @@ function useEditEventForm() {
     subdivision: subdivision,
     direction: direction,
     speakers: speakers,
+    speaker: speaker,
     target_audience: target_audience,
     participants_number: participants_number,
     titleError: titleError,
@@ -23826,7 +23982,8 @@ function useEditEventForm() {
     organizationError: organizationError,
     subdivisionError: subdivisionError,
     directionError: directionError,
-    speakersError: speakersError,
+
+    /* speakersError, */
     targetAudienceError: targetAudienceError,
     participantsNumberError: participantsNumberError,
     titleBlur: titleBlur,
@@ -23837,9 +23994,12 @@ function useEditEventForm() {
     organizationBlur: organizationBlur,
     subdivisionBlur: subdivisionBlur,
     directionBlur: directionBlur,
-    speakersBlur: speakersBlur,
+
+    /* speakersBlur, */
     targetAudienceBlur: targetAudienceBlur,
     participantsNumberBlur: participantsNumberBlur,
+    addSpeaker: addSpeaker,
+    deleteSpeaker: deleteSpeaker,
     onSubmit: onSubmit,
     isSubmitting: isSubmitting,
     isAnotherFormat: isAnotherFormat,
@@ -28305,7 +28465,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;\n\n400;500&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 1.5em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n  /*   p{\n        display: flex;\n        justify-content: space-between;\n    } */\n}\n\n.about-event p {\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event img {\n  width: 55%;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers-table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers-table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers-table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers-table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers-table td,\n.enrollers-table th {\n  padding: 0.9em 1.1em;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 1.5em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n  /*   p{\n        display: flex;\n        justify-content: space-between;\n    } */\n}\n\n.about-event p {\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event__speakers li {\n  margin-bottom: 0.7em;\n  position: relative;\n}\n\n.about-event__speakers li::before {\n  content: \"\";\n  display: inline-block;\n  background-color: #1e77c0;\n  width: 30px;\n  height: 3px;\n  position: relative;\n  top: -4px;\n  margin-right: 0.5em;\n}\n\n.about-event img {\n  width: 55%;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers-table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers-table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers-table thead tr:first-child a {\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers-table thead tr:first-child a:hover,\n.enrollers-table thead tr:first-child a:active {\n  color: #e3342f;\n}\n\n.enrollers-table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers-table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers-table td,\n.enrollers-table th {\n  padding: 0.9em 1.1em;\n}\n\n.speakers {\n  margin: 0.8em 0 1em;\n}\n\n.speaker {\n  margin-bottom: 0.5em;\n}\n\n.delete-speaker {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  padding: 0.15em;\n  margin-left: 0.5em;\n  text-align: center;\n  background-color: #FFF;\n  cursor: pointer;\n}\n\n.add-speaker {\n  display: block;\n  margin-left: 0.5em;\n  color: #1e77c0;\n  text-decoration: underline;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

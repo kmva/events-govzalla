@@ -1,5 +1,5 @@
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
 import { ref, watch } from 'vue'
@@ -7,6 +7,8 @@ import { ref, watch } from 'vue'
 export default function useEditEventForm() {
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
+
     const events = JSON.parse(localStorage.getItem('events'))
     const event = events.find(event => event.id == route.params.id);
     const { handleSubmit, isSubmitting } = useForm({
@@ -24,6 +26,18 @@ export default function useEditEventForm() {
             participants_number: event.participants_number,
         }
       });
+
+    const speaker = ref('');
+    const speakers = ref(event.speakers.trim().split('","'));
+
+    const addSpeaker = () => {
+        speakers.value.push(speaker.value);
+        speaker.value = '';
+    }
+
+    const deleteSpeaker = index => {
+        speakers.value.splice(index, 1);
+    }
 
     const {value: title, errorMessage: titleError, handleBlur: titleBlur} = useField(
         'title',
@@ -88,13 +102,13 @@ export default function useEditEventForm() {
             .nullable()
     );
 
-    const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
+   /*  const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
         'speakers',
         yup
             .string()
             .trim()
             .required('Обязательное поле')
-    );
+    ); */
 
     const {value: target_audience, errorMessage: targetAudienceError, handleBlur: targetAudienceBlur} = useField(
         'target_audience',
@@ -123,6 +137,7 @@ export default function useEditEventForm() {
     })
     const onSubmit = handleSubmit(values => {
         editEvent();
+        router.push(`/event/${event.id}`)
     })
 
     const editEvent = () => {
@@ -136,20 +151,10 @@ export default function useEditEventForm() {
             organization: organization.value,
             subdivision: subdivision.value,
             direction: direction.value,
-            speakers: speakers.value,
+            speakers: JSON.stringify(speakers.value),
             target_audience: target_audience.value,
             participants_number: participants_number.value,
         });
-
-        /* title.value = '';
-        format.value = null;
-        description.value = '';
-        location.value = '';
-        date.value = '';
-        organization.value = '';
-        speakers.value = '';
-        target_audience.value = '';
-        participants_number.value = ''; */
     }
 
     return {
@@ -162,6 +167,7 @@ export default function useEditEventForm() {
         subdivision,
         direction,
         speakers,
+        speaker,
         target_audience,
         participants_number,
 
@@ -173,7 +179,7 @@ export default function useEditEventForm() {
         organizationError,
         subdivisionError,
         directionError,
-        speakersError,
+        /* speakersError, */
         targetAudienceError,
         participantsNumberError,
 
@@ -185,10 +191,12 @@ export default function useEditEventForm() {
         organizationBlur,
         subdivisionBlur,
         directionBlur,
-        speakersBlur,
+        /* speakersBlur, */
         targetAudienceBlur,
         participantsNumberBlur,
 
+        addSpeaker,
+        deleteSpeaker,
         onSubmit,
         isSubmitting,
         isAnotherFormat,

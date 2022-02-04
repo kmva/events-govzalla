@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('format');
-            $table->string('description')->nullable();
+            $table->string('description');
             $table->string('organization');
             $table->string('subdivision');
             $table->string('direction')->nullable();

@@ -23,6 +23,11 @@ body{
     }
 }
 
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
 .main-header{
     display: flex;
     justify-content: space-between;
@@ -411,6 +416,25 @@ button{
         display: inline-block;
     }
 
+    &__speakers{
+
+        li {
+            margin-bottom: .7em;
+            position: relative;
+
+            &::before{
+                content: '';
+                display: inline-block;
+                background-color: $blue;
+                width: 30px;
+                height: 3px;
+                position: relative;
+                top: -4px;
+                margin-right: .5em;
+            }
+        }
+    }
+
     img{
         width: 55%;
     }
@@ -464,6 +488,16 @@ button{
 
         thead tr:first-child{
             font-size: 1.2rem;
+
+            a{
+                color: $blue;
+                transition: .3s;
+
+                &:hover, &:active{
+                    color: $red;
+                }
+            }
+
         }
 
         tbody tr:nth-child(2n){
@@ -480,6 +514,33 @@ button{
     }
 }
 
+.speakers{
+    margin: .8em 0 1em;
+}
+
+.speaker{
+    margin-bottom: .5em;
+}
+
+.delete-speaker{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid $red;
+    color: $red;
+    padding: .15em;
+    margin-left: .5em;
+    text-align: center;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.add-speaker{
+    display: block;
+    margin-left: .5em;
+    color: $blue;
+    text-decoration: underline;
+}
 
 @media screen and (max-width: 1450px){
     .container{

@@ -1,5 +1,5 @@
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router' 
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
 import { ref, watch } from 'vue'
@@ -7,16 +7,26 @@ import { ref, watch } from 'vue'
 export default function useAddEventForm() {
     const store = useStore();
     const router = useRouter();
-    const eventImg = ref(null)
+
     const { handleSubmit, isSubmitting } = useForm();
 
-
+    const speaker = ref('');
+    const speakers = ref([]);
     const uploadImg = ref(null);
     const formData = new FormData()
 
     const uploadImgHandler = e => {
         const files = e.target.files;
         uploadImg.value = files[0];
+    }
+
+    const addSpeaker = () => {
+        speakers.value.push(speaker.value);
+        speaker.value = '';
+    }
+
+    const deleteSpeaker = index => {
+        speakers.value.splice(index, 1);
     }
 
     const {value: title, errorMessage: titleError, handleBlur: titleBlur} = useField(
@@ -82,13 +92,13 @@ export default function useAddEventForm() {
             .nullable()
     );
 
-    const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
+    /* const {value: speakers, errorMessage: speakersError, handleBlur: speakersBlur} = useField(
         'speakers',
         yup
             .string()
             .trim()
             .required('Обязательное поле')
-    );
+    ); */
 
     const {value: target_audience, errorMessage: targetAudienceError, handleBlur: targetAudienceBlur} = useField(
         'target_audience',
@@ -118,7 +128,7 @@ export default function useAddEventForm() {
 
     const onSubmit = handleSubmit(values => {
         addEvent();
-       /*  router.push('/'); */
+        router.push('/');
     })
 
     const addEvent = () => {
@@ -129,12 +139,12 @@ export default function useAddEventForm() {
         formData.append('location', location.value);
         formData.append('date', date.value);
         formData.append('organization', organization.value);
-        formData.append('subdivision', null ?? subdivision.value);
-        formData.append('direction', null ?? direction.value);
+        formData.append('subdivision', subdivision.value);
+        formData.append('direction', direction.value);
         formData.append('speakers', speakers.value);
-        formData.append('target_audience', null ?? target_audience.value);
-        formData.append('participants_number', 0 ?? participants_number.value);
-        formData.append('img', null ?? uploadImg.value);
+        formData.append('target_audience', target_audience.value);
+        formData.append('participants_number', participants_number.value ?? 0);
+        formData.append('img', uploadImg.value);
 
         store.dispatch('Events/addEventToDB', formData);
 
@@ -149,7 +159,7 @@ export default function useAddEventForm() {
         speakers.value = '';
         target_audience.value = '';
         participants_number.value = '';
-        uploadImg.value = '';
+        uploadImg.value = null;
     }
 
     return {
@@ -161,6 +171,7 @@ export default function useAddEventForm() {
         organization,
         subdivision,
         direction,
+        speaker,
         speakers,
         target_audience,
         participants_number,
@@ -174,7 +185,7 @@ export default function useAddEventForm() {
         organizationError,
         subdivisionError,
         directionError,
-        speakersError,
+        /* speakersError, */
         targetAudienceError,
         participantsNumberError,
 
@@ -186,10 +197,12 @@ export default function useAddEventForm() {
         organizationBlur,
         subdivisionBlur,
         directionBlur,
-        speakersBlur,
+        /* speakersBlur, */
         targetAudienceBlur,
         participantsNumberBlur,
 
+        addSpeaker,
+        deleteSpeaker,
         uploadImgHandler,
         onSubmit,
         isSubmitting,

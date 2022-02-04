@@ -22,6 +22,11 @@ body {
   text-align: center;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -415,6 +420,22 @@ button[disabled] {
   display: inline-block;
 }
 
+.about-event__speakers li {
+  margin-bottom: 0.7em;
+  position: relative;
+}
+
+.about-event__speakers li::before {
+  content: "";
+  display: inline-block;
+  background-color: #1e77c0;
+  width: 30px;
+  height: 3px;
+  position: relative;
+  top: -4px;
+  margin-right: 0.5em;
+}
+
 .about-event img {
   width: 55%;
 }
@@ -465,6 +486,16 @@ button[disabled] {
   font-size: 1.2rem;
 }
 
+.enrollers-table thead tr:first-child a {
+  color: #1e77c0;
+  transition: 0.3s;
+}
+
+.enrollers-table thead tr:first-child a:hover,
+.enrollers-table thead tr:first-child a:active {
+  color: #e3342f;
+}
+
 .enrollers-table tbody tr:nth-child(2n) {
   background-color: #f1f1f1;
 }
@@ -476,6 +507,34 @@ button[disabled] {
 .enrollers-table td,
 .enrollers-table th {
   padding: 0.9em 1.1em;
+}
+
+.speakers {
+  margin: 0.8em 0 1em;
+}
+
+.speaker {
+  margin-bottom: 0.5em;
+}
+
+.delete-speaker {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #e3342f;
+  color: #e3342f;
+  padding: 0.15em;
+  margin-left: 0.5em;
+  text-align: center;
+  background-color: #FFF;
+  cursor: pointer;
+}
+
+.add-speaker {
+  display: block;
+  margin-left: 0.5em;
+  color: #1e77c0;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 1450px) {

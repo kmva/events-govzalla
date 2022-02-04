@@ -86,11 +86,21 @@
             <input type="text" v-model="direction">
             <small v-if="directionError">{{ directionError }}</small>
         </div>
-
-        <div :class="['form-control', {invalid: speakersError}]">
+<!-- , {invalid: speakersError} -->
+        <div :class="['form-control']">
             <label>Спикеры <span class="required-star">*</span></label>
-            <input type="text" v-model="speakers">
-            <small v-if="speakersError">{{ speakersError }}</small>
+            <div class="flex"> <input type="text" v-model="speaker">
+                <!-- <small v-if="speakersError">{{ speakersError }}</small> -->
+                <button class="add-speaker" @click.prevent="addSpeaker">Добавить</button>
+            </div>
+           
+            <ul class="speakers">
+                <li 
+                    v-for="(speaker, index) in speakers"
+                    :key="index"
+                    class="speaker"
+                >{{ speaker }} <span class="delete-speaker" @click="deleteSpeaker(index)">x</span></li>
+            </ul>
         </div>
 
         <div :class="['form-control', {invalid: targetAudienceError}]">

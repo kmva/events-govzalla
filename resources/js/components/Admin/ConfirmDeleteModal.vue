@@ -9,11 +9,14 @@
 <script>
 import Modal from '../Modal.vue'
 import { useStore } from 'vuex'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
-    components: {  Modal },
+    components: { Modal },
     setup() {
         const store = useStore();
+        const route = useRoute();
+        const router = useRouter();
 
         const title = "Вы уверены, что хотите удалить мероприятие?";
 

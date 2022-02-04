@@ -2,7 +2,7 @@ import axios from 'axios'
 import { toRaw } from 'vue'
 
 const state = {
-    events: [] ?? JSON.parse(localStorage.getItem('events')),
+    events: JSON.parse(localStorage.getItem('events')) ?? [],
 }
 
 const actions = {
