@@ -2,7 +2,7 @@ import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 export default function useEditEventForm() {
     const store = useStore();
@@ -21,14 +21,13 @@ export default function useEditEventForm() {
             organization: event.organization,
             subdivision: event.subdivision,
             direction: event.direction,
-            speakers: event.speakers,
             target_audience: event.target_audience,
             participants_number: event.participants_number,
         }
       });
 
     const speaker = ref('');
-    const speakers = ref(event.speakers.trim().split('","'));
+    const speakers = ref(JSON.parse(event.speakers.trim()))
 
     const addSpeaker = () => {
         speakers.value.push(speaker.value);

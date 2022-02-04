@@ -23852,7 +23852,6 @@ function useEditEventForm() {
       organization: event.organization,
       subdivision: event.subdivision,
       direction: event.direction,
-      speakers: event.speakers,
       target_audience: event.target_audience,
       participants_number: event.participants_number
     }
@@ -23861,7 +23860,7 @@ function useEditEventForm() {
       isSubmitting = _useForm.isSubmitting;
 
   var speaker = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
-  var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(event.speakers.trim().split('","'));
+  var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(JSON.parse(event.speakers.trim()));
 
   var addSpeaker = function addSpeaker() {
     speakers.value.push(speaker.value);
