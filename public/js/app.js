@@ -20609,7 +20609,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var isAuth = store.getters['Admin/isAuth'];
     var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       if (event.value.speakers) {
-        return Object.prototype.toString.call(event.value.speakers) === '[object Array]' ? JSON.parse(event.value.speakers.trim()) : event.value.speakers.split(',');
+        try {
+          return JSON.parse(event.value.speakers);
+        } catch (_unused) {
+          return event.value.speakers.split(',');
+        }
       }
     });
     var isModalOpen = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {

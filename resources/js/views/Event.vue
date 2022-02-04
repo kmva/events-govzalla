@@ -51,10 +51,13 @@ export default {
 
         const speakers = computed(() => { 
             if(event.value.speakers) { 
-                return Object.prototype.toString.call(event.value.speakers) === '[object Array]'
-                ? JSON.parse(event.value.speakers.trim())
-                : event.value.speakers.split(',')
+                try {
+                    return JSON.parse(event.value.speakers)
+                } catch {
+                    return event.value.speakers.split(',')
+                }
             } 
+
          });
 
         const isModalOpen = computed(() => store.getters['Modals/enrollEventModal']);
