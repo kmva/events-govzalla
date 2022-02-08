@@ -384,6 +384,8 @@ button{
     gap: 2em;
 
     p{
+        display: flex;
+        justify-content: flex-start;
         margin-bottom: .8em;
     }
 
@@ -399,11 +401,6 @@ button{
         box-shadow: 0px 0px 3px 0 $blue;
     }
 
-  /*   p{
-        display: flex;
-        justify-content: space-between;
-    } */
-
     &__info{
         width: 40%;
     }
@@ -412,6 +409,7 @@ button{
         font-size: 1.1rem;
         margin-right: 5px;
         font-weight: bold;
+        min-width: 211px;
         width: 211px;
         display: inline-block;
     }
@@ -437,6 +435,7 @@ button{
 
     img{
         width: 55%;
+        object-fit: cover;
     }
 }
 
@@ -548,13 +547,17 @@ button{
     }
 
     .about-event{
+
+        p{
+            flex-direction: column;
+        }
         
         &__subtitle{
             font-size: 1.1rem;
             margin-right: 0;
             margin-bottom: 6px;
             font-weight: bold;
-            width: 100%;
+            min-width: 100%;
             color: $blue;
         }
     }

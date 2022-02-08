@@ -46,7 +46,10 @@ export default {
         const store = useStore();
         const event = ref({});
         const eventId = route.params.id;
-        const enrollersCount = route.query.enrollersCount;
+        const enrollersCount = computed(() => {
+            return route.query.enrollersCount ?? store.getters['Enrollers/enrollersByEventId'](eventId).length;
+        })
+
         const isAuth = store.getters['Admin/isAuth'];
 
         const speakers = computed(() => { 

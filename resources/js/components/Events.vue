@@ -74,7 +74,11 @@ export default {
         const eventsFromStore = computed(() => { return store.getters['Events/events'] });
         const searchQuery = ref('');
         const searchResultEvents = computed(() => {
-            if(searchQuery.value) { return  eventsFromStore.value.filter(event => { return event.title.includes(searchQuery.value)}) }
+            if(searchQuery.value) { return  eventsFromStore.value.filter(event => { 
+                const lowerCaseTitle = event.title.toLowerCase();
+                const lowerCaseSearchQuery = searchQuery.value.toLowerCase();
+                return lowerCaseTitle.includes(lowerCaseSearchQuery)}) 
+            }
         });
 
         const organizations = ref({})

@@ -386,13 +386,11 @@ button[disabled] {
   display: flex;
   justify-content: space-between;
   gap: 2em;
-  /*   p{
-        display: flex;
-        justify-content: space-between;
-    } */
 }
 
 .about-event p {
+  display: flex;
+  justify-content: flex-start;
   margin-bottom: 0.8em;
 }
 
@@ -416,6 +414,7 @@ button[disabled] {
   font-size: 1.1rem;
   margin-right: 5px;
   font-weight: bold;
+  min-width: 211px;
   width: 211px;
   display: inline-block;
 }
@@ -438,6 +437,8 @@ button[disabled] {
 
 .about-event img {
   width: 55%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .edit-event-form__buttons {
@@ -542,12 +543,16 @@ button[disabled] {
     width: 90%;
   }
 
+  .about-event p {
+    flex-direction: column;
+  }
+
   .about-event__subtitle {
     font-size: 1.1rem;
     margin-right: 0;
     margin-bottom: 6px;
     font-weight: bold;
-    width: 100%;
+    min-width: 100%;
     color: #1e77c0;
   }
 }

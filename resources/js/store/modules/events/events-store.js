@@ -68,7 +68,8 @@ const mutations = {
         state.currentEvent = event;
     },
     addEvent(state, event) {
-        state.events = [...state.events, event];
+        state.events = [...state.events, event]
+        localStorage.setItem('events', JSON.stringify([...state.events, event]))
     },
 }
 
