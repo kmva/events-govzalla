@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        'App\Console\Commands\SendMail'
     ];
 
     /**
@@ -24,8 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('notification:sendmail')->dailyAt('11:30');
     }
 
     /**

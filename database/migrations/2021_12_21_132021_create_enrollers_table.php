@@ -15,6 +15,7 @@ class CreateEnrollersTable extends Migration
     {
         Schema::create('enrollers', function (Blueprint $table) {
             $table->increments('id');
+            /*$table->foreignId('event_id');*/
             $table->bigInteger('event_id');
             $table->string('lastname');
             $table->string('firstname');

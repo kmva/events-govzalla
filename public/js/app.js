@@ -22681,9 +22681,11 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Редактировать");
 
-var _hoisted_27 = ["src"];
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
+
+var _hoisted_28 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$setup$enrollersCoun;
 
@@ -22730,13 +22732,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )]), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 0,
+    to: {
+      path: "/editevent/".concat($setup.event.id)
+    },
+    "class": "event__edit"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_26];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "",
     onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.openEnrollModal, ["prevent"]),
     "class": "btn btn-filled"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_26];
+      return [_hoisted_27];
     }),
     _: 1
     /* STABLE */
@@ -22748,7 +22765,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: ""
   }, null, 8
   /* PROPS */
-  , _hoisted_27)])]), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
+  , _hoisted_28)])]), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
     key: 0,
     data: $setup.event
   }, null, 8
@@ -23155,7 +23172,8 @@ var state = {
 var actions = {
   fetchEnrollers: function fetchEnrollers(_ref) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var commit, res;
+      var commit, _res;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -23166,28 +23184,28 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/enrollers');
 
             case 4:
-              res = _context.sent;
-              commit('setEnrollers', res.data);
-              localStorage.setItem('enrollers', JSON.stringify(res.data));
-              _context.next = 12;
+              _res = _context.sent;
+              commit('setEnrollers', _res.data);
+              _context.next = 11;
               break;
 
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 12:
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee, null, [[1, 8]]);
     }))();
   },
   enrollEvent: function enrollEvent(_ref2, enroller) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      var commit, res;
+      var commit, _res2;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -23198,10 +23216,8 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/enrollers', enroller);
 
             case 4:
-              res = _context2.sent;
-              commit('setEnrollers', enroller);
-              /* localStorage.setItem('enrollers', JSON.stringify(enrollers)) */
-
+              _res2 = _context2.sent;
+              commit('enrollEvent', enroller);
               _context2.next = 11;
               break;
 
@@ -23222,10 +23238,11 @@ var actions = {
 var mutations = {
   setEnrollers: function setEnrollers(state, enrollers) {
     state.enrollers = enrollers;
+    localStorage.setItem('enrollers', JSON.stringify(res.data));
   },
-  enrollEvent: function enrollEvent(state, event) {
-    state.enrollers = [].concat(_toConsumableArray(state.enrollers), [enrollers]);
-    localStorage.setItem('enrollers', JSON.stringify([].concat(_toConsumableArray(state.enrollers), [enrollers])));
+  enrollEvent: function enrollEvent(state, enroller) {
+    state.enrollers = [].concat(_toConsumableArray(state.enrollers), [enroller]);
+    localStorage.setItem('enrollers', JSON.stringify([].concat(_toConsumableArray(state.enrollers), [enroller])));
   }
 };
 var getters = {
@@ -23366,27 +23383,26 @@ var actions = {
             case 0:
               commit = _ref3.commit;
               _context3.prev = 1;
-              console.log(event);
-              _context3.next = 5;
+              _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/events', event);
 
-            case 5:
+            case 4:
               res = _context3.sent;
               commit('addEvent', event);
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
-            case 9:
-              _context3.prev = 9;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
               console.log(_context3.t0);
 
-            case 12:
+            case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee3, null, [[1, 8]]);
     }))();
   },
   editEvent: function editEvent(_ref4, payload) {

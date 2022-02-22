@@ -30,7 +30,6 @@ const actions = {
 
     async addEventToDB({ commit }, event) {
         try {
-            console.log(event)
             const res = await axios.post('/api/events', event);
             commit('addEvent', event)
         } catch (e) {

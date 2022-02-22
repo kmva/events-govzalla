@@ -25,6 +25,7 @@
                     <h2>Описание мероприятия</h2>
                     <p>{{ event.description }}</p> 
                 </div>
+                <router-link :to="{path:`/editevent/${event.id}`}" v-if="isAuth" class="event__edit">Редактировать</router-link>
                 <router-link to="" @click.prevent="openEnrollModal" class=" btn btn-filled">Зарегистрироваться</router-link>
             </div>
             <img :src="event.picture_url" alt="">
