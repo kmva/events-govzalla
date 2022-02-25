@@ -17,7 +17,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        return Event::orderBy('date')->get();
     }
 
     /**
@@ -47,7 +47,7 @@ class EventsController extends Controller
             'location' => 'required',
             'speakers' => 'required',
         ]);
-        
+
         if($request->file('img')){
             $folder = $request->date;
             $name = $request->file('img')->getClientOriginalName();
