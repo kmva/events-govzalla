@@ -82,6 +82,7 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
+            .nullable()
     );
 
     const {value: direction, errorMessage: directionError, handleBlur: directionBlur} = useField(
@@ -105,6 +106,7 @@ export default function useAddEventForm() {
         yup
             .string()
             .trim()
+            .nullable()
     );
 
     const {value: participants_number, errorMessage: participantsNumberError, handleBlur: participantsNumberBlur} = useField(
@@ -139,13 +141,14 @@ export default function useAddEventForm() {
         formData.append('location', location.value);
         formData.append('date', date.value);
         formData.append('organization', organization.value);
-        formData.append('subdivision', subdivision.value);
-        formData.append('direction', direction.value);
+        formData.append('subdivision', subdivision.value ?? null);
+        formData.append('direction', direction.value ?? null);
         formData.append('speakers', JSON.stringify(speakers.value));
-        formData.append('target_audience', target_audience.value);
+        formData.append('target_audience', target_audience.value ?? null);
         formData.append('participants_number', participants_number.value ?? 0);
-        formData.append('img', uploadImg.value);
-
+        if(uploadImg.value) {
+            formData.append('img', uploadImg.value);
+        }
         store.dispatch('Events/addEventToDB', formData);
 
         title.value = '';

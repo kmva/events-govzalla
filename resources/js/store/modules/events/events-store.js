@@ -30,19 +30,19 @@ const actions = {
 
     async addEventToDB({ commit }, event) {
         try {
-            const res = await axios.post('/api/events', event);
+            await axios.post('/api/events', event);
             commit('addEvent', event)
         } catch (e) {
             console.log(e)
         }
     },
 
-    async editEvent({ state, commit }, payload) {
+    async editEvent(_, payload) {
         try {
-            await axios.put(`/api/events/${payload.id}`, payload);
+            await axios.post(`/api/events/${payload.id}`, payload.event);
             const events = JSON.parse(localStorage.getItem('events'))
             const index = events.findIndex(event => event.id == payload.id)
-            events[index] = payload;
+            events[index] = payload.event;
             localStorage.setItem('events', JSON.stringify(events))
         } catch (e) {
             console.log(e)

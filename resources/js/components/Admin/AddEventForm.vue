@@ -115,7 +115,7 @@
             <small v-if="participantsNumberError">{{ participantsNumberError }}</small>
         </div>
 
-        <div :class="['form-control', {invalid: participantsNumberError}]">
+        <div :class="['form-control']">
             <label>Прикрепить фотографию</label>
             <input type="file" accept="image/jpeg, image/png, image/jpg" ref="eventImg"  @change="uploadImgHandler">
         </div>

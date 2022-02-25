@@ -20208,9 +20208,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              enrollers.value = store.getters['Enrollers/enrollersByEventId'](props.data.id);
+              _context.next = 2;
+              return store.getters['Enrollers/enrollersByEventId'](props.data.id);
 
-            case 1:
+            case 2:
+              enrollers.value = _context.sent;
+
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -20606,6 +20610,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   setup: function setup() {
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute)();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     var event = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
     var eventId = route.params.id;
@@ -20642,8 +20647,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               event.value = _context.sent;
+              console.log(router);
 
-            case 3:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -20842,12 +20848,15 @@ var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_62 = {
   key: 0
 };
+var _hoisted_63 = {
+  "class": /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control'])
+};
 
-var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Прикрепить фотографию", -1
+var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Прикрепить фотографию", -1
 /* HOISTED */
 );
 
-var _hoisted_64 = ["disabled"];
+var _hoisted_65 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     "class": "form add-event-form",
@@ -21040,11 +21049,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
-      invalid: _ctx.participantsNumberError
-    }])
-  }, [_hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [_hoisted_64, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     accept: "image/jpeg, image/png, image/jpg",
     ref: "eventImg",
@@ -21053,15 +21058,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  )], 2
-  /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     "class": "btn btn-blue",
     disabled: _ctx.isSubmitting
   }, "Добавить мероприятие", 8
   /* PROPS */
-  , _hoisted_64)], 32
+  , _hoisted_65)], 32
   /* HYDRATE_EVENTS */
   );
 }
@@ -21268,7 +21271,9 @@ var _hoisted_2 = {
   key: 0
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Формат мероприятия", -1
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Формат мероприятия "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -21279,7 +21284,9 @@ var _hoisted_19 = {
   key: 1
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Описание мероприятия", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Описание мероприятия "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -21287,7 +21294,9 @@ var _hoisted_21 = {
   key: 0
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Место проведения", -1
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Место проведения "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -21295,7 +21304,9 @@ var _hoisted_23 = {
   key: 0
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Дата проведения", -1
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Дата проведения "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
 /* HOISTED */
 );
 
@@ -21303,100 +21314,86 @@ var _hoisted_25 = {
   key: 0
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Организатор", -1
-/* HOISTED */
-);
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  disabled: ""
-}, "Выберите один из вариантов", -1
-/* HOISTED */
-);
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Министерство образования и науки Чеченской Республики", -1
-/* HOISTED */
-);
-
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Институт развития образования Чеченской Республики", -1
-/* HOISTED */
-);
-
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Центр непрерывного повышения профессионального мастерства педагогических работников Чеченской Республики", -1
-/* HOISTED */
-);
-
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Муниципальная методическая служба Чеченской Республики", -1
-/* HOISTED */
-);
-
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Методические объединения, профессиональные объединения педагогических работников", -1
-/* HOISTED */
-);
-
-var _hoisted_33 = [_hoisted_27, _hoisted_28, _hoisted_29, _hoisted_30, _hoisted_31, _hoisted_32];
-var _hoisted_34 = {
-  key: 0
-};
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Подразделение", -1
-/* HOISTED */
-);
-
-var _hoisted_36 = {
-  key: 0
-};
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Направление", -1
-/* HOISTED */
-);
-
-var _hoisted_38 = {
-  key: 0
-};
-var _hoisted_39 = {
-  "class": /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control'])
-};
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Спикеры "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Организатор "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "required-star"
 }, "*")], -1
 /* HOISTED */
 );
 
-var _hoisted_41 = {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option disabled>Выберите один из вариантов</option><option>Министерство образования и науки Чеченской Республики</option><option>Институт развития образования Чеченской Республики</option><option>Центр непрерывного повышения профессионального мастерства педагогических работников Чеченской Республики</option><option>Департамент образования Мэрии г. Грозного</option><option>МУ «Управление образования Грозненского муниципального района»</option><option>МУ «Шаройский районный отдел образования»</option><option>МУ «Отдел образования Шелковского муниципального района»</option><option>МУ «Управление образования Гудермесского муниципального района»</option><option>МУ «Отдел образования Шалинского муниципального района»</option><option>МУ «Отдел образования Шатойского муниципального района»</option><option>МУ «Отдел образования Урус-Мартановского муниципального района»</option><option>МУ «Управление образования Ножай-Юртовского муниципального района»</option><option>МУ «Наурский районный отдел образования»</option><option>МУ «Веденский районный отдел образования»</option><option>МУ «Итум-Калинский районный отдел образования»</option><option>МУ «Отдел образования администрации Надтеречного муниципального района»</option><option>МУ «Отдел образования Серноводского муниципального района»</option><option>МУ «Департамент образования г.Аргун»</option><option>МУ «Управление образования Курчалоевского муниципального района»</option><option>МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>", 21);
+
+var _hoisted_48 = [_hoisted_27];
+var _hoisted_49 = {
+  key: 0
+};
+
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Подразделение", -1
+/* HOISTED */
+);
+
+var _hoisted_51 = {
+  key: 0
+};
+
+var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Направление", -1
+/* HOISTED */
+);
+
+var _hoisted_53 = {
+  key: 0
+};
+var _hoisted_54 = {
+  "class": /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control'])
+};
+
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Спикеры "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "required-star"
+}, "*")], -1
+/* HOISTED */
+);
+
+var _hoisted_56 = {
   "class": "flex"
 };
-var _hoisted_42 = ["disabled"];
-var _hoisted_43 = {
+var _hoisted_57 = ["disabled"];
+var _hoisted_58 = {
   "class": "speakers"
 };
-var _hoisted_44 = ["onClick"];
+var _hoisted_59 = ["onClick"];
 
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Целевая аудитория", -1
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Целевая аудитория", -1
 /* HOISTED */
 );
 
-var _hoisted_46 = {
+var _hoisted_61 = {
   key: 0
 };
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Рассчитано на количество человек", -1
+var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Рассчитано на количество человек", -1
 /* HOISTED */
 );
 
-var _hoisted_48 = {
+var _hoisted_63 = {
   key: 0
 };
-var _hoisted_49 = {
+var _hoisted_64 = {
+  "class": /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control'])
+};
+
+var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Прикрепить фотографию", -1
+/* HOISTED */
+);
+
+var _hoisted_66 = {
   "class": "edit-event-form__buttons"
 };
-var _hoisted_50 = ["disabled"];
+var _hoisted_67 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ConfirmDeleteModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmDeleteModal");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     "class": "form edit-event-form",
-    onSubmit: _cache[14] || (_cache[14] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[15] || (_cache[15] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return _ctx.onSubmit && _ctx.onSubmit.apply(_ctx, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -21491,9 +21488,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return _ctx.organization = $event;
     })
-  }, _hoisted_33, 512
+  }, _hoisted_48, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.organization]]), _ctx.organizationError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.organizationError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.organization]]), _ctx.organizationError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.organizationError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -21501,14 +21498,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.subdivisionError
     }])
-  }, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return _ctx.subdivision = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.subdivision]]), _ctx.subdivisionError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.subdivisionError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.subdivision]]), _ctx.subdivisionError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.subdivisionError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -21516,18 +21513,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.directionError
     }])
-  }, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
       return _ctx.direction = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.direction]]), _ctx.directionError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.directionError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.direction]]), _ctx.directionError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.directionError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
       return _ctx.speaker = $event;
@@ -21542,7 +21539,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, "Добавить", 8
   /* PROPS */
-  , _hoisted_42)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_43, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.speakers, function (speaker, index) {
+  , _hoisted_57)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_58, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.speakers, function (speaker, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: index,
       "class": "speaker"
@@ -21555,21 +21552,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, "x", 8
     /* PROPS */
-    , _hoisted_44)]);
+    , _hoisted_59)]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.targetAudienceError
     }])
-  }, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
       return _ctx.target_audience = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.target_audience]]), _ctx.targetAudienceError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.targetAudienceError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.target_audience]]), _ctx.targetAudienceError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.targetAudienceError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -21577,26 +21574,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
       invalid: _ctx.participantsNumberError
     }])
-  }, [_hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [_hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
       return _ctx.participants_number = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.participants_number]]), _ctx.participantsNumberError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.participantsNumberError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.participants_number]]), _ctx.participantsNumberError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.participantsNumberError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [_hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "file",
+    accept: "image/jpeg, image/png, image/jpg",
+    ref: "eventImg",
+    onChange: _cache[13] || (_cache[13] = function () {
+      return _ctx.uploadImgHandler && _ctx.uploadImgHandler.apply(_ctx, arguments);
+    })
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     disabled: _ctx.isSubmitting,
     "class": "btn btn-blue"
   }, "Сохранить изменения", 8
   /* PROPS */
-  , _hoisted_50), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  , _hoisted_67), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "edit-event-form__delete-btn",
-    onClick: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onClick: _cache[14] || (_cache[14] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.openConfirmModal && $setup.openConfirmModal.apply($setup, arguments);
     }, ["prevent"]))
   }, "Удалить мероприятие")])], 32
@@ -22578,7 +22584,7 @@ var _hoisted_2 = {
   "class": "event-title"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cписок зарегистрировавшихся");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Список зарегистрировавшихся");
 
 var _hoisted_4 = {
   "class": "about-event"
@@ -23376,7 +23382,7 @@ var actions = {
   },
   addEventToDB: function addEventToDB(_ref3, event) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var commit, res;
+      var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -23387,67 +23393,65 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/events', event);
 
             case 4:
-              res = _context3.sent;
               commit('addEvent', event);
-              _context3.next = 11;
+              _context3.next = 10;
               break;
 
-            case 8:
-              _context3.prev = 8;
+            case 7:
+              _context3.prev = 7;
               _context3.t0 = _context3["catch"](1);
               console.log(_context3.t0);
 
-            case 11:
+            case 10:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[1, 7]]);
     }))();
   },
-  editEvent: function editEvent(_ref4, payload) {
+  editEvent: function editEvent(_, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-      var state, commit, events, index;
+      var events, index;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              state = _ref4.state, commit = _ref4.commit;
-              _context4.prev = 1;
-              _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/events/".concat(payload.id), payload);
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/events/".concat(payload.id), payload.event);
 
-            case 4:
+            case 3:
               events = JSON.parse(localStorage.getItem('events'));
               index = events.findIndex(function (event) {
                 return event.id == payload.id;
               });
-              events[index] = payload;
+              events[index] = payload.event;
               localStorage.setItem('events', JSON.stringify(events));
-              _context4.next = 13;
+              _context4.next = 12;
               break;
 
-            case 10:
-              _context4.prev = 10;
-              _context4.t0 = _context4["catch"](1);
+            case 9:
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](0);
               console.log(_context4.t0);
 
-            case 13:
+            case 12:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 10]]);
+      }, _callee4, null, [[0, 9]]);
     }))();
   },
-  deleteEvent: function deleteEvent(_ref5, id) {
+  deleteEvent: function deleteEvent(_ref4, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref5.commit;
+              commit = _ref4.commit;
               _context5.prev = 1;
               _context5.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/events/".concat(id));
@@ -23627,7 +23631,7 @@ function useAddEventForm() {
       organizationError = _useField6.errorMessage,
       organizationBlur = _useField6.handleBlur;
 
-  var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
+  var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       subdivision = _useField7.value,
       subdivisionError = _useField7.errorMessage,
       subdivisionBlur = _useField7.handleBlur;
@@ -23645,7 +23649,7 @@ function useAddEventForm() {
   ); */
 
 
-  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
+  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       target_audience = _useField9.value,
       targetAudienceError = _useField9.errorMessage,
       targetAudienceBlur = _useField9.handleBlur;
@@ -23670,7 +23674,7 @@ function useAddEventForm() {
   });
 
   var addEvent = function addEvent() {
-    var _participants_number$;
+    var _subdivision$value, _direction$value, _target_audience$valu, _participants_number$;
 
     formData.append('title', title.value);
     formData.append('format', format.value == 'another' ? anotherFormat.value : format.value);
@@ -23678,12 +23682,16 @@ function useAddEventForm() {
     formData.append('location', location.value);
     formData.append('date', date.value);
     formData.append('organization', organization.value);
-    formData.append('subdivision', subdivision.value);
-    formData.append('direction', direction.value);
+    formData.append('subdivision', (_subdivision$value = subdivision.value) !== null && _subdivision$value !== void 0 ? _subdivision$value : null);
+    formData.append('direction', (_direction$value = direction.value) !== null && _direction$value !== void 0 ? _direction$value : null);
     formData.append('speakers', JSON.stringify(speakers.value));
-    formData.append('target_audience', target_audience.value);
+    formData.append('target_audience', (_target_audience$valu = target_audience.value) !== null && _target_audience$valu !== void 0 ? _target_audience$valu : null);
     formData.append('participants_number', (_participants_number$ = participants_number.value) !== null && _participants_number$ !== void 0 ? _participants_number$ : 0);
-    formData.append('img', uploadImg.value);
+
+    if (uploadImg.value) {
+      formData.append('img', uploadImg.value);
+    }
+
     store.dispatch('Events/addEventToDB', formData);
     title.value = '';
     format.value = null;
@@ -23870,6 +23878,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function useEditEventForm() {
+  var _event$subdivision, _event$direction, _event$target_audienc, _event$participants_n;
+
   var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
   var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute)();
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
@@ -23886,10 +23896,10 @@ function useEditEventForm() {
       location: event.location,
       date: event.date,
       organization: event.organization,
-      subdivision: event.subdivision,
-      direction: event.direction,
-      target_audience: event.target_audience,
-      participants_number: event.participants_number
+      subdivision: (_event$subdivision = event.subdivision) !== null && _event$subdivision !== void 0 ? _event$subdivision : null,
+      direction: (_event$direction = event.direction) !== null && _event$direction !== void 0 ? _event$direction : null,
+      target_audience: (_event$target_audienc = event.target_audience) !== null && _event$target_audienc !== void 0 ? _event$target_audienc : null,
+      participants_number: (_event$participants_n = event.participants_number) !== null && _event$participants_n !== void 0 ? _event$participants_n : null
     }
   }),
       handleSubmit = _useForm.handleSubmit,
@@ -23897,6 +23907,13 @@ function useEditEventForm() {
 
   var speaker = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
   var speakers = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(JSON.parse(event.speakers.trim()));
+  var uploadImg = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+  var formData = new FormData();
+
+  var uploadImgHandler = function uploadImgHandler(e) {
+    var files = e.target.files;
+    uploadImg.value = files[0];
+  };
 
   var addSpeaker = function addSpeaker() {
     speakers.value.push(speaker.value);
@@ -23937,7 +23954,7 @@ function useEditEventForm() {
       organizationError = _useField6.errorMessage,
       organizationBlur = _useField6.handleBlur;
 
-  var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim()),
+  var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       subdivision = _useField7.value,
       subdivisionError = _useField7.errorMessage,
       subdivisionBlur = _useField7.handleBlur;
@@ -23955,12 +23972,12 @@ function useEditEventForm() {
    ); */
 
 
-  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+  var _useField9 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('target_audience', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       target_audience = _useField9.value,
       targetAudienceError = _useField9.errorMessage,
       targetAudienceBlur = _useField9.handleBlur;
 
-  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле, введите числовое значение')),
+  var _useField10 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('participants_number', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       participants_number = _useField10.value,
       participantsNumberError = _useField10.errorMessage,
       participantsNumberBlur = _useField10.handleBlur;
@@ -23980,19 +23997,26 @@ function useEditEventForm() {
   });
 
   var editEvent = function editEvent() {
+    formData.append('title', title.value);
+    formData.append('format', format.value == 'another' ? anotherFormat.value : format.value);
+    formData.append('description', description.value);
+    formData.append('location', location.value);
+    formData.append('date', date.value);
+    formData.append('organization', organization.value);
+    formData.append('subdivision', subdivision.value);
+    formData.append('direction', direction.value);
+    formData.append('speakers', JSON.stringify(speakers.value));
+    formData.append('target_audience', target_audience.value);
+    formData.append('participants_number', participants_number.value);
+    formData.append("_method", "PUT");
+
+    if (uploadImg.value) {
+      formData.append('img', uploadImg.value);
+    }
+
     store.dispatch('Events/editEvent', {
-      id: route.params.id,
-      title: title.value,
-      format: format.value == 'another' ? anotherFormat.value : format.value,
-      description: description.value,
-      location: location.value,
-      date: date.value,
-      organization: organization.value,
-      subdivision: subdivision.value,
-      direction: direction.value,
-      speakers: JSON.stringify(speakers.value),
-      target_audience: target_audience.value,
-      participants_number: participants_number.value
+      event: formData,
+      id: route.params.id
     });
   };
 
@@ -24009,6 +24033,7 @@ function useEditEventForm() {
     speaker: speaker,
     target_audience: target_audience,
     participants_number: participants_number,
+    uploadImg: uploadImg,
     titleError: titleError,
     formatError: formatError,
     descriptionError: descriptionError,
@@ -24035,6 +24060,7 @@ function useEditEventForm() {
     participantsNumberBlur: participantsNumberBlur,
     addSpeaker: addSpeaker,
     deleteSpeaker: deleteSpeaker,
+    uploadImgHandler: uploadImgHandler,
     onSubmit: onSubmit,
     isSubmitting: isSubmitting,
     isAnotherFormat: isAnotherFormat,

@@ -19,15 +19,22 @@ export default function useEditEventForm() {
             location: event.location,
             date: event.date,
             organization: event.organization,
-            subdivision: event.subdivision,
-            direction: event.direction,
-            target_audience: event.target_audience,
-            participants_number: event.participants_number,
+            subdivision: event.subdivision ?? null,
+            direction: event.direction ?? null,
+            target_audience: event.target_audience ?? null,
+            participants_number: event.participants_number ?? null,
         }
       });
 
     const speaker = ref('');
     const speakers = ref(JSON.parse(event.speakers.trim()))
+    const uploadImg = ref(null);
+    const formData = new FormData()
+
+    const uploadImgHandler = e => {
+        const files = e.target.files;
+        uploadImg.value = files[0];
+    }
 
     const addSpeaker = () => {
         speakers.value.push(speaker.value);
@@ -91,6 +98,7 @@ export default function useEditEventForm() {
         yup
             .string()
             .trim()
+            .nullable()
     );
 
     const {value: direction, errorMessage: directionError, handleBlur: directionBlur} = useField(
@@ -114,7 +122,7 @@ export default function useEditEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле')
+            .nullable()
     );
 
     const {value: participants_number, errorMessage: participantsNumberError, handleBlur: participantsNumberBlur} = useField(
@@ -122,7 +130,7 @@ export default function useEditEventForm() {
         yup
             .string()
             .trim()
-            .required('Обязательное поле, введите числовое значение')
+            .nullable()
     );
 
     const isAnotherFormat = ref(false);
@@ -140,20 +148,22 @@ export default function useEditEventForm() {
     })
 
     const editEvent = () => {
-        store.dispatch('Events/editEvent', {
-            id: route.params.id,
-            title: title.value,
-            format: format.value == 'another' ? anotherFormat.value : format.value,
-            description: description.value,
-            location: location.value,
-            date: date.value,
-            organization: organization.value,
-            subdivision: subdivision.value,
-            direction: direction.value,
-            speakers: JSON.stringify(speakers.value),
-            target_audience: target_audience.value,
-            participants_number: participants_number.value,
-        });
+        formData.append('title', title.value);
+        formData.append('format', format.value == 'another' ? anotherFormat.value : format.value);
+        formData.append('description', description.value);
+        formData.append('location', location.value);
+        formData.append('date', date.value);
+        formData.append('organization', organization.value);
+        formData.append('subdivision', subdivision.value);
+        formData.append('direction', direction.value);
+        formData.append('speakers', JSON.stringify(speakers.value));
+        formData.append('target_audience', target_audience.value);
+        formData.append('participants_number', participants_number.value);
+        formData.append("_method", "PUT");
+        if(uploadImg.value) {
+            formData.append('img', uploadImg.value);
+        }
+        store.dispatch('Events/editEvent', {event: formData, id: route.params.id});
     }
 
     return {
@@ -169,6 +179,7 @@ export default function useEditEventForm() {
         speaker,
         target_audience,
         participants_number,
+        uploadImg,
 
         titleError,
         formatError,
@@ -196,6 +207,7 @@ export default function useEditEventForm() {
 
         addSpeaker,
         deleteSpeaker,
+        uploadImgHandler,
         onSubmit,
         isSubmitting,
         isAnotherFormat,

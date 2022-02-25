@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EventsController extends Controller
 {
@@ -40,20 +41,22 @@ class EventsController extends Controller
         $request->validate([
             'title' => 'bail|required',
             'format' => 'required',
-            'description' => 'required', 
+            'description' => 'required',
             'organization' => 'required',
             'date' => 'required',
             'location' => 'required',
             'speakers' => 'required',
         ]);
-
+        
         if($request->file('img')){
             $folder = $request->date;
             $name = $request->file('img')->getClientOriginalName();
 
             $path = $request->img->storeAs("images/{$folder}", $name);
+            $picture_url = "/uploads/$path";
         } else {
             $path = "/img/event_bg.jpg";
+            $picture_url = $path;
         }
 
         $event = Event::create([
@@ -68,7 +71,7 @@ class EventsController extends Controller
             'speakers' => $request->speakers,
             'target_audience' => $request->target_audience,
             'participants_number' => $request->participants_number,
-            'picture_url' => $path,
+            'picture_url' => $picture_url,
         ]);
     }
 
@@ -103,15 +106,27 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'bail|required',
+            'format' => 'required',
+            'description' => 'required',
+            'organization' => 'required',
+            'date' => 'required',
+            'location' => 'required',
+            'speakers' => 'required',
+        ]);
+
         if($request->file('img')){
             $folder = $request->date;
             $name = $request->file('img')->getClientOriginalName();
 
             $path = $request->img->storeAs("images/{$folder}", $name);
+            $picture_url = "/uploads/$path";
         } else {
             $path = "/img/event_bg.jpg";
+            $picture_url = $path;
         }
-        
+
         Event::where('id', $id)->update([
             'title' => $request->title,
             'format' => $request->format,
@@ -124,7 +139,7 @@ class EventsController extends Controller
             'speakers' => $request->speakers,
             'target_audience' => $request->target_audience,
             'participants_number' => $request->participants_number,
-            'picture_url' => $path,
+            'picture_url' => $picture_url,
         ]);
     }
 

@@ -7,7 +7,7 @@
         </div>
 
         <div :class="['form-control', {invalid: formatError}]">
-            <label>Формат мероприятия</label>
+            <label>Формат мероприятия <span class="required-star">*</span></label>
             <select v-model="format">
                 <option disabled>Выберите один из вариантов</option>
                 <option>Семинар</option>
@@ -29,33 +29,48 @@
         </div>
 
         <div :class="['form-control', {invalid: descriptionError}]">
-            <label>Описание мероприятия</label>
+            <label>Описание мероприятия <span class="required-star">*</span></label>
             <textarea cols="30" rows="10" v-model="description"></textarea>
             <small v-if="descriptionError">{{ descriptionError }}</small>
         </div>
          
         <div :class="['form-control', {invalid: locationError}]">
-            <label>Место проведения</label>
+            <label>Место проведения <span class="required-star">*</span></label>
             <input type="text" v-model="location">
             <small v-if="locationError">{{ locationError }}</small>
         </div>
 
         <div :class="['form-control', {invalid: dateError}]">
-            <label>Дата проведения</label>
+            <label>Дата проведения <span class="required-star">*</span></label>
             <input type="date" v-model="date">
             <small v-if="dateError">{{ dateError }}</small>
         </div>
 
         <div :class="['form-control', {invalid: organizationError}]">
-            <label>Организатор</label>
-            <select v-model="organization">
+            <label>Организатор <span class="required-star">*</span></label>
+             <select v-model="organization">
                 <option disabled>Выберите один из вариантов</option>
                 <option>Министерство образования и науки Чеченской Республики</option>
                 <option>Институт развития образования Чеченской Республики</option>
                 <option>Центр непрерывного повышения профессионального мастерства
                         педагогических работников Чеченской Республики</option>
-                <option>Муниципальная методическая служба Чеченской Республики</option>
-                <option>Методические объединения, профессиональные объединения педагогических работников</option>
+                <option>Департамент образования Мэрии г. Грозного</option>
+                <option>МУ «Управление образования Грозненского муниципального района»</option>
+                <option>МУ «Шаройский районный отдел образования»</option>
+                <option>МУ «Отдел образования Шелковского муниципального района»</option>
+                <option>МУ «Управление образования Гудермесского муниципального района»</option>
+                <option>МУ «Отдел образования Шалинского муниципального района»</option>
+                <option>МУ «Отдел образования Шатойского муниципального района»</option>
+                <option>МУ «Отдел образования Урус-Мартановского муниципального района»</option>
+                <option>МУ «Управление образования Ножай-Юртовского муниципального района»</option>
+                <option>МУ «Наурский районный отдел образования»</option>
+                <option>МУ «Веденский районный отдел образования»</option>
+                <option>МУ «Итум-Калинский районный отдел образования»</option>
+                <option>МУ «Отдел образования администрации Надтеречного муниципального района»</option>
+                <option>МУ «Отдел образования Серноводского муниципального района»</option>
+                <option>МУ «Департамент образования г.Аргун»</option>
+                <option>МУ «Управление образования Курчалоевского муниципального района»</option>
+                <option>МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>
             </select>
             <small v-if="organizationError">{{ organizationError }}</small>
         </div>
@@ -98,6 +113,11 @@
             <label>Рассчитано на количество человек</label>
             <input type="number" v-model="participants_number">
             <small v-if="participantsNumberError">{{ participantsNumberError }}</small>
+        </div>
+
+         <div :class="['form-control']">
+            <label>Прикрепить фотографию</label>
+            <input type="file" accept="image/jpeg, image/png, image/jpg" ref="eventImg"  @change="uploadImgHandler">
         </div>
 
        <div class="edit-event-form__buttons">  

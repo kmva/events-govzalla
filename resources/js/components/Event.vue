@@ -53,7 +53,7 @@ export default {
         }
 
         onMounted(async() => {
-            enrollers.value = store.getters['Enrollers/enrollersByEventId'](props.data.id)
+            enrollers.value = await store.getters['Enrollers/enrollersByEventId'](props.data.id)
         })
 
         return {
