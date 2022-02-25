@@ -6,7 +6,7 @@
             <div class="about-event__info">
                 <div class="about-event__card">
                     <h2>Информация о мероприятии</h2>
-                    <p><span class="about-event__subtitle">Дата</span>{{ event.date }}</p>
+                    <p><span class="about-event__subtitle">Дата</span>{{ dayLongMonthYear(event.date) }}</p>
                     <p><span class="about-event__subtitle">Локация</span>{{ event.location }}</p>
                     <p v-if="event.target_audience"><span class="about-event__subtitle">Целевая аудитория</span>{{ event.target_audience }}</p>
                     <p v-if="event.organization"><span class="about-event__subtitle">Организатор</span>{{ event.organization }}</p>
@@ -37,6 +37,8 @@
 import { onMounted, ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
+
+import { dayLongMonthYear } from '../utils/dateFormatter'
 
 import EnrollEventModal from '../components/EnrollEventModal.vue'
 
@@ -83,6 +85,7 @@ export default {
             isModalOpen,
             openEnrollModal,
             isAuth,
+            dayLongMonthYear,
         }
     }
 }

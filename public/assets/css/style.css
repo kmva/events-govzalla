@@ -83,7 +83,7 @@ h1 {
   flex-wrap: wrap;
   -moz-column-gap: 1em;
        column-gap: 1em;
-  row-gap: 1.5em;
+  row-gap: 2em;
   padding: 2em;
   width: 100%;
 }

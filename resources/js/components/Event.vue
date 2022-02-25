@@ -4,11 +4,7 @@
         <div class="event__header">
             <img class="event__header-img" :src="data.picture_url" alt="">
             <div class="event__header-backdrop">
-                {{ 
-                    new Date(data.date).getDate() 
-                    + ' ' +
-                    new Date(data.date).toLocaleString('ru', { month: 'long' }) 
-                }}
+                {{ dayLongMonth(data.date) }}
             </div>
         </div>
         <div class="event__body">
@@ -30,6 +26,7 @@
 <script>
 import { onMounted, ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { dayLongMonth } from '../utils/dateFormatter'
 import EnrollEventModal from './EnrollEventModal.vue'
 
 export default {
@@ -60,7 +57,8 @@ export default {
             openEnrollModal,
             isModalOpen,
             isAuth,
-            enrollers
+            enrollers,
+            dayLongMonth,
         }
     }
 }
