@@ -478,35 +478,55 @@ button[disabled] {
   color: #1e77c0;
 }
 
-.enrollers-table {
-  width: 100%;
-  background-color: #FFF;
-}
-
-.enrollers-table thead tr:first-child {
-  font-size: 1.2rem;
-}
-
-.enrollers-table thead tr:first-child a {
+.enrollers__download-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 0;
+  row-gap: 0.5em;
+  width: 170px;
   color: #1e77c0;
   transition: 0.3s;
 }
 
-.enrollers-table thead tr:first-child a:hover,
-.enrollers-table thead tr:first-child a:active {
+.enrollers__download-link:hover,
+.enrollers__download-link:active {
+  color: #38c172;
+}
+
+.enrollers__download-link img {
+  width: 40px;
+}
+
+.enrollers__table {
+  width: 100%;
+  background-color: #FFF;
+}
+
+.enrollers__table thead tr:first-child {
+  font-size: 1.2rem;
+}
+
+.enrollers__table thead tr:first-child a {
+  color: #1e77c0;
+  transition: 0.3s;
+}
+
+.enrollers__table thead tr:first-child a:hover,
+.enrollers__table thead tr:first-child a:active {
   color: #e3342f;
 }
 
-.enrollers-table tbody tr:nth-child(2n) {
+.enrollers__table tbody tr:nth-child(2n) {
   background-color: #f1f1f1;
 }
 
-.enrollers-table tr {
+.enrollers__table tr {
   border-bottom: 1px solid rgba(221, 221, 221, 0.5);
 }
 
-.enrollers-table td,
-.enrollers-table th {
+.enrollers__table td,
+.enrollers__table th {
   padding: 0.9em 1.1em;
 }
 

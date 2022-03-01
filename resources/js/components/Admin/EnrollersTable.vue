@@ -1,5 +1,5 @@
 <template>
-    <table class="enrollers-table">
+    <table class="enrollers__table">
         <thead>
             <tr>
                 <th colspan="7"><router-link :to="{ path: `/event/${event.id}`}">{{ event.title }}</router-link></th>

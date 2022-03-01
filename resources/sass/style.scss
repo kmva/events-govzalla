@@ -481,7 +481,26 @@ button{
         color: $blue
     }
 
-    &-table{
+    &__download-link{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1em 0;
+        row-gap: .5em;
+        width: 170px;
+        color: $blue;
+        transition: .3s;
+
+        &:hover, &:active{
+            color: $green;
+        }
+
+        img{
+            width: 40px;
+        }
+    }
+
+    &__table{
         width: 100%;
         background-color: #FFF;
 

@@ -3,6 +3,10 @@
     <input type="text" v-model="searchQuery" class="events-filters__search" placeholder="Поиск мероприятия">
     <app-loader v-if="isLoading"></app-loader>
     <div class="enrollers" v-else>
+        <a href="/api/enrollers/export" class="enrollers__download-link">
+            <img src="/img/excel.svg" alt="">
+            Скачать список
+        </a>
         <div class="table-wrapper" 
                 v-for="event in events" 
                 :key="event.id">

@@ -21,13 +21,13 @@ const actions = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
 }
 
 const mutations = {
     setEnrollers(state, enrollers) {
         state.enrollers = enrollers;
-        localStorage.setItem('enrollers', JSON.stringify(res.data))
+        localStorage.setItem('enrollers', JSON.stringify(enrollers))
     },
     enrollEvent(state, enroller) {
         state.enrollers = [...state.enrollers, enroller];

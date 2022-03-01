@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Enroller;
+use App\Exports\EnrollersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EnrollersController extends Controller
 {
@@ -105,4 +107,16 @@ class EnrollersController extends Controller
     {
         //
     }
+
+    /**
+     * Export enrollers with excel table format.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function export()
+    {
+       /*  return Excel::download(new EnrollersExport, 'enrollers.xlsx'); */
+        return (new EnrollersExport)->download('enrollers.xlsx');
+    }
+
 }
