@@ -64,6 +64,13 @@ h1{
     margin-bottom: 1.3em;
 }
 
+a.disabled{
+    pointer-events: none;
+    background-color: lightgrey;
+    border-color: grey;
+    color: grey;
+}
+
 .organization{
 
     margin-bottom: 3.5em;
@@ -399,6 +406,10 @@ button{
         margin-bottom: 2em;
         border-top: 5px solid $blue;
         box-shadow: 0px 0px 3px 0 $blue;
+    }
+
+    &__description{
+        white-space: break-spaces;
     }
 
     &__info{

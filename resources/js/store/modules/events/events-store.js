@@ -37,13 +37,10 @@ const actions = {
         }
     },
 
-    async editEvent(_, payload) {
+    async editEvent({ dispatch }, payload) {
         try {
             await axios.post(`/api/events/${payload.id}`, payload.event);
-            const events = JSON.parse(localStorage.getItem('events'))
-            const index = events.findIndex(event => event.id == payload.id)
-            events[index] = payload.event;
-            localStorage.setItem('events', JSON.stringify(events))
+            dispatch('fetchEvents');
         } catch (e) {
             console.log(e)
         }

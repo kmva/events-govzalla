@@ -19,10 +19,10 @@ export default function useEditEventForm() {
             location: event.location,
             date: event.date,
             organization: event.organization,
-            subdivision: event.subdivision ?? null,
-            direction: event.direction ?? null,
-            target_audience: event.target_audience ?? null,
-            participants_number: event.participants_number ?? null,
+            subdivision: !event.subdivision ? '' : event.subdivision,
+            direction: !event.direction ? '' : event.direction,
+            target_audience: !event.target_audience ? '' : event.target_audience,
+            participants_number: !event.participants_number ? '' : event.participants_number,
         }
       });
 
@@ -159,7 +159,7 @@ export default function useEditEventForm() {
         formData.append('speakers', JSON.stringify(speakers.value));
         formData.append('target_audience', target_audience.value);
         formData.append('participants_number', participants_number.value);
-        formData.append("_method", "PUT");
+        formData.append('_method', 'PUT');
         if(uploadImg.value) {
             formData.append('img', uploadImg.value);
         }

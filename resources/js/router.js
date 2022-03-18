@@ -20,6 +20,7 @@ const routes = [
         path: '/',
         name: 'Main',
         component: Events,
+        layout: Main,
     },
     {
         path: '/event/:id',

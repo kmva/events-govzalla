@@ -42,7 +42,7 @@
 
         <div :class="['form-control', {invalid: dateError}]">
             <label>Дата проведения <span class="required-star">*</span></label>
-            <input type="date" v-model="date">
+            <input type="datetime-local" v-model="date">
             <small v-if="dateError">{{ dateError }}</small>
         </div>
 

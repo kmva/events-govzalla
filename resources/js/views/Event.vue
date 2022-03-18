@@ -1,7 +1,8 @@
-<template>
-    <div class="about">
+<template>   
+    <app-loader v-if="isLoading"></app-loader>
+    <div v-else class="about">
         <h1 class="event-title">{{ event.format }} "{{ event.title }}"</h1>
-         <router-link to="/enrollers" v-if="isAuth" class="enrollers-link">Список зарегистрировавшихся</router-link>
+        <router-link to="/enrollers" v-if="isAuth" class="enrollers-link">Список зарегистрировавшихся</router-link>
         <div class="about-event">
             <div class="about-event__info">
                 <div class="about-event__card">
@@ -12,7 +13,7 @@
                     <p v-if="event.organization"><span class="about-event__subtitle">Организатор</span>{{ event.organization }}</p>
                     <p v-if="event.subdivision"><span class="about-event__subtitle">Подразделение</span>{{ event.subdivision }}</p>
                     <p v-if="event.direction"><span class="about-event__subtitle">Направление</span>{{ event.direction }}</p>
-                    <p v-if="event.participants_number > 0"><span class="about-event__subtitle">Рассчитано на количество человек: </span>{{ event.participants_number }}</p>
+                    <p v-if="event.participants_number> 0"><span class="about-event__subtitle">Рассчитано на количество человек: </span>{{ event.participants_number }}</p>
                     <p><span class="about-event__subtitle">Зарегистрировалось: </span>{{ enrollersCount ?? 0}}</p>
                 </div>
                 <div class="about-event__card">
@@ -23,10 +24,10 @@
                 </div>
                 <div class="about-event__card">
                     <h2>Описание мероприятия</h2>
-                    <p>{{ event.description }}</p>
+                    <p class="about-event__description">{{ event.description }}</p>
                 </div>
-                <router-link :to="{path:`/editevent/${event.id}`}" v-if="isAuth" class="event__edit">Редактировать</router-link>
-                <router-link to="" @click.prevent="openEnrollModal" class=" btn btn-filled">Зарегистрироваться</router-link>
+                <router-link :to="{path:`/editevent/${event.id}`}" v-if="isAuth" class="event__edit btn btn-red">Редактировать</router-link>
+                <router-link to="" @click.prevent="openEnrollModal" class=" btn btn-filled" :class="{disabled: event.enrollment_disabled == 1}">Зарегистрироваться</router-link>
             </div>
             <img :src="event.picture_url" alt="">
         </div>
@@ -41,12 +42,12 @@ import { useRoute, useRouter } from 'vue-router'
 import { dayLongMonthYear } from '../utils/dateFormatter'
 
 import EnrollEventModal from '../components/EnrollEventModal.vue'
+import AppLoader from '../components/AppLoader.vue'
 
 export default {
-    components: { EnrollEventModal },
+    components: { EnrollEventModal, AppLoader },
     setup() {
         const route = useRoute();
-        const router = useRouter();
         const store = useStore();
         const event = ref({});
         const eventId = route.params.id;
@@ -54,6 +55,8 @@ export default {
             return route.query.enrollersCount ?? store.getters['Enrollers/enrollersByEventId'](eventId).length;
         })
 
+
+        const isLoading = ref(false);
         const isAuth = store.getters['Admin/isAuth'];
 
         const speakers = computed(() => {
@@ -74,8 +77,9 @@ export default {
         }
 
         onMounted(async () => {
+            isLoading.value = true;
             event.value = await store.dispatch('Events/fetchEventById', eventId);
-            console.log(router)
+            isLoading.value = false;
         })
 
         return {
@@ -84,7 +88,8 @@ export default {
             enrollersCount,
             isModalOpen,
             openEnrollModal,
-            isAuth,
+            isAuth, 
+            isLoading,
             dayLongMonthYear,
         }
     }

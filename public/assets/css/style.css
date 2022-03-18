@@ -64,6 +64,13 @@ h1 {
   margin-bottom: 1.3em;
 }
 
+a.disabled {
+  pointer-events: none;
+  background-color: lightgrey;
+  border-color: grey;
+  color: grey;
+}
+
 .organization {
   margin-bottom: 3.5em;
   border-left: 10px solid #1e77c0;
@@ -404,6 +411,10 @@ button[disabled] {
   margin-bottom: 2em;
   border-top: 5px solid #1e77c0;
   box-shadow: 0px 0px 3px 0 #1e77c0;
+}
+
+.about-event__description {
+  white-space: break-spaces;
 }
 
 .about-event__info {

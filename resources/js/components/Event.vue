@@ -17,7 +17,8 @@
             <div class="event__enrollers-count">Зарегистрировалось: <span>{{ enrollers.length }}</span></div>
             <div class="event__links">
                 <router-link :to="{ path: `/event/${data.id}`, query: {'enrollersCount': enrollers.length} }" class="btn btn-red">Подробнее</router-link>
-                <router-link to="" @click.prevent="openEnrollModal(data.id)" class=" btn btn-filled">Зарегистрироваться</router-link>
+                <router-link to="" @click.prevent="openEnrollModal(data.id)" class=" btn btn-filled" :class="{disabled: data.enrollment_disabled == 1}">Зарегистрироваться</router-link>
+                
             </div>
         </div>
     </div>
@@ -42,7 +43,6 @@ export default {
 
         const isModalOpen = computed(() => store.getters['Modals/enrollEventModal']);
         const isAuth = computed(() => store.getters['Admin/isAuth'])
-
         const enrollers = ref('')
 
         const openEnrollModal = () => {
@@ -50,6 +50,7 @@ export default {
         }
 
         onMounted(async() => {
+            console.log(props.data.id, props.data.picture_url)
             enrollers.value = await store.getters['Enrollers/enrollersByEventId'](props.data.id)
         })
 

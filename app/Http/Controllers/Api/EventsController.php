@@ -122,8 +122,7 @@ class EventsController extends Controller
             $path = $request->img->storeAs("images/{$folder}", $name);
             $picture_url = "/uploads/$path";
         } else {
-            $path = "/img/event_bg.jpg";
-            $picture_url = $path;
+            $picture_url = Event::where('id', $id)->value('picture_url');
         }
 
         Event::where('id', $id)->update([
