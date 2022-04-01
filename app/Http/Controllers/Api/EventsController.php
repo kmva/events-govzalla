@@ -16,7 +16,29 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return Event::orderBy('date')->get();
+        return DB::table('events')
+        ->join('organizations', 'organization_id', '=', 'organizations.id')
+        ->select(
+            'events.id',
+            'title', 
+            'format', 
+            'description', 
+            'organizations.id as organization_id',
+            'organizations.name as organization_name',
+            'subdivision', 
+            'direction', 
+            'date', 
+            'location', 
+            'speakers', 
+            'target_audience', 
+            'participants_number', 
+            'picture_url',
+            'enrollment_disabled',
+            'removed',
+        )
+        ->orderBy('organization_id')
+        ->orderBy('date')
+        ->get();
     }
 
     /**
@@ -41,7 +63,7 @@ class EventsController extends Controller
             'title' => 'bail|required',
             'format' => 'required',
             'description' => 'required',
-            'organization' => 'required',
+            'organization_id' => 'required',
             'date' => 'required',
             'location' => 'required',
             'speakers' => 'required',
@@ -62,7 +84,7 @@ class EventsController extends Controller
             'title' => $request->title,
             'format' => $request->format,
             'description' => $request->description,
-            'organization' => $request->organization,
+            'organization_id' => $request->organization_id,
             'subdivision' => $request->subdivision,
             'direction' => $request->direction,
             'date' => $request->date,
@@ -109,7 +131,7 @@ class EventsController extends Controller
             'title' => 'bail|required',
             'format' => 'required',
             'description' => 'required',
-            'organization' => 'required',
+            'organization_id' => 'required',
             'date' => 'required',
             'location' => 'required',
             'speakers' => 'required',
@@ -129,7 +151,7 @@ class EventsController extends Controller
             'title' => $request->title,
             'format' => $request->format,
             'description' => $request->description,
-            'organization' => $request->organization,
+            'organization_id' => $request->organization_id,
             'subdivision' => $request->subdivision,
             'direction' => $request->direction,
             'date' => $request->date,
@@ -140,6 +162,37 @@ class EventsController extends Controller
             'picture_url' => $picture_url,
         ]);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function remove(Request $request, $id)
+    {
+        Event::where('id', $id)->update([
+            'removed' => $request->removed
+        ]);
+    }
+
+    
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function close(Request $request, $id)
+    {
+        Event::where('id', $id)->update([
+            'enrollment_disabled' => $request->enrollment_disabled
+        ]);
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

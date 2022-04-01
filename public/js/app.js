@@ -20041,7 +20041,7 @@ __webpack_require__.r(__webpack_exports__);
         phoneError = _useField5.errorMessage,
         phoneBlur = _useField5.handleBlur;
 
-    var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
+    var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.required('Обязательное поле')),
         organization = _useField6.value,
         organizationError = _useField6.errorMessage,
         organizationBlur = _useField6.handleBlur;
@@ -20210,14 +20210,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(props.data.id, props.data.picture_url);
-              _context.next = 3;
+              _context.next = 2;
               return store.getters['Enrollers/enrollersByEventId'](props.data.id);
 
-            case 3:
+            case 2:
               enrollers.value = _context.sent;
 
-            case 4:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -20229,7 +20228,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isModalOpen: isModalOpen,
       isAuth: isAuth,
       enrollers: enrollers,
-      dayLongMonth: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.dayLongMonth
+      dayLongMonth: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.dayLongMonth,
+      time: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.time
     };
   }
 });
@@ -20303,7 +20303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return store.dispatch('Enrollers/fetchEnrollers');
 
             case 5:
-              organizations.value = _.groupBy(eventsFromStore.value, "organization");
+              organizations.value = _.groupBy(eventsFromStore.value, "organization_name");
               isLoading.value = false;
 
             case 7:
@@ -20623,9 +20623,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var event = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
     var eventId = route.params.id;
     var enrollersCount = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      var _route$query$enroller;
-
-      return (_route$query$enroller = route.query.enrollersCount) !== null && _route$query$enroller !== void 0 ? _route$query$enroller : store.getters['Enrollers/enrollersByEventId'](eventId).length;
+      return store.getters['Enrollers/enrollersByEventId'](eventId).length;
     });
     var isLoading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var isAuth = store.getters['Admin/isAuth'];
@@ -20646,25 +20644,99 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       store.commit('Modals/openModal', 'enrollEventModal');
     };
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    var toggleRemoved = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                store.dispatch('Events/toggleRemoving', {
+                  id: event.value.id,
+                  removed: !event.value.removed
+                });
+                _context.next = 3;
+                return fetchEvent();
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function toggleRemoved() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    var toggleEnrolling = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                store.dispatch('Events/toggleEnrolling', {
+                  id: event.value.id,
+                  enrollment_disabled: !event.value.enrollment_disabled
+                });
+                _context2.next = 3;
+                return fetchEvent();
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function toggleEnrolling() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    var fetchEvent = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                isLoading.value = true;
+                _context3.next = 3;
+                return store.dispatch('Events/fetchEventById', eventId);
+
+              case 3:
+                event.value = _context3.sent;
+                isLoading.value = false;
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function fetchEvent() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              isLoading.value = true;
-              _context.next = 3;
-              return store.dispatch('Events/fetchEventById', eventId);
+              _context4.next = 2;
+              return fetchEvent();
 
-            case 3:
-              event.value = _context.sent;
-              isLoading.value = false;
-
-            case 5:
+            case 2:
             case "end":
-              return _context.stop();
+              return _context4.stop();
           }
         }
-      }, _callee);
+      }, _callee4);
     })));
     return {
       event: event,
@@ -20674,7 +20746,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       openEnrollModal: openEnrollModal,
       isAuth: isAuth,
       isLoading: isLoading,
-      dayLongMonthYear: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.dayLongMonthYear
+      dayLongMonthYear: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.dayLongMonthYear,
+      toggleRemoved: toggleRemoved,
+      toggleEnrolling: toggleEnrolling
     };
   }
 });
@@ -20805,7 +20879,7 @@ var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option disabled>Выберите один из вариантов</option><option>Министерство образования и науки Чеченской Республики</option><option>Институт развития образования Чеченской Республики</option><option>Центр непрерывного повышения профессионального мастерства педагогических работников Чеченской Республики</option><option>Департамент образования Мэрии г. Грозного</option><option>МУ «Управление образования Грозненского муниципального района»</option><option>МУ «Шаройский районный отдел образования»</option><option>МУ «Отдел образования Шелковского муниципального района»</option><option>МУ «Управление образования Гудермесского муниципального района»</option><option>МУ «Отдел образования Шалинского муниципального района»</option><option>МУ «Отдел образования Шатойского муниципального района»</option><option>МУ «Отдел образования Урус-Мартановского муниципального района»</option><option>МУ «Управление образования Ножай-Юртовского муниципального района»</option><option>МУ «Наурский районный отдел образования»</option><option>МУ «Веденский районный отдел образования»</option><option>МУ «Итум-Калинский районный отдел образования»</option><option>МУ «Отдел образования администрации Надтеречного муниципального района»</option><option>МУ «Отдел образования Серноводского муниципального района»</option><option>МУ «Департамент образования г.Аргун»</option><option>МУ «Управление образования Курчалоевского муниципального района»</option><option>МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>", 21);
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option disabled>Выберите один из вариантов</option><option value=\"1\">Министерство образования и науки Чеченской Республики</option><option value=\"2\">Институт развития образования Чеченской Республики</option><option value=\"3\">Центр непрерывного повышения профессионального мастерства педагогических работников Чеченской Республики</option><option value=\"4\">Департамент образования Мэрии г. Грозного</option><option value=\"5\">МУ «Управление образования Грозненского муниципального района»</option><option value=\"6\">МУ «Шаройский районный отдел образования»</option><option value=\"7\">МУ «Отдел образования Шелковского муниципального района»</option><option value=\"8\">МУ «Управление образования Гудермесского муниципального района»</option><option value=\"9\">МУ «Отдел образования Шалинского муниципального района»</option><option value=\"10\">МУ «Отдел образования Шатойского муниципального района»</option><option value=\"11\">МУ «Отдел образования Урус-Мартановского муниципального района»</option><option value=\"12\">МУ «Управление образования Ножай-Юртовского муниципального района»</option><option value=\"13\">МУ «Наурский районный отдел образования»</option><option value=\"14\">МУ «Веденский районный отдел образования»</option><option value=\"15\">МУ «Итум-Калинский районный отдел образования»</option><option value=\"16\">МУ «Отдел образования администрации Надтеречного муниципального района»</option><option value=\"17\">МУ «Отдел образования Серноводского муниципального района»</option><option value=\"18\">МУ «Департамент образования г.Аргун»</option><option value=\"19\">МУ «Управление образования Курчалоевского муниципального района»</option><option value=\"20\">МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>", 21);
 
 var _hoisted_48 = [_hoisted_27];
 var _hoisted_49 = {
@@ -20961,15 +21035,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
-      invalid: _ctx.organizationError
+      invalid: _ctx.organizationIdError
     }])
   }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-      return _ctx.organization = $event;
+      return _ctx.organization_id = $event;
     })
   }, _hoisted_48, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.organization]]), _ctx.organizationError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.organizationError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.organization_id]]), _ctx.organizationIdError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.organizationIdError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -21332,7 +21406,7 @@ var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option disabled>Выберите один из вариантов</option><option>Министерство образования и науки Чеченской Республики</option><option>Институт развития образования Чеченской Республики</option><option>Центр непрерывного повышения профессионального мастерства педагогических работников Чеченской Республики</option><option>Департамент образования Мэрии г. Грозного</option><option>МУ «Управление образования Грозненского муниципального района»</option><option>МУ «Шаройский районный отдел образования»</option><option>МУ «Отдел образования Шелковского муниципального района»</option><option>МУ «Управление образования Гудермесского муниципального района»</option><option>МУ «Отдел образования Шалинского муниципального района»</option><option>МУ «Отдел образования Шатойского муниципального района»</option><option>МУ «Отдел образования Урус-Мартановского муниципального района»</option><option>МУ «Управление образования Ножай-Юртовского муниципального района»</option><option>МУ «Наурский районный отдел образования»</option><option>МУ «Веденский районный отдел образования»</option><option>МУ «Итум-Калинский районный отдел образования»</option><option>МУ «Отдел образования администрации Надтеречного муниципального района»</option><option>МУ «Отдел образования Серноводского муниципального района»</option><option>МУ «Департамент образования г.Аргун»</option><option>МУ «Управление образования Курчалоевского муниципального района»</option><option>МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>", 21);
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option disabled>Выберите один из вариантов</option><option value=\"1\">Министерство образования и науки Чеченской Республики</option><option value=\"2\">Институт развития образования Чеченской Республики</option><option value=\"3\">Центр непрерывного повышения профессионального мастерства педагогических работников Чеченской Республики</option><option value=\"4\">Департамент образования Мэрии г. Грозного</option><option value=\"5\">МУ «Управление образования Грозненского муниципального района»</option><option value=\"6\">МУ «Шаройский районный отдел образования»</option><option value=\"7\">МУ «Отдел образования Шелковского муниципального района»</option><option value=\"8\">МУ «Управление образования Гудермесского муниципального района»</option><option value=\"9\">МУ «Отдел образования Шалинского муниципального района»</option><option value=\"10\">МУ «Отдел образования Шатойского муниципального района»</option><option value=\"11\">МУ «Отдел образования Урус-Мартановского муниципального района»</option><option value=\"12\">МУ «Управление образования Ножай-Юртовского муниципального района»</option><option value=\"13\">МУ «Наурский районный отдел образования»</option><option value=\"14\">МУ «Веденский районный отдел образования»</option><option value=\"15\">МУ «Итум-Калинский районный отдел образования»</option><option value=\"16\">МУ «Отдел образования администрации Надтеречного муниципального района»</option><option value=\"17\">МУ «Отдел образования Серноводского муниципального района»</option><option value=\"18\">МУ «Департамент образования г.Аргун»</option><option value=\"19\">МУ «Управление образования Курчалоевского муниципального района»</option><option value=\"20\">МУ «Отдел образования Ачхой-Мартановского муниципального района»</option>", 21);
 
 var _hoisted_48 = [_hoisted_27];
 var _hoisted_49 = {
@@ -21494,15 +21568,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['form-control', {
-      invalid: _ctx.organizationError
+      invalid: _ctx.organizationIdError
     }])
   }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-      return _ctx.organization = $event;
+      return _ctx.organization_id = $event;
     })
   }, _hoisted_48, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.organization]]), _ctx.organizationError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.organizationError), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.organization_id]]), _ctx.organizationIdError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.organizationIdError), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
   /* CLASS */
@@ -22088,26 +22162,33 @@ var _hoisted_9 = {
   "class": "event__format"
 };
 var _hoisted_10 = {
+  key: 0,
+  "class": "event__removed-banner"
+};
+var _hoisted_11 = {
   "class": "event__enrollers-count"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрировалось: ");
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрировалось: ");
 
-var _hoisted_12 = {
+var _hoisted_13 = {
   "class": "event__links"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Подробнее");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Подробнее");
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
   var _component_EnrollEventModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EnrollEventModal");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "event",
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" :class=\"{'event--removed': !isAuth && data.removed, 'event--removed-for-admin': isAuth && data.removed} "), !$props.data.removed || $props.data.removed && $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 0,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["event", {
+      'event--removed': $setup.isAuth && $props.data.removed
+    }]),
     data: $props.data
   }, [$setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 0,
@@ -22130,25 +22211,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: ""
   }, null, 8
   /* PROPS */
-  , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayLongMonth($props.data.date)), 1
+  , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayLongMonth($props.data.date)) + ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.time($props.data.date)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.title), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.format), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.enrollers.length), 1
+  ), $setup.isAuth && $props.data.removed ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, "Снято с публикации")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.enrollers.length), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
-      path: "/event/".concat($props.data.id),
-      query: {
-        'enrollersCount': $setup.enrollers.length
-      }
+      path: "/event/".concat($props.data.id)
     },
     "class": "btn btn-red"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_13];
+      return [_hoisted_14];
     }),
     _: 1
     /* STABLE */
@@ -22165,17 +22243,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }])
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_14];
+      return [_hoisted_15];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["class"])])])], 8
-  /* PROPS */
-  , _hoisted_1), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
-    key: 0,
+  , ["class"])])])], 10
+  /* CLASS, PROPS */
+  , _hoisted_1)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
+    key: 1,
     data: $props.data
   }, null, 8
   /* PROPS */
@@ -22752,7 +22830,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), $setup.event.target_audience ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.target_audience), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.organization ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.organization_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization_name), 1
   /* TEXT */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.subdivision ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.subdivision), 1
   /* TEXT */
@@ -22772,8 +22850,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
   /* TEXT */
-  )]), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+  )]), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
+    "class": "btn btn-red",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $setup.toggleRemoved && $setup.toggleRemoved.apply($setup, arguments);
+    })
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.removed ? 'Опубликовать' : 'Снять с публикации'), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
+    "class": "btn btn-red",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $setup.toggleEnrolling && $setup.toggleEnrolling.apply($setup, arguments);
+    })
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.enrollment_disabled ? 'Открыть приём заявок' : 'Закрыть приём заявок'), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 2,
     to: {
       path: "/editevent/".concat($setup.event.id)
     },
@@ -23475,20 +23569,23 @@ var actions = {
       }, _callee4, null, [[1, 7]]);
     }))();
   },
-  deleteEvent: function deleteEvent(_ref5, id) {
+  // снять с публикации 
+  toggleRemoving: function toggleRemoving(_ref5, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-      var commit, res;
+      var dispatch;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref5.commit;
+              dispatch = _ref5.dispatch;
               _context5.prev = 1;
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/events/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/events/remove/".concat(payload.id), {
+                removed: payload.removed
+              });
 
             case 4:
-              res = _context5.sent;
+              dispatch('fetchEvents');
               _context5.next = 10;
               break;
 
@@ -23503,6 +23600,69 @@ var actions = {
           }
         }
       }, _callee5, null, [[1, 7]]);
+    }))();
+  },
+  // закрыть регистрацию
+  toggleEnrolling: function toggleEnrolling(_ref6, payload) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      var dispatch;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              dispatch = _ref6.dispatch;
+              _context6.prev = 1;
+              _context6.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/events/close/".concat(payload.id), {
+                enrollment_disabled: payload.enrollment_disabled
+              });
+
+            case 4:
+              dispatch('fetchEvents');
+              _context6.next = 10;
+              break;
+
+            case 7:
+              _context6.prev = 7;
+              _context6.t0 = _context6["catch"](1);
+              console.log(_context6.t0);
+
+            case 10:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6, null, [[1, 7]]);
+    }))();
+  },
+  deleteEvent: function deleteEvent(_ref7, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+      var commit, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              commit = _ref7.commit;
+              _context7.prev = 1;
+              _context7.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/events/".concat(id));
+
+            case 4:
+              res = _context7.sent;
+              _context7.next = 10;
+              break;
+
+            case 7:
+              _context7.prev = 7;
+              _context7.t0 = _context7["catch"](1);
+              console.log(_context7.t0);
+
+            case 10:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7, null, [[1, 7]]);
     }))();
   }
 };
@@ -23657,10 +23817,10 @@ function useAddEventForm() {
       dateError = _useField5.errorMessage,
       dateBlur = _useField5.handleBlur;
 
-  var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
-      organization = _useField6.value,
-      organizationError = _useField6.errorMessage,
-      organizationBlur = _useField6.handleBlur;
+  var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('organization_id', yup__WEBPACK_IMPORTED_MODULE_0__.number().required('Обязательное поле')),
+      organization_id = _useField6.value,
+      organizationIdError = _useField6.errorMessage,
+      organizationIdBlur = _useField6.handleBlur;
 
   var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       subdivision = _useField7.value,
@@ -23712,7 +23872,7 @@ function useAddEventForm() {
     formData.append('description', description.value);
     formData.append('location', location.value);
     formData.append('date', date.value);
-    formData.append('organization', organization.value);
+    formData.append('organization_id', organization_id.value);
     formData.append('subdivision', (_subdivision$value = subdivision.value) !== null && _subdivision$value !== void 0 ? _subdivision$value : null);
     formData.append('direction', (_direction$value = direction.value) !== null && _direction$value !== void 0 ? _direction$value : null);
     formData.append('speakers', JSON.stringify(speakers.value));
@@ -23729,7 +23889,7 @@ function useAddEventForm() {
     description.value = '';
     location.value = '';
     date.value = '';
-    organization.value = '';
+    organization_id.value = '';
     subdivision.value = '';
     direction.value = '';
     speakers.value = '';
@@ -23744,7 +23904,7 @@ function useAddEventForm() {
     description: description,
     location: location,
     date: date,
-    organization: organization,
+    organization_id: organization_id,
     subdivision: subdivision,
     direction: direction,
     speaker: speaker,
@@ -23757,7 +23917,7 @@ function useAddEventForm() {
     descriptionError: descriptionError,
     locationError: locationError,
     dateError: dateError,
-    organizationError: organizationError,
+    organizationIdError: organizationIdError,
     subdivisionError: subdivisionError,
     directionError: directionError,
 
@@ -23769,7 +23929,7 @@ function useAddEventForm() {
     descriptionBlur: descriptionBlur,
     locationBlur: locationBlur,
     dateBlur: dateBlur,
-    organizationBlur: organizationBlur,
+    organizationIdBlur: organizationIdBlur,
     subdivisionBlur: subdivisionBlur,
     directionBlur: directionBlur,
 
@@ -23924,7 +24084,7 @@ function useEditEventForm() {
       description: event.description,
       location: event.location,
       date: event.date,
-      organization: event.organization,
+      organization_id: event.organization_id,
       subdivision: !event.subdivision ? '' : event.subdivision,
       direction: !event.direction ? '' : event.direction,
       target_audience: !event.target_audience ? '' : event.target_audience,
@@ -23978,10 +24138,10 @@ function useEditEventForm() {
       dateError = _useField5.errorMessage,
       dateBlur = _useField5.handleBlur;
 
-  var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().required('Обязательное поле')),
-      organization = _useField6.value,
-      organizationError = _useField6.errorMessage,
-      organizationBlur = _useField6.handleBlur;
+  var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('organization_id', yup__WEBPACK_IMPORTED_MODULE_0__.number().required('Обязательное поле')),
+      organization_id = _useField6.value,
+      organizationIdError = _useField6.errorMessage,
+      organizationIdBlur = _useField6.handleBlur;
 
   var _useField7 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.useField)('subdivision', yup__WEBPACK_IMPORTED_MODULE_0__.string().trim().nullable()),
       subdivision = _useField7.value,
@@ -24031,7 +24191,7 @@ function useEditEventForm() {
     formData.append('description', description.value);
     formData.append('location', location.value);
     formData.append('date', date.value);
-    formData.append('organization', organization.value);
+    formData.append('organization_id', organization_id.value);
     formData.append('subdivision', subdivision.value);
     formData.append('direction', direction.value);
     formData.append('speakers', JSON.stringify(speakers.value));
@@ -24055,7 +24215,7 @@ function useEditEventForm() {
     description: description,
     location: location,
     date: date,
-    organization: organization,
+    organization_id: organization_id,
     subdivision: subdivision,
     direction: direction,
     speakers: speakers,
@@ -24068,7 +24228,7 @@ function useEditEventForm() {
     descriptionError: descriptionError,
     locationError: locationError,
     dateError: dateError,
-    organizationError: organizationError,
+    organizationIdError: organizationIdError,
     subdivisionError: subdivisionError,
     directionError: directionError,
 
@@ -24080,7 +24240,7 @@ function useEditEventForm() {
     descriptionBlur: descriptionBlur,
     locationBlur: locationBlur,
     dateBlur: dateBlur,
-    organizationBlur: organizationBlur,
+    organizationIdBlur: organizationIdBlur,
     subdivisionBlur: subdivisionBlur,
     directionBlur: directionBlur,
 
@@ -24109,12 +24269,19 @@ function useEditEventForm() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "dayLongMonth": () => (/* binding */ dayLongMonth),
+/* harmony export */   "time": () => (/* binding */ time),
 /* harmony export */   "dayLongMonthYear": () => (/* binding */ dayLongMonthYear)
 /* harmony export */ });
 function dayLongMonth(date) {
   return new Date(date).getDate() + ' ' + new Date(date).toLocaleString('ru', {
     month: 'long'
   });
+}
+function time(date) {
+  return new Date(date).getTime();
+  /* 
+  + ':' +
+  new Date(date).getMinutes(); */
 }
 function dayLongMonthYear(date) {
   return new Date(date).getDate() + ' ' + new Date(date).toLocaleString('ru', {
@@ -28580,7 +28747,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;\n\n400;500&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\na.disabled {\n  pointer-events: none;\n  background-color: lightgrey;\n  border-color: grey;\n  color: grey;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 2em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 390px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n}\n\n.about-event p {\n  display: flex;\n  justify-content: flex-start;\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__description {\n  white-space: break-spaces;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  min-width: 211px;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event__speakers li {\n  margin-bottom: 0.7em;\n  position: relative;\n}\n\n.about-event__speakers li::before {\n  content: \"\";\n  display: inline-block;\n  background-color: #1e77c0;\n  width: 30px;\n  height: 3px;\n  position: relative;\n  top: -4px;\n  margin-right: 0.5em;\n}\n\n.about-event img {\n  width: 55%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers__download-link {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin: 1em 0;\n  row-gap: 0.5em;\n  width: 170px;\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__download-link:hover,\n.enrollers__download-link:active {\n  color: #38c172;\n}\n\n.enrollers__download-link img {\n  width: 40px;\n}\n\n.enrollers__table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers__table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers__table thead tr:first-child a {\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__table thead tr:first-child a:hover,\n.enrollers__table thead tr:first-child a:active {\n  color: #e3342f;\n}\n\n.enrollers__table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers__table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers__table td,\n.enrollers__table th {\n  padding: 0.9em 1.1em;\n}\n\n.speakers {\n  margin: 0.8em 0 1em;\n}\n\n.speaker {\n  margin-bottom: 0.5em;\n}\n\n.delete-speaker {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  padding: 0.15em;\n  margin-left: 0.5em;\n  text-align: center;\n  background-color: #FFF;\n  cursor: pointer;\n}\n\n.add-speaker {\n  display: block;\n  margin-left: 0.5em;\n  color: #1e77c0;\n  text-decoration: underline;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event p {\n    flex-direction: column;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    min-width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\na.disabled {\n  pointer-events: none;\n  background-color: lightgrey;\n  border-color: grey;\n  color: grey;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 2em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 350px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event--removed {\n  border: 1px solid grey;\n  background-color: lightgrey;\n}\n\n.events .event--removed .event__links .btn.btn-red {\n  width: 100%;\n}\n\n.events .event--removed .btn.btn-filled {\n  display: none;\n}\n\n.events .event__removed-banner {\n  color: red;\n  margin-top: 0.7em;\n  font-size: 1.2rem;\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\n.events .event__links .btn.btn-red {\n  width: 40%;\n}\n\n.events .event__links .btn.btn-filled {\n  width: 57%;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n}\n\n.about-event p {\n  display: flex;\n  justify-content: flex-start;\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__description {\n  white-space: break-spaces;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  min-width: 211px;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event__speakers li {\n  margin-bottom: 0.7em;\n  position: relative;\n}\n\n.about-event__speakers li::before {\n  content: \"\";\n  display: inline-block;\n  background-color: #1e77c0;\n  width: 30px;\n  height: 3px;\n  position: relative;\n  top: -4px;\n  margin-right: 0.5em;\n}\n\n.about-event img {\n  width: 55%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers__download-link {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin: 1em 0;\n  row-gap: 0.5em;\n  width: 170px;\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__download-link:hover,\n.enrollers__download-link:active {\n  color: #38c172;\n}\n\n.enrollers__download-link img {\n  width: 40px;\n}\n\n.enrollers__table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers__table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers__table thead tr:first-child a {\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__table thead tr:first-child a:hover,\n.enrollers__table thead tr:first-child a:active {\n  color: #e3342f;\n}\n\n.enrollers__table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers__table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers__table td,\n.enrollers__table th {\n  padding: 0.9em 1.1em;\n}\n\n.speakers {\n  margin: 0.8em 0 1em;\n}\n\n.speaker {\n  margin-bottom: 0.5em;\n}\n\n.delete-speaker {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  padding: 0.15em;\n  margin-left: 0.5em;\n  text-align: center;\n  background-color: #FFF;\n  cursor: pointer;\n}\n\n.add-speaker {\n  display: block;\n  margin-left: 0.5em;\n  color: #1e77c0;\n  text-decoration: underline;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event p {\n    flex-direction: column;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    min-width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

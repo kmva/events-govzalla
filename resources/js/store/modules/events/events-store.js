@@ -45,6 +45,26 @@ const actions = {
             console.log(e)
         }
     },
+
+    // снять с публикации 
+    async toggleRemoving({ dispatch }, payload) {
+        try {
+            await axios.put(`/api/events/remove/${payload.id}`, {removed: payload.removed});
+            dispatch('fetchEvents');
+        } catch (e) {
+            console.log(e)
+        }
+    },
+
+    // закрыть регистрацию
+    async toggleEnrolling({ dispatch }, payload) {
+        try {
+            await axios.put(`/api/events/close/${payload.id}`, {enrollment_disabled: payload.enrollment_disabled});
+            dispatch('fetchEvents');
+        } catch (e) {
+            console.log(e)
+        }
+    },
     
     async deleteEvent({ commit }, id) {
         try {

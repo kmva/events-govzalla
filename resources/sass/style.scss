@@ -126,7 +126,7 @@ a.disabled{
     .event{
         width: 31%;
         max-width: 400px;
-        min-width: 390px;
+        min-width: 350px;
         background-color: #FFF;
         transition: .3s;
         border: 1px solid $cyan;
@@ -136,6 +136,25 @@ a.disabled{
         &:hover{
             transform: scale(1.02);
             box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: .1);
+        }
+
+        &--removed{
+            border: 1px solid grey;
+            background-color: lightgrey;
+
+            .event__links .btn.btn-red{
+                width: 100%;
+            }
+
+            .btn.btn-filled{
+                display: none;
+            }
+        }
+
+        &__removed-banner{
+            color: red;
+            margin-top: .7em;
+            font-size: 1.2rem;
         }
 
         &__edit{
@@ -214,6 +233,14 @@ a.disabled{
         &__links{
             display: flex;
             justify-content: space-between;
+
+            .btn.btn-red{
+                width: 40%;
+            }
+
+            .btn.btn-filled{
+                width: 57%;
+            }
         }
     }
 }

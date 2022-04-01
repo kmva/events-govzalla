@@ -18,7 +18,7 @@ export default function useEditEventForm() {
             description: event.description,
             location: event.location,
             date: event.date,
-            organization: event.organization,
+            organization_id: event.organization_id,
             subdivision: !event.subdivision ? '' : event.subdivision,
             direction: !event.direction ? '' : event.direction,
             target_audience: !event.target_audience ? '' : event.target_audience,
@@ -85,11 +85,10 @@ export default function useEditEventForm() {
             .required('Обязательное поле')
     );
 
-    const {value: organization, errorMessage: organizationError, handleBlur: organizationBlur} = useField(
-        'organization',
+    const {value: organization_id, errorMessage: organizationIdError, handleBlur: organizationIdBlur} = useField(
+        'organization_id',
         yup
-            .string()
-            .trim()
+            .number()
             .required('Обязательное поле')
     );
 
@@ -153,7 +152,7 @@ export default function useEditEventForm() {
         formData.append('description', description.value);
         formData.append('location', location.value);
         formData.append('date', date.value);
-        formData.append('organization', organization.value);
+        formData.append('organization_id', organization_id.value);
         formData.append('subdivision', subdivision.value);
         formData.append('direction', direction.value);
         formData.append('speakers', JSON.stringify(speakers.value));
@@ -172,7 +171,7 @@ export default function useEditEventForm() {
         description,
         location,
         date,
-        organization,
+        organization_id,
         subdivision,
         direction,
         speakers,
@@ -186,7 +185,7 @@ export default function useEditEventForm() {
         descriptionError,
         locationError,
         dateError,
-        organizationError,
+        organizationIdError,
         subdivisionError,
         directionError,
         /* speakersError, */
@@ -198,7 +197,7 @@ export default function useEditEventForm() {
         descriptionBlur,
         locationBlur,
         dateBlur,
-        organizationBlur,
+        organizationIdBlur,
         subdivisionBlur,
         directionBlur,
         /* speakersBlur, */

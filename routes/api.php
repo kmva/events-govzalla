@@ -17,6 +17,8 @@ use App\Http\Controllers\Api\AdminController;
 */
 
 Route::resource('events', EventsController::class);
+Route::put('events/remove/{event}', [App\Http\Controllers\Api\EventsController::class, 'remove']);
+Route::put('events/close/{event}', [App\Http\Controllers\Api\EventsController::class, 'close']);
 
 Route::get('enrollers/export', [App\Http\Controllers\Api\EnrollersController::class, 'export']);
 Route::resource('enrollers', EnrollersController::class);

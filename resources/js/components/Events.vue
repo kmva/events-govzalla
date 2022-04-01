@@ -75,9 +75,10 @@ export default {
         const searchQuery = ref('');
         const searchResultEvents = computed(() => {
             if(searchQuery.value) { return  eventsFromStore.value.filter(event => { 
-                const lowerCaseTitle = event.title.toLowerCase();
-                const lowerCaseSearchQuery = searchQuery.value.toLowerCase();
-                return lowerCaseTitle.includes(lowerCaseSearchQuery)}) 
+                    const lowerCaseTitle = event.title.toLowerCase();
+                    const lowerCaseSearchQuery = searchQuery.value.toLowerCase();
+                    return lowerCaseTitle.includes(lowerCaseSearchQuery)
+                }) 
             }
         });
 
@@ -92,7 +93,7 @@ export default {
             isLoading.value = true;
             await store.dispatch('Events/fetchEvents');
             await store.dispatch('Enrollers/fetchEnrollers');
-            organizations.value = _.groupBy(eventsFromStore.value, "organization");
+            organizations.value = _.groupBy(eventsFromStore.value, "organization_name");
             isLoading.value = false;
         })
 

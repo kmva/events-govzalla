@@ -11,7 +11,7 @@ class Event extends Model
         'title', 
         'format', 
         'description', 
-        'organization', 
+        'organization_id', 
         'subdivision', 
         'direction', 
         'date', 
@@ -19,6 +19,8 @@ class Event extends Model
         'speakers', 
         'target_audience', 
         'participants_number', 
-        'picture_url'
+        'picture_url',
+        'enrollment_disabled',
+        'removed',
     ];
 }
