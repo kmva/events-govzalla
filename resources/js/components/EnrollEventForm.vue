@@ -126,6 +126,7 @@ export default {
         const {value: organization, errorMessage: organizationError, handleBlur: organizationBlur} = useField(
             'organization',
             yup
+                .string()
                 .required('Обязательное поле')
         );
         const {value: position, errorMessage: positionError, handleBlur: positionBlur} = useField(

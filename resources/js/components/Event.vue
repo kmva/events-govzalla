@@ -5,7 +5,8 @@
         <div class="event__header">
             <img class="event__header-img" :src="data.picture_url" alt="">
             <div class="event__header-backdrop">
-                {{ dayLongMonth(data.date) }},  {{ time(data.date) }}
+                {{ dayLongMonth(data.date) }}
+                <br>{{ time(data.date) }}
             </div>
         </div>
         <div class="event__body">

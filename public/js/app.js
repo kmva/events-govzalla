@@ -20041,7 +20041,7 @@ __webpack_require__.r(__webpack_exports__);
         phoneError = _useField5.errorMessage,
         phoneBlur = _useField5.handleBlur;
 
-    var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.required('Обязательное поле')),
+    var _useField6 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.useField)('organization', yup__WEBPACK_IMPORTED_MODULE_0__.string().required('Обязательное поле')),
         organization = _useField6.value,
         organizationError = _useField6.errorMessage,
         organizationBlur = _useField6.handleBlur;
@@ -20747,6 +20747,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isAuth: isAuth,
       isLoading: isLoading,
       dayLongMonthYear: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.dayLongMonthYear,
+      time: _utils_dateFormatter__WEBPACK_IMPORTED_MODULE_2__.time,
       toggleRemoved: toggleRemoved,
       toggleEnrolling: toggleEnrolling
     };
@@ -21556,7 +21557,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       invalid: _ctx.dateError
     }])
   }, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "date",
+    type: "datetime-local",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return _ctx.date = $event;
     })
@@ -22149,35 +22150,40 @@ var _hoisted_4 = ["src"];
 var _hoisted_5 = {
   "class": "event__header-backdrop"
 };
-var _hoisted_6 = {
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_7 = {
   "class": "event__body"
 };
-var _hoisted_7 = {
+var _hoisted_8 = {
   "class": "event__info"
 };
-var _hoisted_8 = {
+var _hoisted_9 = {
   "class": "event__title"
 };
-var _hoisted_9 = {
+var _hoisted_10 = {
   "class": "event__format"
 };
-var _hoisted_10 = {
+var _hoisted_11 = {
   key: 0,
   "class": "event__removed-banner"
 };
-var _hoisted_11 = {
+var _hoisted_12 = {
   "class": "event__enrollers-count"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрировалось: ");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрировалось: ");
 
-var _hoisted_13 = {
+var _hoisted_14 = {
   "class": "event__links"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Подробнее");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Подробнее");
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -22211,22 +22217,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: ""
   }, null, 8
   /* PROPS */
-  , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayLongMonth($props.data.date)) + ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.time($props.data.date)), 1
+  , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayLongMonth($props.data.date)) + " ", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.title), 1
+  ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.time($props.data.date)), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.format), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.title), 1
   /* TEXT */
-  ), $setup.isAuth && $props.data.removed ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, "Снято с публикации")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.enrollers.length), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.format), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  ), $setup.isAuth && $props.data.removed ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, "Снято с публикации")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.enrollers.length), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       path: "/event/".concat($props.data.id)
     },
     "class": "btn btn-red"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_14];
+      return [_hoisted_15];
     }),
     _: 1
     /* STABLE */
@@ -22243,7 +22251,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }])
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_15];
+      return [_hoisted_16];
     }),
     _: 1
     /* STABLE */
@@ -22712,94 +22720,100 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
+}, "Время", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "about-event__subtitle"
 }, "Локация", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_11 = {
   key: 0
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Целевая аудитория", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_13 = {
   key: 1
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Организатор", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
   key: 2
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Подразделение", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = {
+var _hoisted_17 = {
   key: 3
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Направление", -1
 /* HOISTED */
 );
 
-var _hoisted_18 = {
+var _hoisted_19 = {
   key: 4
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Рассчитано на количество человек: ", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "about-event__subtitle"
 }, "Зарегистрировалось: ", -1
 /* HOISTED */
 );
 
-var _hoisted_21 = {
+var _hoisted_22 = {
   "class": "about-event__card"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Спикеры", -1
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Спикеры", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = {
+var _hoisted_24 = {
   "class": "about-event__speakers"
 };
-var _hoisted_24 = {
+var _hoisted_25 = {
   "class": "about-event__card"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Описание мероприятия", -1
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Описание мероприятия", -1
 /* HOISTED */
 );
 
-var _hoisted_26 = {
+var _hoisted_27 = {
   "class": "about-event__description"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Редактировать");
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Редактировать");
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Зарегистрироваться");
 
-var _hoisted_29 = ["src"];
+var _hoisted_30 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$setup$enrollersCoun;
 
@@ -22826,21 +22840,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dayLongMonthYear($setup.event.date)), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.location), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.time($setup.event.date)), 1
   /* TEXT */
-  )]), $setup.event.target_audience ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.target_audience), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.location), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.organization_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization_name), 1
+  )]), $setup.event.target_audience ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.target_audience), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.subdivision ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.subdivision), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.organization_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.organization_name), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.direction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.direction), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.subdivision ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.subdivision), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.participants_number > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.participants_number), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.direction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.direction), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$enrollersCoun = $setup.enrollersCount) !== null && _$setup$enrollersCoun !== void 0 ? _$setup$enrollersCoun : 0), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.event.participants_number > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.participants_number), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.speakers, function (speaker) {
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$setup$enrollersCoun = $setup.enrollersCount) !== null && _$setup$enrollersCoun !== void 0 ? _$setup$enrollersCoun : 0), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_24, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.speakers, function (speaker) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: speaker
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(speaker), 1
@@ -22848,7 +22864,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     );
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.event.description), 1
   /* TEXT */
   )]), $setup.isAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
@@ -22874,7 +22890,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "event__edit btn btn-red"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_27];
+      return [_hoisted_28];
     }),
     _: 1
     /* STABLE */
@@ -22889,7 +22905,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }])
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_28];
+      return [_hoisted_29];
     }),
     _: 1
     /* STABLE */
@@ -22901,7 +22917,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: ""
   }, null, 8
   /* PROPS */
-  , _hoisted_29)])])), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
+  , _hoisted_30)])])), $setup.isModalOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_EnrollEventModal, {
     key: 2,
     data: $setup.event
   }, null, 8
@@ -23873,10 +23889,10 @@ function useAddEventForm() {
     formData.append('location', location.value);
     formData.append('date', date.value);
     formData.append('organization_id', organization_id.value);
-    formData.append('subdivision', (_subdivision$value = subdivision.value) !== null && _subdivision$value !== void 0 ? _subdivision$value : null);
-    formData.append('direction', (_direction$value = direction.value) !== null && _direction$value !== void 0 ? _direction$value : null);
+    formData.append('subdivision', (_subdivision$value = subdivision.value) !== null && _subdivision$value !== void 0 ? _subdivision$value : '');
+    formData.append('direction', (_direction$value = direction.value) !== null && _direction$value !== void 0 ? _direction$value : '');
     formData.append('speakers', JSON.stringify(speakers.value));
-    formData.append('target_audience', (_target_audience$valu = target_audience.value) !== null && _target_audience$valu !== void 0 ? _target_audience$valu : null);
+    formData.append('target_audience', (_target_audience$valu = target_audience.value) !== null && _target_audience$valu !== void 0 ? _target_audience$valu : '');
     formData.append('participants_number', (_participants_number$ = participants_number.value) !== null && _participants_number$ !== void 0 ? _participants_number$ : 0);
 
     if (uploadImg.value) {
@@ -24278,10 +24294,9 @@ function dayLongMonth(date) {
   });
 }
 function time(date) {
-  return new Date(date).getTime();
-  /* 
-  + ':' +
-  new Date(date).getMinutes(); */
+  return new Date(date).toLocaleTimeString({
+    hour12: false
+  }).slice(0, -3);
 }
 function dayLongMonthYear(date) {
   return new Date(date).getDate() + ' ' + new Date(date).toLocaleString('ru', {
@@ -28747,7 +28762,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;\n\n400;500&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\na.disabled {\n  pointer-events: none;\n  background-color: lightgrey;\n  border-color: grey;\n  color: grey;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 2em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 350px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event--removed {\n  border: 1px solid grey;\n  background-color: lightgrey;\n}\n\n.events .event--removed .event__links .btn.btn-red {\n  width: 100%;\n}\n\n.events .event--removed .btn.btn-filled {\n  display: none;\n}\n\n.events .event__removed-banner {\n  color: red;\n  margin-top: 0.7em;\n  font-size: 1.2rem;\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\n.events .event__links .btn.btn-red {\n  width: 40%;\n}\n\n.events .event__links .btn.btn-filled {\n  width: 57%;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n}\n\n.about-event p {\n  display: flex;\n  justify-content: flex-start;\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__description {\n  white-space: break-spaces;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  min-width: 211px;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event__speakers li {\n  margin-bottom: 0.7em;\n  position: relative;\n}\n\n.about-event__speakers li::before {\n  content: \"\";\n  display: inline-block;\n  background-color: #1e77c0;\n  width: 30px;\n  height: 3px;\n  position: relative;\n  top: -4px;\n  margin-right: 0.5em;\n}\n\n.about-event img {\n  width: 55%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers__download-link {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin: 1em 0;\n  row-gap: 0.5em;\n  width: 170px;\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__download-link:hover,\n.enrollers__download-link:active {\n  color: #38c172;\n}\n\n.enrollers__download-link img {\n  width: 40px;\n}\n\n.enrollers__table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers__table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers__table thead tr:first-child a {\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__table thead tr:first-child a:hover,\n.enrollers__table thead tr:first-child a:active {\n  color: #e3342f;\n}\n\n.enrollers__table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers__table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers__table td,\n.enrollers__table th {\n  padding: 0.9em 1.1em;\n}\n\n.speakers {\n  margin: 0.8em 0 1em;\n}\n\n.speaker {\n  margin-bottom: 0.5em;\n}\n\n.delete-speaker {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  padding: 0.15em;\n  margin-left: 0.5em;\n  text-align: center;\n  background-color: #FFF;\n  cursor: pointer;\n}\n\n.add-speaker {\n  display: block;\n  margin-left: 0.5em;\n  color: #1e77c0;\n  text-decoration: underline;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event p {\n    flex-direction: column;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    min-width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #f8fafc;\n  /* \n  background-image: url('/img/2.jpg');\n  background-repeat: no-repeat;\n  background-size: cover;\n  backdrop-filter: blur(10px); */\n  font-family: \"Roboto\", sans-serif;\n  color: #0f0f0f;\n}\n\n.container {\n  width: 80%;\n  margin: auto;\n  padding: 3em;\n}\n\n.container--with-form h1 {\n  text-align: center;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1.5em 5em;\n  box-shadow: 0 1px 5px 0 rgba(30, 119, 192, 0.8);\n  background-color: #FFF;\n  color: #f8fafc;\n}\n\n.main-header__logo {\n  width: 120px;\n}\n\n.main-header .main-nav {\n  font-size: 1.2rem;\n  text-align: center;\n}\n\n.main-header .main-nav__item {\n  display: inline-block;\n  padding: 0.5em;\n  display: inline-block;\n}\n\n.main-header .main-nav__item:not(:last-child) {\n  margin-right: 20px;\n}\n\n.main-header .main-nav__item a {\n  color: #1e77c0;\n}\n\nh1 {\n  margin-bottom: 1.3em;\n}\n\na.disabled {\n  pointer-events: none;\n  background-color: lightgrey;\n  border-color: grey;\n  color: grey;\n}\n\n.organization {\n  margin-bottom: 3.5em;\n  border-left: 10px solid #1e77c0;\n}\n\n.organization__title {\n  margin-bottom: 1em;\n  font-size: 2rem;\n  /*    background-color: $blue; */\n  /* border-bottom: 1px solid $blue; */\n  padding: 0 1em;\n}\n\n.events {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  -moz-column-gap: 1em;\n       column-gap: 1em;\n  row-gap: 2em;\n  padding: 2em;\n  width: 100%;\n}\n\n.events-filters {\n  margin-bottom: 3em;\n}\n\n.events-filters label {\n  margin-right: 0.5em;\n}\n\n.events-filters select,\n.events-filters input {\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  padding: 0.5em;\n  border: 1px solid #6cb2eb;\n}\n\n.events-filters input[type=date] {\n  margin-right: 0.5em;\n  margin-left: 0.5em;\n}\n\n.events-filters .events-filters__search,\n.events-filters__search {\n  width: 100%;\n  margin-bottom: 2em;\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n}\n\n.events .event {\n  width: 31%;\n  max-width: 400px;\n  min-width: 350px;\n  background-color: #FFF;\n  transition: 0.3s;\n  border: 1px solid #6cb2eb;\n  text-align: center;\n  position: relative;\n}\n\n.events .event:hover {\n  transform: scale(1.02);\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);\n}\n\n.events .event--removed {\n  border: 1px solid grey;\n  background-color: lightgrey;\n}\n\n.events .event--removed .event__links .btn.btn-red {\n  width: 100%;\n}\n\n.events .event--removed .btn.btn-filled {\n  display: none;\n}\n\n.events .event__removed-banner {\n  color: red;\n  margin-top: 0.7em;\n  font-size: 1.2rem;\n}\n\n.events .event__edit {\n  position: absolute;\n  top: -1px;\n  right: -1px;\n  padding: 0.5em 1.2em;\n  background: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  border-radius: 0 0 0 32px;\n  transition: 0.3s;\n  z-index: 1;\n}\n\n.events .event__edit:hover,\n.events .event__edit:active {\n  background: #e3342f;\n  color: #FFF;\n}\n\n.events .event__header {\n  height: 180px;\n  font-size: 2rem;\n  font-weight: bold;\n  color: #FFF;\n  text-align: center;\n}\n\n.events .event__header-img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n}\n\n.events .event__header-backdrop {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  height: 180px;\n  padding: 1em;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.events .event__body {\n  padding: 1em;\n  padding-top: 1.3em;\n}\n\n.events .event__info {\n  height: 240px;\n}\n\n.events .event__title {\n  font-size: 1.2rem;\n  margin-bottom: 0.6em;\n}\n\n.events .event__format {\n  color: #6cb2eb;\n}\n\n.events .event__enrollers-count {\n  margin-bottom: 10px;\n}\n\n.events .event__enrollers-count span {\n  font-size: 1.2rem;\n  color: #6cb2eb;\n}\n\n.events .event__links {\n  display: flex;\n  justify-content: space-between;\n}\n\n.events .event__links .btn.btn-red {\n  width: 40%;\n}\n\n.events .event__links .btn.btn-filled {\n  width: 57%;\n}\n\nbutton {\n  display: block;\n}\n\nbutton:hover,\nbutton:active {\n  cursor: pointer;\n}\n\nbutton:disabled,\nbutton[disabled] {\n  color: #fff;\n  background: #d5d5d5;\n  border: none;\n}\n\n.btn {\n  display: block;\n  padding: 1em 0.5em;\n  margin-top: 0.6em;\n  text-align: center;\n  transition: 0.3s;\n}\n\n.btn-red {\n  background-color: #FFF;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  width: 49%;\n}\n\n.btn-red:hover,\n.btn-red:active {\n  background-color: #e3342f;\n  color: #FFF;\n}\n\n.btn-filled {\n  background-color: #e3342f;\n  border: 1px solid #e3342f;\n  color: #FFF;\n  width: 49%;\n}\n\n.btn-filled:hover,\n.btn-filled:active {\n  background-color: #aa201b;\n}\n\n.btn-blue {\n  background-color: #FFF;\n  border: 1px solid #1e77c0;\n  color: #1e77c0;\n}\n\n.btn-blue:hover,\n.btn-blue:active {\n  background-color: #1e77c0;\n  color: #FFF;\n}\n\n.modal-buttons-flex {\n  display: flex;\n  justify-content: space-between;\n}\n\n.modal-buttons-flex button {\n  width: 45%;\n}\n\n.event-title {\n  margin-bottom: 2em;\n}\n\n.required-star {\n  color: #e3342f;\n  font-size: 1.2rem;\n}\n\n/***  Admin   ***/\n\n/** add event **/\n\n.form {\n  width: 600px;\n  margin: auto;\n}\n\n.form-control {\n  margin-bottom: 1.5em;\n  width: 100%;\n}\n\n.form-control.invalid small {\n  display: block;\n  color: #e3342f;\n  margin-top: 10px;\n}\n\n.form-control.invalid input,\n.form-control.invalid textarea,\n.form-control.invalid select {\n  border: 1px solid #e3342f;\n}\n\n.form label {\n  display: block;\n  margin-bottom: 0.6em;\n}\n\n.form input,\n.form textarea,\n.form select {\n  padding: 0.8em;\n  border: 1px solid #6cb2eb;\n  width: 100%;\n}\n\n.form .another-format {\n  margin-top: 0.8em;\n}\n\n.enroll-form {\n  width: 100%;\n}\n\n.enroll-modal {\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 0;\n  width: 35%;\n  min-width: 400px;\n  max-height: 85vh;\n  margin: 5% auto;\n  padding: 3em;\n  overflow: scroll;\n  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.1);\n  background-color: #FFF;\n  z-index: 1000;\n}\n\n.enroll-modal h2 {\n  margin-bottom: 2em;\n}\n\n.modal {\n  position: relative;\n}\n\n.modal-close {\n  position: absolute;\n  top: 1em;\n  right: 0.8em;\n  cursor: pointer;\n  margin-left: 0.5em;\n}\n\n.modal-overlay {\n  position: fixed;\n  overflow: auto;\n  z-index: 999;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.about-event {\n  display: flex;\n  justify-content: space-between;\n  gap: 2em;\n}\n\n.about-event p {\n  display: flex;\n  justify-content: flex-start;\n  margin-bottom: 0.8em;\n}\n\n.about-event h2 {\n  margin-bottom: 2em;\n}\n\n.about-event__card {\n  background: #FFF;\n  padding: 2em;\n  margin-bottom: 2em;\n  border-top: 5px solid #1e77c0;\n  box-shadow: 0px 0px 3px 0 #1e77c0;\n}\n\n.about-event__description {\n  white-space: break-spaces;\n}\n\n.about-event__info {\n  width: 40%;\n}\n\n.about-event__subtitle {\n  font-size: 1.1rem;\n  margin-right: 5px;\n  font-weight: bold;\n  min-width: 211px;\n  width: 211px;\n  display: inline-block;\n}\n\n.about-event__speakers li {\n  margin-bottom: 0.7em;\n  position: relative;\n}\n\n.about-event__speakers li::before {\n  content: \"\";\n  display: inline-block;\n  background-color: #1e77c0;\n  width: 30px;\n  height: 3px;\n  position: relative;\n  top: -4px;\n  margin-right: 0.5em;\n}\n\n.about-event img {\n  width: 55%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n.edit-event-form__buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.edit-event-form__buttons button {\n  width: 200px;\n}\n\n.edit-event-form__delete-btn {\n  color: #e3342f;\n}\n\n.auth-heading {\n  text-align: center;\n}\n\n.auth-form__btn {\n  width: 130px;\n}\n\n.table-wrapper {\n  width: 100%;\n  overflow-x: scroll;\n  margin: auto;\n  margin-bottom: 2.5em;\n  box-shadow: 0 0 5px 0 rgba(108, 178, 235, 0.5);\n}\n\n.enrollers-link {\n  margin-bottom: 1.5em;\n  display: block;\n  font-size: 1.15rem;\n  text-decoration: underline;\n  color: #1e77c0;\n}\n\n.enrollers__download-link {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin: 1em 0;\n  row-gap: 0.5em;\n  width: 170px;\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__download-link:hover,\n.enrollers__download-link:active {\n  color: #38c172;\n}\n\n.enrollers__download-link img {\n  width: 40px;\n}\n\n.enrollers__table {\n  width: 100%;\n  background-color: #FFF;\n}\n\n.enrollers__table thead tr:first-child {\n  font-size: 1.2rem;\n}\n\n.enrollers__table thead tr:first-child a {\n  color: #1e77c0;\n  transition: 0.3s;\n}\n\n.enrollers__table thead tr:first-child a:hover,\n.enrollers__table thead tr:first-child a:active {\n  color: #e3342f;\n}\n\n.enrollers__table tbody tr:nth-child(2n) {\n  background-color: #f1f1f1;\n}\n\n.enrollers__table tr {\n  border-bottom: 1px solid rgba(221, 221, 221, 0.5);\n}\n\n.enrollers__table td,\n.enrollers__table th {\n  padding: 0.9em 1.1em;\n}\n\n.speakers {\n  margin: 0.8em 0 1em;\n}\n\n.speaker {\n  margin-bottom: 0.5em;\n}\n\n.delete-speaker {\n  display: inline-block;\n  width: 25px;\n  height: 25px;\n  border: 1px solid #e3342f;\n  color: #e3342f;\n  padding: 0.15em;\n  margin-left: 0.5em;\n  text-align: center;\n  background-color: #FFF;\n  cursor: pointer;\n}\n\n.add-speaker {\n  display: block;\n  margin-left: 0.5em;\n  color: #1e77c0;\n  text-decoration: underline;\n}\n\n@media screen and (max-width: 1450px) {\n  .container {\n    width: 90%;\n  }\n\n  .about-event p {\n    flex-direction: column;\n  }\n\n  .about-event__subtitle {\n    font-size: 1.1rem;\n    margin-right: 0;\n    margin-bottom: 6px;\n    font-weight: bold;\n    min-width: 100%;\n    color: #1e77c0;\n  }\n}\n\n@media screen and (max-width: 946px) {\n  h1 {\n    font-size: 1.7rem;\n  }\n\n  .about-event {\n    flex-direction: column-reverse;\n  }\n\n  .about-event__info {\n    width: 100%;\n  }\n\n  .about-event__card {\n    width: 100%;\n  }\n\n  .about-event img {\n    width: 100%;\n  }\n\n  .about-event h2 {\n    margin-bottom: 1em;\n  }\n}\n\n@media screen and (max-width: 690px) {\n  h1 {\n    font-size: 1.5rem;\n  }\n\n  .form {\n    width: 100%;\n  }\n\n  .events .event {\n    min-width: 100%;\n  }\n\n  .events .event__links {\n    flex-direction: column;\n  }\n\n  .events .event__links a {\n    width: 100%;\n  }\n\n  .events .event__links .btn.btn-red {\n    width: 100%;\n  }\n\n  .events .event__links .btn.btn-filled {\n    width: 100%;\n  }\n\n  .event-title {\n    margin-bottom: 0.8em;\n  }\n\n  .organization__title {\n    margin-bottom: 0;\n  }\n\n  .about-event h2 {\n    font-size: 1.3rem;\n    margin-bottom: 0.7em;\n  }\n\n  .container {\n    width: 100%;\n    padding: 1.5em;\n  }\n\n  .main-header {\n    padding: 1em;\n  }\n\n  .main-header__logo {\n    width: 90px;\n  }\n\n  .main-header .main-nav {\n    font-size: 1rem;\n  }\n\n  .enroll-modal {\n    min-width: 100%;\n  }\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

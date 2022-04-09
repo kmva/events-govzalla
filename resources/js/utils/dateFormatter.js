@@ -5,9 +5,7 @@ export function dayLongMonth(date) {
 }
 
 export function time(date) {
-    return new Date(date).getTime() /* 
-    + ':' +
-    new Date(date).getMinutes(); */
+    return new Date(date).toLocaleTimeString({ hour12: false }).slice(0, -3)
 }
 
 

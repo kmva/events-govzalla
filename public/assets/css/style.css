@@ -662,6 +662,14 @@ button[disabled] {
     width: 100%;
   }
 
+  .events .event__links .btn.btn-red {
+    width: 100%;
+  }
+
+  .events .event__links .btn.btn-filled {
+    width: 100%;
+  }
+
   .event-title {
     margin-bottom: 0.8em;
   }
