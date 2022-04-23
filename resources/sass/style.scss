@@ -1,0 +1,713 @@
+// Variables
+@import 'variables';
+
+body{
+    background-color: $light;/* 
+   background-image: url('/img/2.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   backdrop-filter: blur(10px); */
+    font-family: $font-family-sans-serif;
+    color: $black;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    padding: 3em;
+
+    &--with-form{
+        h1 {
+            text-align: center;
+        }
+    }
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 5em;
+    box-shadow: 0 1px 5px 0 rgba($color: $blue, $alpha: .8);
+    background-color: #FFF;
+    color: $light;
+
+    &__logo{
+        width: 120px;
+    }
+
+    .main-nav{
+        font-size: 1.2rem;
+        text-align: center;
+
+       &__item{
+        display: inline-block;
+        padding: .5em;
+        display: inline-block;
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        a{
+            color: $blue;
+        }
+       }
+    }
+}
+
+h1{
+    margin-bottom: 1.3em;
+}
+
+a.disabled{
+    pointer-events: none;
+    background-color: lightgrey;
+    border-color: grey;
+    color: grey;
+}
+
+.organization{
+
+    margin-bottom: 3.5em;
+    border-left: 10px solid $blue;
+
+
+    &__title{
+        margin-bottom: 1em;
+        font-size: 2rem;
+     /*    background-color: $blue; */
+     /* border-bottom: 1px solid $blue; */
+        padding: 0 1em;
+    }
+}
+
+.events{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    row-gap: 2em;
+    padding: 2em;
+    width: 100%;
+
+    &-filters{
+        margin-bottom: 3em;
+
+        label{
+            margin-right: .5em;
+        }
+
+        select, input{
+            margin-right: 1.5em;
+            margin-bottom: 1.5em;
+            padding: .5em;
+            border: 1px solid $cyan;
+        }
+
+        input[type='date'] {
+            margin-right: .5em;
+            margin-left: .5em;
+        }
+
+        & &__search,
+        &__search{
+            width: 100%;
+            margin-bottom: 2em;
+            padding: .8em;
+            border: 1px solid $cyan
+        }
+    }
+
+    .event{
+        width: 31%;
+        max-width: 400px;
+        min-width: 350px;
+        background-color: #FFF;
+        transition: .3s;
+        border: 1px solid $cyan;
+        text-align: center;
+        position: relative;
+
+        &:hover{
+            transform: scale(1.02);
+            box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: .1);
+        }
+
+        &--removed{
+            border: 1px solid grey;
+            background-color: lightgrey;
+
+            .event__links .btn.btn-red{
+                width: 100%;
+            }
+
+            .btn.btn-filled{
+                display: none;
+            }
+        }
+
+        &__removed-banner{
+            color: red;
+            margin-top: .7em;
+            font-size: 1.2rem;
+        }
+
+        &__edit{
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            padding: 0.5em 1.2em;
+            background: #FFF;
+            border: 1px solid $red;
+            color: $red;
+            border-radius: 0 0 0 32px;
+            transition: .3s;
+            z-index: 1;
+
+            &:hover, 
+            &:active{
+                background: $red;
+                color: #FFF;
+            }
+        }
+
+        &__header{
+            height: 180px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFF;
+            text-align: center;
+
+            &-img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+            }
+
+            &-backdrop{
+                display: flex;
+                justify-content: center;
+                align-items: center;    
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 180px;
+                padding: 1em;
+                background-color: rgba($color: #000, $alpha: .5);
+            }
+        }
+        
+        &__body{
+            padding: 1em;
+            padding-top: 1.3em;
+        }
+
+        &__info{
+            height: 240px;
+        }
+
+        &__title{
+            font-size: 1.2rem;
+            margin-bottom: .6em;
+        }
+
+        &__format{
+            color: $cyan;
+        }
+
+        &__enrollers-count {    
+            margin-bottom: 10px;
+        
+            span{
+                font-size: 1.2rem;
+                color: $cyan;
+            }
+        }
+
+        &__links{
+            display: flex;
+            justify-content: space-between;
+
+            .btn.btn-red{
+                width: 40%;
+            }
+
+            .btn.btn-filled{
+                width: 57%;
+            }
+        }
+    }
+}
+
+button{
+    display: block;
+
+    &:hover, &:active{
+        cursor: pointer;
+        
+    }
+
+    &:disabled,
+    &[disabled]{
+        color: #fff;
+        background: #d5d5d5;
+        border:none
+    }
+}
+
+.btn{
+    display: block;
+    padding: 1em .5em;
+    margin-top: .6em;
+    text-align: center;
+    transition: .3s;
+}
+
+.btn-red{
+    background-color: #FFF;
+    border: 1px solid $red;
+    color: $red;
+    width: 49%;
+
+    &:hover, &:active {
+        background-color: $red;
+        color: #FFF;
+    }
+}
+
+.btn-filled{
+    background-color: $red;
+    border: 1px solid $red;
+    color: #FFF;
+    width: 49%;
+
+    &:hover, &:active {
+        background-color: #aa201b;
+    }
+}
+
+.btn-blue{
+    background-color: #FFF;
+    border: 1px solid $blue;
+    color: $blue;
+
+    &:hover, &:active {
+        background-color: $blue;
+        color: #FFF;
+    }
+}
+
+.modal-buttons-flex{
+    display: flex;
+    justify-content: space-between;
+    
+    button{
+        width: 45%;
+    }
+}
+
+.event-title{
+    margin-bottom: 2em;
+}
+
+.required-star{
+ color: $red;
+ font-size: 1.2rem;
+}
+
+/***  Admin   ***/
+
+/** add event **/
+
+.form{
+    width: 600px;
+    margin: auto;
+
+
+    &-control{
+        margin-bottom: 1.5em;
+        width: 100%;
+
+        &.invalid{
+            small{
+                display: block;
+                color: $red;
+                margin-top: 10px;
+            }
+
+            input, textarea, select{
+                border: 1px solid $red;
+            }
+        }
+    }
+
+
+    label {
+        display: block;
+        margin-bottom: .6em;
+    }
+
+    input, textarea, select{
+        padding: .8em;
+        border: 1px solid $cyan;
+        width: 100%;
+    }
+
+    .another-format{
+        margin-top: .8em;
+    }
+}
+
+.enroll-form{
+    width: 100%;
+}
+
+.enroll-modal{ 
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 35%;
+    min-width: 400px;
+    max-height: 85vh;
+    margin: 5% auto;
+    padding: 3em;
+    overflow: scroll;
+    box-shadow: 1px 1px 10px 0 rgba($color: #000, $alpha: .1);
+    background-color: #FFF;
+    z-index: 1000;
+
+    h2{
+        margin-bottom: 2em;
+    }
+}
+
+.modal{
+    position: relative;
+
+    &-close {
+        position: absolute;
+        top: 1em;
+        right: 0.8em;
+        cursor: pointer;
+        margin-left: .5em;
+    }
+
+    &-overlay{
+        position: fixed;
+        overflow: auto;
+        z-index: 999;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba($color: #000000, $alpha: .5);
+    }
+}
+
+.about-event{
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+
+    p{
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: .8em;
+    }
+
+    h2{
+        margin-bottom: 2em;
+    }
+
+    &__card{
+        background: #FFF;
+        padding: 2em;
+        margin-bottom: 2em;
+        border-top: 5px solid $blue;
+        box-shadow: 0px 0px 3px 0 $blue;
+    }
+
+    &__description{
+        white-space: break-spaces;
+    }
+
+    &__info{
+        width: 40%;
+    }
+
+    &__subtitle{
+        font-size: 1.1rem;
+        margin-right: 5px;
+        font-weight: bold;
+        min-width: 211px;
+        width: 211px;
+        display: inline-block;
+    }
+
+    &__speakers{
+
+        li {
+            margin-bottom: .7em;
+            position: relative;
+
+            &::before{
+                content: '';
+                display: inline-block;
+                background-color: $blue;
+                width: 30px;
+                height: 3px;
+                position: relative;
+                top: -4px;
+                margin-right: .5em;
+            }
+        }
+    }
+
+    img{
+        width: 55%;
+        object-fit: cover;
+    }
+}
+
+.edit-event-form{
+
+    &__buttons{
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 200px;
+        }
+    }
+
+    &__delete-btn{
+        color: $red;
+    }
+}
+
+.auth-heading {
+    text-align: center;
+}
+
+.auth-form__btn{
+    width: 130px;
+}
+
+.table-wrapper{
+    width: 100%;
+    overflow-x: scroll;
+    margin: auto;
+    margin-bottom: 2.5em;
+    box-shadow: 0 0 5px 0 rgba($color: $cyan, $alpha: .5);
+}
+
+.enrollers{
+
+    &-link{
+        margin-bottom: 1.5em;
+        display: block;
+        font-size: 1.15rem;
+        text-decoration: underline;
+        color: $blue
+    }
+
+    &__download-link{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1em 0;
+        row-gap: .5em;
+        width: 170px;
+        color: $blue;
+        transition: .3s;
+
+        &:hover, &:active{
+            color: $green;
+        }
+
+        img{
+            width: 40px;
+        }
+    }
+
+    &__table{
+        width: 100%;
+        background-color: #FFF;
+
+        thead tr:first-child{
+            font-size: 1.2rem;
+
+            a{
+                color: $blue;
+                transition: .3s;
+
+                &:hover, &:active{
+                    color: $red;
+                }
+            }
+
+        }
+
+        tbody tr:nth-child(2n){
+            background-color: #f1f1f1;
+        }
+
+        tr{
+            border-bottom: 1px solid rgba($color: #DDD, $alpha: .5);
+        }
+
+        td, th{
+            padding: .9em 1.1em;
+        }
+    }
+}
+
+.speakers{
+    margin: .8em 0 1em;
+}
+
+.speaker{
+    margin-bottom: .5em;
+}
+
+.delete-speaker{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid $red;
+    color: $red;
+    padding: .15em;
+    margin-left: .5em;
+    text-align: center;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.add-speaker{
+    display: block;
+    margin-left: .5em;
+    color: $blue;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1450px){
+    .container{
+        width: 90%;
+    }
+
+    .about-event{
+
+        p{
+            flex-direction: column;
+        }
+        
+        &__subtitle{
+            font-size: 1.1rem;
+            margin-right: 0;
+            margin-bottom: 6px;
+            font-weight: bold;
+            min-width: 100%;
+            color: $blue;
+        }
+    }
+}
+
+@media screen and (max-width: 946px) {
+    h1{
+        font-size: 1.7rem;
+    }
+
+    .about-event{
+        flex-direction: column-reverse;
+
+        &__info{
+            width: 100%;
+        }
+    
+        &__card{
+            width: 100%;
+        }
+
+        img{
+            width: 100%;
+        }
+    }
+
+    .about-event h2{
+        margin-bottom: 1em;
+    }
+
+}
+
+@media screen and (max-width: 690px) {
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .events{
+        .event{
+            min-width: 100%;
+
+            &__links{
+                flex-direction: column;
+                a{
+                    width: 100%;
+                }
+
+                .btn.btn-red{
+                    width: 100%
+                }
+    
+                .btn.btn-filled{
+                    width: 100%
+                }
+            }
+        }
+    }
+
+    .event-title{
+        margin-bottom: .8em;
+    }
+
+    .organization__title{
+        margin-bottom: 0;
+    }
+
+    .about-event h2{
+        font-size: 1.3rem;
+        margin-bottom: .7em;
+    }
+
+    .container{
+        width: 100%;
+        padding: 1.5em;
+    }
+
+    .main-header{
+        padding: 1em;
+
+        &__logo{
+            width: 90px;
+        }
+
+        .main-nav{
+            font-size: 1rem;
+        }
+    }
+
+    .enroll-modal{
+        min-width: 100%;
+    }
+}

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MailController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +14,6 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('index');
-});
+})->where('any', '.*');

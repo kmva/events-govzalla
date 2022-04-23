@@ -1,0 +1,26 @@
+import { createStore, createLogger } from 'vuex'
+import Admin from './modules/admin/admin-store'
+import Events from './modules/events/events-store'
+import Enrollers from './modules/enrollers/enrollers-store'
+import Modals from './modules/modals/modals-store'
+
+
+/* const plugins = []
+
+if(process.env.NODE_ENV === 'development'){
+    plugins.push(createLogger())
+}
+ */
+
+export default createStore({
+    plugins: [createLogger()],
+    state: {},
+    mutations: {},
+    actions: {},
+    modules: {
+        Admin,
+        Events,
+        Enrollers,
+        Modals,
+    },
+  })
